@@ -53,17 +53,19 @@ class Message
     /// Type of message.
     /// </summary>
     /// <remarks>
-    /// Type must be "message" or "emoji".
+    /// Type must be <c>"message"</c>, <c>"emoji"</c> or <c>"system"</c>.
     /// </remarks>
     public string type;
 
     /// <summary>
     /// Content of message.
-    /// </summary>
-    /// <remarks>
-    /// If this message's type is "emoji",
+    /// <br />
+    /// If this message's type is <c>"emoji"</c>,
     /// content must be emoji's id.
-    /// </remarks>
+    /// <br />
+    /// If this message's type is <c>"system"</c>,
+    /// content must be <c>"join"</c>, <c>"exit"</c> or other events.
+    /// </summary>
     public string content;
 
     /// <summary>
