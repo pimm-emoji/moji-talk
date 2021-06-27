@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    The LevelInformation Class
+    The LevelData Class
     Contains Single Level Flow (Stage) Data
 */
 /// <summary>
-/// The LevelInformation Class.
+/// The LevelData Class.
 /// Contains Single Level Flow (Stage) Data.
 /// Same as <c>levels.json</c>.
 /// <example>
 /// <code>
-/// LevelInformation levelInformation = new LevelInformation();
-/// levelInformation.id = "first";
-/// levelInformation.type = "single";
-/// levelInformation.participants = STRING_LIST;
+/// LevelData levelData = new LevelData();
+/// LevelData.id = "first";
+/// LevelData.type = "single";
+/// LevelData.participants = STRING_LIST;
 /// </code>
 /// <code>
-/// LevelInformation levelInformation = new LevelInformation("first", "single", STRING_LIST);
+/// LevelData levelData = new LevelData("first", "single", STRING_LIST);
 /// </code>
 /// </example>
 /// <item>
@@ -38,7 +38,7 @@ using UnityEngine;
 /// <c>type</c> must be <c>"single"</c> or <c>"group"</c>.
 /// </remarks>
 [System.Serializable]
-class LevelInformation
+public class LevelData
 {
     /// <summary>
     /// Internal ID of level flow.
@@ -58,8 +58,8 @@ class LevelInformation
     /// </summary>
     public List<string> participants;
 
-    public LevelInformation(){}
-    public LevelInformation(string ID, string Type, List<string> Participants){
+    public LevelData(){}
+    public LevelData(string ID, string Type, List<string> Participants){
         id = ID;
         type = Type;
         participants = Participants;
@@ -70,5 +70,5 @@ class LevelInformation
 [System.Serializable]
 class LevelIndex
 {
-    public List<LevelInformation> list;
+    public List<LevelData> list;
 }

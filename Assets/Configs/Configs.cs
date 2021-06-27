@@ -4,7 +4,7 @@ using UnityEngine;
 /*
     The internal system configs of moji talk
 */
-class Configs
+public class Configs
 {
     /*
         Primary Assets Paths
