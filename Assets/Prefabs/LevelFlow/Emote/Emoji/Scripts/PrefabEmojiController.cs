@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmojiController : MonoBehaviour
+/*
+    The PrefabEmojiController Class
+*/
+public class PrefabEmojiController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
