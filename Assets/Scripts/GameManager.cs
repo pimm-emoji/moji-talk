@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Load Levels Preset")]
     public void LoadLevelsPreset()
     {
-        levels = JsonController.LoadSingleDepth<LevelData>(
-            JsonController.LoadJson(Configs.LevelIndexPath)
+        levels = PresetController.LoadSingleDepth<LevelData>(
+            PresetController.LoadJson(Configs.LevelIndexPath)
         );
     }
 

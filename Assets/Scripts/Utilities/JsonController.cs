@@ -5,15 +5,20 @@ using UnityEngine;
 using Newtonsoft.Json.Linq;
 
 /*
-    The JsonController
+    The PresetController
 */
-class JsonController
+class PresetController
 {
     public static JObject LoadJson(string path)
     {
         string jsonData = File.ReadAllText(path);
         JObject obj = JObject.Parse(jsonData);
         return obj;
+    }
+
+    public static List<T> LoadSingleList<T>(JObject ObjectSet)
+    {
+        // Todo..
     }
 
     public static Dictionary<string, T> LoadSingleDepth<T>(JObject ObjectSet)
