@@ -19,6 +19,7 @@ class PresetController
     public static List<T> LoadSingleList<T>(JObject ObjectSet)
     {
         // Todo..
+        return new List<T>();
     }
 
     public static Dictionary<string, T> LoadSingleDepth<T>(JObject ObjectSet)
