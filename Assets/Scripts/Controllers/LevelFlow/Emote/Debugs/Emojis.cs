@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Emojis : MonoBehaviour {
 
-	public GameObject emojiSlicedPrefab; //emojislicedprefab , startforce º¯¼ö
+	public GameObject emojiSlicedPrefab; //emojislicedprefab , startforce ë³€ìˆ˜
 	public float startForce = 15f;
 
 	Rigidbody2D rb;
 
-	void Start ()  //rigidbody¿¡ ½ÃÀÛ ÈûÀ» °¡ÇÔ
+	void Start ()  //rigidbodyì— ì‹œì‘ í˜ì„ ê°€í•¨
 	{
 		rb = GetComponent<Rigidbody2D>();
 		rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 	}
 
-	void OnTriggerEnter2D (Collider2D col)  //Blade ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ ½Ã
+	void OnTriggerEnter2D (Collider2D col)  //Blade íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒ ì‹œ
 	{
 		if (col.tag == "Blade")
 		{
@@ -23,7 +23,7 @@ public class Emojis : MonoBehaviour {
 
 			Quaternion rotation = Quaternion.LookRotation(direction); //
 
-			GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  // Àß¸° °úÀÏ ¿ÀºêÁ§Æ® »ı¼º
+			GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  // ì˜ë¦° ê³¼ì¼ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 			Destroy(slicedEmoji, 3f);
 			Destroy(gameObject);
 		}

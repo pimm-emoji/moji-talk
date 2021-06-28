@@ -12,7 +12,7 @@ public class EmojiSpawner : MonoBehaviour {
 
 
 	void Start () {
-		StartCoroutine(SpawnEmojis()); // »ı¼º ÈÄ delay ÃÊ¸¶´Ù ¸ØÃß±â
+		StartCoroutine(SpawnEmojis()); // ìƒì„± í›„ delay ì´ˆë§ˆë‹¤ ë©ˆì¶”ê¸°
 	}
 
 	IEnumerator SpawnEmojis ()
@@ -22,11 +22,11 @@ public class EmojiSpawner : MonoBehaviour {
 			float delay = Random.Range(minDelay, maxDelay);
 			yield return new WaitForSeconds(delay);
 
-			int spawnIndex = Random.Range(0, spawnPoints.Length);  // ½ºÆùÆ÷ÀÎÆ® ·£´ıÀ¸·Î »Ì±â
+			int spawnIndex = Random.Range(0, spawnPoints.Length);  // ìŠ¤í°í¬ì¸íŠ¸ ëœë¤ìœ¼ë¡œ ë½‘ê¸°
 			Transform spawnPoint = spawnPoints[spawnIndex];
 
-			GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation); //ÀÌ¸ğÁö »ı¼º
-			Destroy(spawnedEmoji, 5f); //5f µÚ ÆÄ±«
+			GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation); //ì´ëª¨ì§€ ìƒì„±
+			Destroy(spawnedEmoji, 5f); //5f ë’¤ íŒŒê´´
 		}
 	}
 	
