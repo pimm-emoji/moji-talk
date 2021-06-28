@@ -26,10 +26,10 @@ public class Configs
         Presets Paths
     */
     /// <summary>
-    /// ProfilePath is path of Profile Preset.
+    /// PresetProfilePath is path of Profile Preset.
     /// Path: <c>/Assets/Presets/profiles.json</c>
     /// </summary>
-    public static string ProfilePath;
+    public static string PresetProfilePath;
 
     /// <summary>
     /// LevelIndexPath is path of Level Index Preset.
@@ -48,20 +48,34 @@ public class Configs
         Resources Paths
     */
     /// <summary>
-    /// EmojiPath is path of emoji resources
+    /// ResourceEmojiPath is path of emoji resources
     /// Path: <c>/Assets/Resources/Emojis</c>
     /// </summary>
-    public static string EmojiPath;
+    public static string ResourceEmojiPath;
+
+    /// <summary>
+    /// ResourceProfilePath is path of Profile Resource Directory.
+    /// Path: <c>/Assets/Resources/Profiles</c>
+    /// </summary>
+    public static string ResourceProfilePath;
+
+    /// <summary>
+    /// ResourceProfileImagePath is path of Profile Image Resource Directory.
+    /// Path: <c>/Assets/Resources/Profiles/Images</c>
+    /// </summary>
+    public static string ResourceProfileImagePath;
     
     static Configs()
     {
         PresetPath = Path.Combine(Application.dataPath, "Presets");
         ResourcePath = Path.Combine(Application.dataPath, "Resources");
 
-        ProfilePath = Path.Combine(PresetPath, "profiles.json");
+        PresetProfilePath = Path.Combine(PresetPath, "profiles.json");
         LevelIndexPath = Path.Combine(PresetPath, "levels.json");
         LevelDirPath = Path.Combine(PresetPath, "levels");
 
-        EmojiPath = Path.Combine(ResourcePath, "Emojis");
+        ResourceEmojiPath = Path.Combine(ResourcePath, "Emojis");
+        ResourceProfilePath = Path.Combine(ResourcePath, "Profiles");
+        ResourceProfileImagePath = Path.Combine(ResourceProfilePath, "Images");
     }
 }
