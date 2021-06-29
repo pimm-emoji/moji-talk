@@ -26,10 +26,12 @@ public class Configs
         Presets Paths
     */
     /// <summary>
-    /// PresetProfilePath is path of Profile Preset.
+    /// ProfileIndexPath is path of Profile Preset.
     /// Path: <c>/Assets/Presets/profiles.json</c>
     /// </summary>
-    public static string PresetProfilePath;
+    public static string ProfileIndexPath;
+
+    public static string PresetProfileDirPath;
 
     /// <summary>
     /// LevelIndexPath is path of Level Index Preset.
@@ -70,7 +72,8 @@ public class Configs
         PresetPath = Path.Combine(Application.dataPath, "Presets");
         ResourcePath = Path.Combine(Application.dataPath, "Resources");
 
-        PresetProfilePath = Path.Combine(PresetPath, "profiles.json");
+        ProfileIndexPath = Path.Combine(PresetPath, "profiles.json");
+        PresetProfileDirPath = Path.Combine(PresetPath, "profiles");
         LevelIndexPath = Path.Combine(PresetPath, "levels.json");
         LevelDirPath = Path.Combine(PresetPath, "levels");
 
