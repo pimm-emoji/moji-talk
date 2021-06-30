@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json.Linq;
 
 /*
     The GameManager Class
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     
     public Dictionary<string, LevelData> levels;
+    public List<string> ProfileIndex;
 
     private void Awake()
     {
@@ -48,8 +51,21 @@ public class GameManager : MonoBehaviour
     public void LoadLevelsPreset()
     {
         levels = PresetController.LoadSingleDepth<LevelData>(
-            PresetController.LoadJson(Configs.LevelIndexPath)
+            PresetController.LoadJsonToObject(Configs.LevelIndexPath)
         );
+    }
+
+    [ContextMenu("Load Profile Index")]
+    public void LoadProfileIndexPreset()
+    {
+        ProfileIndex = PresetController.LoadSingleDepth<LevelData>(
+            PresetController.LoadJsonToArray(Configs.LevelIndexPath)
+        );
+        print(JArray.Parse(File.ReadAllText(Configs.ProfileIndexPath)));
+        //print(PresetController.LoadJson(Configs.ProfileIndexPath).GetType());
+        /*ProfileIndex = PresetController.LoadSingleList<string>(
+            PresetController.LoadJson(Configs.ProfileIndexPath)
+        );*/
     }
 
     /*
