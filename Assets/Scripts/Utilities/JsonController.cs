@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 class PresetController
 {
     public static JObject LoadJsonToObject(string path) { return JObject.Parse(File.ReadAllText(path)); }
-    public static JArray LoadJsonToArray(string path) { return Jarray.Parse(File.ReadAllText(path)); }
+    public static JArray LoadJsonToArray(string path) { return JArray.Parse(File.ReadAllText(path)); }
 
     public static List<T> LoadSingleList<T>(JObject ObjectSet)
     {

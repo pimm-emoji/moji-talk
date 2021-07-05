@@ -11,7 +11,7 @@ public class FlowController : MonoBehaviour
     [ContextMenu("Load Level Data")]
     void LoadLevelData()
     {
-        JObject jobj = PresetController.LoadJson<JObject>(Configs.LevelIndexPath);
+        JObject jobj = PresetController.LoadJsonToObject(Configs.LevelIndexPath);
         print(jobj);
         Dictionary<string, LevelData> levelData = PresetController.LoadSingleDepth<LevelData>(jobj);
         foreach (var key in levelData.Keys)
