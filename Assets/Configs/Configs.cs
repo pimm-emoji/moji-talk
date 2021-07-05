@@ -21,6 +21,11 @@ public class Configs
     /// </summary>
     public static string ResourcePath;
 
+    /// <summary>
+    /// PrefabPath is path of prefab resources root directory.
+    /// </summary>
+    public static string PrefabPath;
+
 
     /*
         Presets Paths
@@ -71,6 +76,7 @@ public class Configs
     {
         PresetPath = Path.Combine(Application.dataPath, "Presets");
         ResourcePath = Path.Combine(Application.dataPath, "Resources");
+        PrefabPath = Path.Combine(Application.dataPath, "Prefabs");
 
         ProfileIndexPath = Path.Combine(PresetPath, "profiles.json");
         PresetProfileDirPath = Path.Combine(PresetPath, "profiles");

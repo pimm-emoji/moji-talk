@@ -1,6 +1,9 @@
 {
   "first": {
     "id": "first",
+    "name": "키사모",
+    "desc": "키위를 사랑하는 모임",
+    "img": "Profiles/Images/dopamine.png",
     "type": "single",
     "participants": ["dopamine"]
   }

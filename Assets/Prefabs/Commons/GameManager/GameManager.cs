@@ -54,12 +54,13 @@ public class GameManager : MonoBehaviour
             PresetController.LoadJsonToObject(Configs.LevelIndexPath)
         );
     }
+    public Dictionary<string, LevelData> GetLevelsPreset() { LoadLevelsPreset(); return this.levels; }
 
     [ContextMenu("Load Profile Index")]
     public void LoadProfileIndexPreset()
     {
-        ProfileIndex = PresetController.LoadSingleDepth<LevelData>(
-            PresetController.LoadJsonToArray(Configs.LevelIndexPath)
+        ProfileIndex = PresetController.LoadSingleDepth<string>(
+            PresetController.LoadJsonToArray(Configs.ProfileIndexPath)
         );
         print(JArray.Parse(File.ReadAllText(Configs.ProfileIndexPath)));
         //print(PresetController.LoadJson(Configs.ProfileIndexPath).GetType());
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
             PresetController.LoadJson(Configs.ProfileIndexPath)
         );*/
     }
+    public List<string> GetProfileIndexPreset() { LoadProfileIndexPreset(); return this.ProfileIndex; }
 
     /*
         The LoadScene Method
