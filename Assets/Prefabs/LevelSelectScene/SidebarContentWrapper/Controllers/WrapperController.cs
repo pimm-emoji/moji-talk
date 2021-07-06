@@ -13,6 +13,8 @@ public class WrapperController : MonoBehaviour
     {
         Name.text = name;
         Description.text = description;
-        ProfileImage.sprite = Resources.Load<Sprite>(imagepath);
+        print(imagepath);
+        print(Resources.Load<Sprite>(imagepath));
+        ProfileImage.GetComponent<Image>().sprite = Resources.Load<Sprite>(imagepath);
     }
 }

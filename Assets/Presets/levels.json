@@ -6,5 +6,12 @@
     "img": "Profiles/Images/dopamine.png",
     "type": "single",
     "participants": ["dopamine"]
+  },
+  "second": {
+    "name": "Aimless",
+    "desc": "Aimless Minecraft Server",
+    "img": "Profiles/Images/davidson.png",
+    "type": "single",
+    "participants": ["davidson"]
   }
 }

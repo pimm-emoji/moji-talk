@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de04f990eac05e940866cecd2d8c416e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WrapperControllerPrefab: {fileID: 0}
+  WrapperControllerPrefab: {fileID: 405442666549362821, guid: 177e49c990fab1e4ebb570c74e64551e, type: 3}
 --- !u!4 &1529459420
 Transform:
   m_ObjectHideFlags: 0
@@ -1113,7 +1113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000018288041}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2120939923
