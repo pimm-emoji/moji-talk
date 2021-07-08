@@ -3,14 +3,14 @@
     "id": "first",
     "name": "키사모",
     "desc": "키위를 사랑하는 모임",
-    "img": "Profiles/Images/dopamine.png",
+    "img": "Profiles/Images/dopamine",
     "type": "single",
     "participants": ["dopamine"]
   },
   "second": {
     "name": "Aimless",
     "desc": "Aimless Minecraft Server",
-    "img": "Profiles/Images/davidson.png",
+    "img": "Profiles/Images/davidson",
     "type": "single",
     "participants": ["davidson"]
   }
