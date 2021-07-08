@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     
     public Dictionary<string, LevelData> levels;
     public List<string> ProfileIndex;
+    public Flow Flow;
 
     private void Awake()
     {
@@ -62,13 +63,24 @@ public class GameManager : MonoBehaviour
         ProfileIndex = PresetController.LoadSingleDepth<string>(
             PresetController.LoadJsonToArray(Configs.ProfileIndexPath)
         );
-        print(JArray.Parse(File.ReadAllText(Configs.ProfileIndexPath)));
         //print(PresetController.LoadJson(Configs.ProfileIndexPath).GetType());
         /*ProfileIndex = PresetController.LoadSingleList<string>(
             PresetController.LoadJson(Configs.ProfileIndexPath)
         );*/
     }
     public List<string> GetProfileIndexPreset() { LoadProfileIndexPreset(); return this.ProfileIndex; }
+
+    public void LoadLevelFlow(string LevelID)
+    {
+        Flow.flow = PresetController.LoadSingleDepth<Level>(
+            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
+        );
+    }
+    public Flow GetLevelFlow(string LevelID) { LoadLevelFlow(LevelID); return Flow; }
+
+
+    [ContextMenu("Load Specific Level Flow")]
+    public void DebugLoadLevelFlow() { LoadLevelFlow("first"); }
 
     /*
         The LoadScene Method

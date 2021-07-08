@@ -34,7 +34,7 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-class Emoji
+public class Emoji
 {
 
     /// <summary>
@@ -81,7 +81,7 @@ class Emoji
 /// </item>
 /// </summary>
 [System.Serializable]
-class EmojiGenerations
+public class EmojiGenerations
 {
     /// <summary>
     /// Positive/negative emoji rate to be generated.
