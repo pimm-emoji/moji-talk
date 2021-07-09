@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
     
     public Dictionary<string, LevelData> levels;
     public List<string> ProfileIndex;
+    
+    /*
+        These are related to IngamePlayScene.
+    */
+    public string IngamePlaySceneLevel;
     public Flow Flow;
 
     private void Awake()
@@ -70,13 +75,27 @@ public class GameManager : MonoBehaviour
     }
     public List<string> GetProfileIndexPreset() { LoadProfileIndexPreset(); return this.ProfileIndex; }
 
+    /*
+        These are related to IngamePlayScene.
+    */
+    public void SetLevel(string LevelID)
+    {
+        IngamePlaySceneLevel = LevelID;
+    }
+    public void LoadLevelFlow()
+    {
+        Flow.flow = PresetController.LoadSingleDepth<Level>(
+            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, IngamePlaySceneLevel, "flow.json"))
+        );
+    }
     public void LoadLevelFlow(string LevelID)
     {
         Flow.flow = PresetController.LoadSingleDepth<Level>(
             PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
         );
     }
-    public Flow GetLevelFlow(string LevelID) { LoadLevelFlow(LevelID); return Flow; }
+    public Flow GetLevelFlow() { LoadLevelFlow(); return Flow; }
+    public Flow GetLevelFlow(string LevelID) { SetLevel(LevelID); LoadLevelFlow(); return Flow; }
 
 
     [ContextMenu("Load Specific Level Flow")]
