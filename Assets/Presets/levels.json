@@ -13,5 +13,12 @@
     "img": "Profiles/Images/davidson",
     "type": "single",
     "participants": ["davidson"]
+  },
+  "debug": {
+    "name": "Debug Scene",
+    "desc": "Debug Scene",
+    "img": "Profiles/Images/davidson",
+    "type": "single",
+    "participants": ["davidson"]
   }
 }

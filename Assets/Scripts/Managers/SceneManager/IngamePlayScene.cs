@@ -8,7 +8,7 @@ public class IngamePlayScene : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.SetLevel("first");
+        GameManager.instance.SetLevel("debug");
         Flow = GameManager.instance.GetLevelFlow();
         StartCoroutine(ProcessingFlows());
     }
