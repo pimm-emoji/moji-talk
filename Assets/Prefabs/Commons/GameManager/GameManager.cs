@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     /*
         Set Participants
     */
-    public void SetParticipants(List<Profile> participants) { Participants = participants; }
+    public void SetParticipants(List<Profile> participants) { IngamePlaySceneParticipants = participants; }
     /*
         Load Participants
     */
