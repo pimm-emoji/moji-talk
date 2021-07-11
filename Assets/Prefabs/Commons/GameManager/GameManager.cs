@@ -7,11 +7,11 @@ using Newtonsoft.Json.Linq;
 
 /*
     The GameManager Class
-    GameManager should be only one.
+    GameManager should be only one in game.
 */
 /// <summary>
 /// The GameManager Class
-/// GameManager should be only one.
+/// GameManager should be only one in game.
 /// <example>
 /// <code>
 /// GameManager.instance
@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
         These are related to IngamePlayScene.
     */
     public string IngamePlaySceneLevel;
+    public LevelData IngamePlaySceneLevelData;
+    public List<Profile> IngamePlaySceneParticipants;
     public Flow Flow;
 
     private void Awake()
@@ -44,23 +46,7 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-
-        // Load Levels Preset.
-        LoadLevelsPreset();
     }
-
-    /// <summary>
-    /// Loads levels preset in <c>"/Assets/Presets/levels.json"</c>.
-    /// This method should be called once at GameManager awakes.
-    /// </summary>
-    [ContextMenu("Load Levels Preset")]
-    public void LoadLevelsPreset()
-    {
-        levels = PresetController.LoadSingleDepth<LevelData>(
-            PresetController.LoadJsonToObject(Configs.LevelIndexPath)
-        );
-    }
-    public Dictionary<string, LevelData> GetLevelsPreset() { LoadLevelsPreset(); return this.levels; }
 
     [ContextMenu("Load Profile Index")]
     public void LoadProfileIndexPreset()
@@ -78,28 +64,40 @@ public class GameManager : MonoBehaviour
     /*
         These are related to IngamePlayScene.
     */
-    public void SetLevel(string LevelID)
-    {
-        IngamePlaySceneLevel = LevelID;
-    }
-    public void LoadLevelFlow()
-    {
-        Flow.flow = PresetController.LoadSingleDepth<Level>(
-            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, IngamePlaySceneLevel, "flow.json"))
-        );
-    }
+    public void SetLevel(string LevelID) { IngamePlaySceneLevel = LevelID; }
+
+    /*
+        Loads LevelFlow
+    */
+    public void LoadLevelFlow() { LoadLevelFlow(IngamePlaySceneLevel); }
     public void LoadLevelFlow(string LevelID)
     {
         Flow.flow = PresetController.LoadSingleDepth<Level>(
             PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
         );
     }
-    public Flow GetLevelFlow() { LoadLevelFlow(); return Flow; }
+    public Flow GetLevelFlow() { return GetLevelFlow(IngamePlaySceneLevel); }
     public Flow GetLevelFlow(string LevelID) { SetLevel(LevelID); LoadLevelFlow(); return Flow; }
 
+    /*
+        Set Participants
+    */
+    public void SetParticipants(List<Profile> participants) { Participants = participants; }
+    /*
+        Load Participants
+    */
+    public void LoadParticipants(){}
 
-    [ContextMenu("Load Specific Level Flow")]
-    public void DebugLoadLevelFlow() { LoadLevelFlow("first"); }
+    /*
+        Load Data that needs load level fully.
+    */
+    public void LoadLevel() { LoadLevel(IngamePlaySceneLevel); }
+    public void LoadLevel(string Level)
+    {
+        SetLevel(Level);
+        // Load Profile Data that uses in game.
+        LoadLevelFlow(Level);
+    }
 
     /*
         The LoadScene Method

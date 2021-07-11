@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    The IngamePlayScene
+*/
 public class IngamePlayScene : MonoBehaviour
 {    
     Flow Flow;
