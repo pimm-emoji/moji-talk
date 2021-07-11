@@ -3,7 +3,7 @@
     "type": "chatting",
     "chats": [
       { "author": "player", "type": "message", "content": "도파민 박사님도 자기소개 부탁드리겠습니다.", "delay": 1000 },
-      { "author": "dopamine", "type": "meesage", "content": "반갑습니다! \n대한민국 최고의 박사, 도파민박사라고 합니다!", "delay": 10000 }
+      { "author": "dopamine", "type": "meesage", "content": "반갑습니다! \n대한민국 최고의 박사, 도파민박사라고 합니다!", "delay": 1000 }
     ],
     "branch": {
       "divider": [],

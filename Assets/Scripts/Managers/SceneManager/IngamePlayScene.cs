@@ -21,26 +21,25 @@ public class IngamePlayScene : MonoBehaviour
         {
             if (Flow.flow[i].type == "chatting")
             {
-                StartCoroutine(ProcessingChatting(Flow.flow[i].chats));
+                foreach(var message in Flow.flow[i].chats)
+                {
+                    // Processing Message
+                    print(message.content);
+
+                    yield return new WaitForSeconds(message.delay / 1000);
+                }
                 i = Flow.flow[i].branch.index[0];
             }
             else if (Flow.flow[i].type == "emote")
             {
-                // Duration
+                // Processing Emote Scene
+
                 yield return new WaitForSeconds(Flow.flow[i].duration / 1000);
             }
             else if (Flow.flow[i].type == "end")
             {
                 Flag = false;
             }
-        }
-    }
-    IEnumerator ProcessingChatting(List<Message> chats)
-    {
-        foreach(var message in chats)
-        {
-            print(message.content);
-            yield return new WaitForSeconds(message.delay / 1000);
         }
     }
 }
