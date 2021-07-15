@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/Models/Materials.meta
 guid: 9d3267a3ccc5a184690a1c93cb75c3a8
+=======
+guid: c77178ec9ec1c8d4c86d0b5728920dc2
+>>>>>>> Stashed changes:Assets/Image.meta
+=======
+guid: 9d3267a3ccc5a184690a1c93cb75c3a8
+>>>>>>> Stashed changes
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

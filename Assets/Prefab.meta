@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/Prefab.meta
 guid: 032445f3cd85f124a95fb1d13985b76d
+=======
+guid: 3aeb4fdc7fd356d41ac29cc1dd41cbd6
+>>>>>>> Stashed changes:Assets/Image/Icon.meta
+=======
+guid: 032445f3cd85f124a95fb1d13985b76d
+>>>>>>> Stashed changes
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
