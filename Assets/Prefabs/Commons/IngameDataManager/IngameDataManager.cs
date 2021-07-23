@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 /*
     The IngameDataManager Class
@@ -54,7 +55,21 @@ public class IngameDataManager : MonoBehaviour
             participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
         }
     }
+    public void LoadParticipants(List<string> Participants)
+    { 
+        participants = new List<Profile>();
+        foreach (string Participant in Participants)
+        {
+            participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
+        }
+    }
     public List<Profile> GetParticipants() { return participants; }
 
-    public void LoadLevel() {}
+    public void LoadLevel(string LevelID)
+    {
+        levelID = LevelID;
+        LoadLevel();
+    }
+    public void LoadLevel()
+    {}
 }
