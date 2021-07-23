@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class IngameDataManager : MonoBehaviour
     public string levelID;
     public LevelData levelData;
     public List<Profile> participants;
-    public Flow flow;
+    public List<Level> flow;
 
     void Start()
     {
@@ -27,18 +28,33 @@ public class IngameDataManager : MonoBehaviour
     }
 
     public void SetLevelID(string LevelID) { levelID = LevelID; }
-    public void LoadLevelID() {}
+    // public void LoadLevelID() {}
     public string GetLevelID() { return levelID; }
 
-    public void SetLevelFlow(Flow Flow) { flow = Flow; }
+    public void SetLevelData(LevelData LevelData) { levelData = LevelData; }
+    public void LoadLevelData() {}
+    public LevelData GetLevelData() { return levelData; }
+
+    public void SetLevelFlow(List<Level> Flow) { flow = Flow; }
     public void LoadLevelFlow() { LoadLevelFlow(levelID); }
     public void LoadLevelFlow(string LevelID) 
-    {}
-    public void GetLevelFlow() {}
+    {
+        flow = PresetController.LoadSingleDepth<Level>(
+            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
+        );
+    }
+    public List<Level> GetLevelFlow() { return flow; }
 
-    public void SetParticipants() {}
-    public void LoadParticipants() {}
-    public void GetParticipants() {}
+    public void SetParticipants(List<Profile> Participants) { participants = Participants; }
+    public void LoadParticipants() { LoadParticipants(levelData); }
+    public void LoadParticipants(LevelData LevelData) {
+        participants = new List<Profile>();
+        foreach (string Participant in LevelData.participants)
+        {
+            participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
+        }
+    }
+    public List<Profile> GetParticipants() { return participants; }
 
     public void LoadLevel() {}
 }
