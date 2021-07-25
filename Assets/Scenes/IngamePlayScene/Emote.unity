@@ -697,9 +697,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 442926356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808a24663eff1c04296349c3b47f0d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b3d42f24f3aa374b927c698e473bd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateConfig:
+    ratio: 0100000001000000
+    positiveEmojis:
+    - id: thumbsup
+      asset: thumbsup
+      ondestroy: 1
+    - id: happy
+      asset: happy
+      ondestroy: 1.1
+    negativeEmojis:
+    - id: weary
+      asset: weary
+      ondestroy: -1
+    - id: angry
+      asset: angry
+      ondestroy: -0.8
+  emoji:
+    id: thumbsup
+    asset: thumbsup.png
+    ondestroy: 1
 --- !u!4 &442926358
 Transform:
   m_ObjectHideFlags: 0
