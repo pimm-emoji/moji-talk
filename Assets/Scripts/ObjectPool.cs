@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class ObjectInfo   //ObjectInfo 안에는 해당 오브젝트, count, 그리고 위치 값이 있다.
+{
+    public GameObject goPrefab; 
+    public int count;
+    public Transform tfPoolParent;
+}
+
+public class ObjectPool : MonoBehaviour
+{
+    //ObjectInfo 입력
+    [SerializeField] ObjectInfo[] objectInfo = null;
+
+
+    public Queue<GameObject> noteQueue = new Queue<GameObject>();
+
+    public static ObjectPool instance;
+
+    void Start()
+    {
+        instance = this;
+        noteQueue = InsertQueue(objectInfo[0]);
+        
+    }
+
+    Queue<GameObject> InsertQueue(ObjectInfo p_objectInfo)
+    {
+        Queue<GameObject> t_queue = new Queue<GameObject>();
+        for(int i=0; i < p_objectInfo.count; i++)
+        {
+            GameObject t_clone = Instantiate(p_objectInfo.goPrefab, transform.position, Quaternion.identity);
+            t_clone.SetActive(false);
+            if (p_objectInfo.tfPoolParent != null)
+                t_clone.transform.SetParent(p_objectInfo.tfPoolParent);
+            else
+                t_clone.transform.SetParent(this.transform);
+
+            t_queue.Enqueue(t_clone);
+        }
+
+        return t_queue;
+    }
+  
+}

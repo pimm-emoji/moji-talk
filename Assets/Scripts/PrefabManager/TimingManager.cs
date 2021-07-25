@@ -16,8 +16,6 @@ public class TimingManager : MonoBehaviour
 
    
 
-
-    // Start is called before the first frame update
     void Start()
     {
         theScoreManager = FindObjectOfType<ScoreManager>();
@@ -32,15 +30,16 @@ public class TimingManager : MonoBehaviour
     void Update()
     {
      
-        if (parscript.isCut == 1)
+        if (parscript.isCut == 1)  //emojis 스크립트에서 isCut값이 1이라면(잘렸을 때가 1임)
         {
 
-            float scale = rectTransform.localScale.x;
+            //줄어드는 원 크기의 x 스케일 값을 가져옴. 그 후 판정
+            float scale = rectTransform.localScale.x;  
             if (scale >= 32 && scale <= 36)
             {
                 Debug.Log("Perfect");
-                theEffect.JudgementEffect(0);
-                theScoreManager.IncreaseScore(0);
+                theEffect.JudgementEffect(0);  //0번 이펙트 작동
+                theScoreManager.IncreaseScore(0);  // 0번 점수상승 작동
             }
 
              else if (scale > 36 && scale <= 48)
@@ -65,16 +64,16 @@ public class TimingManager : MonoBehaviour
                 theScoreManager.IncreaseScore(3);
             }
 
-            parscript.isCut = 3;
+            parscript.isCut = 3;  // 중복으로 잘리는 것을 방지.
          
       
         }
-        else if(parscript.isCut == 2)
+        else if(parscript.isCut == 2)  // 잘리지 않은 이모지가 MISSZone에 닿았을 경우(misszone은 emojis 스크립트에 등장)
         {
             Debug.Log("Miss");
             theComboManager.ResetCombo();
-            theEffect.JudgementEffect(4);
-            parscript.isCut = 3;
+            theEffect.JudgementEffect(4);  
+            parscript.isCut = 3;   
         }
 
     }
