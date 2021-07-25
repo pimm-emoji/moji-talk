@@ -15,15 +15,13 @@
     "duration": 180000,
     "generates": {
       "ratio": [1, 1],
-      "emojis": [
-        [
-          { "id": "thumbsup", "asset": "thumbsup.png", "ondestroy": 1 },
-          { "id": "happy", "asset": "happy.png", "ondestroy": 1.1 }
-        ],
-        [
-          { "id": "weary", "asset": "weary.png", "ondestroy": -1 },
-          { "id": "angry", "asset": "angry.png", "ondestroy": -0.8 }
-        ]
+      "positiveEmojis": [
+        { "id": "thumbsup", "asset": "thumbsup.png", "ondestroy": 1 },
+        { "id": "happy", "asset": "happy.png", "ondestroy": 1.1 }
+      ],
+      "negativeEmojis": [
+        { "id": "weary", "asset": "weary.png", "ondestroy": -1 },
+        { "id": "angry", "asset": "angry.png", "ondestroy": -0.8 }
       ]
     },
     "branch": {
