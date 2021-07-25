@@ -681,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442926358}
   - component: {fileID: 442926357}
+  - component: {fileID: 442926359}
   m_Layer: 0
   m_Name: ClassDemo
   m_TagString: Untagged
@@ -702,20 +703,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateConfig:
     ratio: 0100000001000000
-    positiveEmojis:
-    - id: thumbsup
-      asset: thumbsup
-      ondestroy: 1
-    - id: happy
-      asset: happy
-      ondestroy: 1.1
-    negativeEmojis:
-    - id: weary
-      asset: weary
-      ondestroy: -1
-    - id: angry
-      asset: angry
-      ondestroy: -0.8
+    positiveEmojis: []
+    negativeEmojis: []
   emoji:
     id: thumbsup
     asset: thumbsup.png
@@ -734,6 +723,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &442926359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442926356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec14598bb3c70f4e9ee00ff6f9e59c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClassDemoGameObject: {fileID: 442926356}
+  genCfg:
+    ratio: 0100000001000000
+    positiveEmojis: []
+    negativeEmojis: []
 --- !u!1 &529500883
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,6 +68,7 @@ public class ClassDemoCode : MonoBehaviour
         print($"ID: {emoji.id}"); // 이모지 아이디
         print($"asset: {emoji.asset}"); // 이모지 이미지 경로: 이미지 로드 코드는 제가 며칠 내로 추가하겠습니다.
         print($"thumbsup: {emoji.ondestroy}"); // 이모지 파괴 시의 점수 변화 조정 인자
+        // (중요) 이 데이터들이 public 상태라면 다른 컴포넌트에서도 다룰 수 있습니다. ClassDemoGetterCode.cs 파일을 참조하세요.
     }
 }
 /*  이 코드를 참고해서 이모지 파괴 씬 코드를 수정해주세요.
