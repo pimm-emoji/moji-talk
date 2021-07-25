@@ -9,7 +9,9 @@ public class LevelSelectScene : MonoBehaviour
     public GameObject WrapperControllerPrefab;
     void Start()
     {
-        levels = GameManager.instance.GetLevelsPreset();
+        levels = PresetController.LoadSingleDepth<LevelData>(
+            PresetController.LoadJsonToObject(Configs.LevelIndexPath)
+        );
         foreach (KeyValuePair<string, LevelData> items in levels)
         {
             GameObject newObject = Instantiate(WrapperControllerPrefab) as GameObject;

@@ -34,7 +34,7 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-class Branch
+public class Branch
 {
     /// <summary>
     /// Internal Mood Parameter divider.

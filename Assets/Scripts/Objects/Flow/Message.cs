@@ -39,7 +39,7 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-class Message
+public class Message
 {
     /// <summary>
     /// ID of author.

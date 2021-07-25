@@ -39,7 +39,7 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-class Profile
+public class Profile
 {
     public string id;
     public string name;
@@ -78,7 +78,7 @@ class Profile
 /// </item>
 /// </summary>
 [System.Serializable]
-class ProfileIndex
+public class ProfileIndex
 {
     public List<string> list;
 
