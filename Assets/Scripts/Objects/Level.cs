@@ -11,60 +11,50 @@ using UnityEngine;
 /// <code>
 /// Level level = new Level();
 /// level.type = "emote";
-/// </code>
-/// <code>
-/// Level level = new Level("emote");
+/// level.branch = new Branch();
 /// </code>
 /// </example>
 /// <item>
 /// <term>type</term>
-/// <description>Type of level.</description>
+/// <description>The type of level.</description>
+/// </item>
+/// <item>
+/// <term>branch</term>
+/// <description>The branch of each level.</description>
+/// </item>
+/// <item>
+/// <term>duration</term>
+/// <description>The duration of LevelEmote.</description>
+/// </item>
+/// <item>
+/// <term>generates</term>
+/// <description>The data about generating emoji.</description>
+/// </item>
+/// <item>
+/// <term>chats</term>
+/// <description>The list of Message objects.</description>
 /// </item>
 /// </summary>
 [System.Serializable]
-class Level
+public class Level
 {
     /// <summary>
     /// The type of level.
     /// </summary>
+    /// <remarks>
+    /// <c>type</c> must be <c>"emote"</c>, <c>"chatting"</c> or <c>"end"</c>
+    /// </remarks>
     public string type;
 
-    public Level(){}
-    public Level(string Type)
-    {
-        type = Type;
-    }
-}
+    /// <summary>
+    /// The branch of each level.
+    /// </summary>
+    public Branch branch;
 
-/*
-    The LevelEmote Class
-    Contains level data when level type is "emote"
-*/
-/// <summary>
-/// The LevelEmote Class.
-/// Contains level data when level type is "emote".
-/// <example>
-/// <code>
-/// LevelEmote levelEmote = new LevelEmote();
-/// levelEmote.duration = 1000;
-/// levelEmote.generates = new EmojiGenerations();
-/// </code>
-/// <code>
-/// LevelEmote levelEmote = new LevelEmote(1000, new EmojiGenerations());
-/// </code>
-/// </example>
-/// <item>
-/// <term>duration</term>
-/// <description>LevelEmote duration.</description>
-/// </item>
-/// <item>
-/// <term>generates</term>
-/// <description>Data about generating emoji.</description>
-/// </item>
-/// </summary>
-[System.Serializable]
-class LevelEmote : Level
-{
+    /*
+        Uses when type is LevelEmote
+    */
+
     /// <summary>
     /// LevelEmote duration.
     /// </summary>
@@ -75,56 +65,14 @@ class LevelEmote : Level
     /// </summary>
     public EmojiGenerations generates;
 
-    public LevelEmote()
-    {
-        type = "emote";
-    }
-    public LevelEmote(float Duration, EmojiGenerations Generates)
-    {
-        type = "emote";
-        duration = Duration;
-        generates = Generates;
-    }
-}
+    /*
+        Uses when type is LevelChatting
+    */
 
-/*
-    The LevelChatting Class
-    Contains level data when level type is "chatting"
-*/
-/// <summary>
-/// The LevelChatting Class.
-/// Contains level data when level type is "chatting".
-/// <example>
-/// <code>
-/// LevelChatting levelChatting = new LevelChatting();
-/// levelChatting.chats = MESSAGE_LIST;
-/// </code>
-/// <code>
-/// LevelChatting levelChatting = new LevelChatting(MESSAGE_LIST);
-/// </code>
-/// </example>
-/// <item>
-/// <term>chats</term>
-/// <description>List of Message objects.</description>
-/// </item>
-/// </summary>
-[System.Serializable]
-class LevelChatting : Level
-{
     /// <summary>
     /// List of Message objects.
     /// </summary>
     public List<Message> chats;
-    
-    public LevelChatting()
-    {
-        type = "chatting";
-    }
-    public LevelChatting(List<Message> Chats)
-    {
-        type = "chatting";
-        chats = Chats;
-    }
 }
 
 /*
@@ -144,16 +92,21 @@ class LevelChatting : Level
 /// </code>
 /// <item>
 /// <term>flow</term>
-/// <description>List of level.</description>
+/// <description>List of <c>Level</c> objects.</description>
 /// </item>
 /// </example>
 /// </summary>
 [System.Serializable]
-class Flow
+public class Flow
 {
+    /// <summary>
+    /// List of <c>Level</c> objects.
+    /// </summary>
     public List<Level> flow;
 
-    public Flow(){}
+    public Flow(){
+        flow = new List<Level>();
+    }
     public Flow(List<Level> Flow)
     {
         flow = Flow;

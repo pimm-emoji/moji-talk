@@ -4,7 +4,7 @@ using UnityEngine;
 /*
     The internal system configs of moji talk
 */
-class Configs
+public class Configs
 {
     /*
         Primary Assets Paths
@@ -21,15 +21,22 @@ class Configs
     /// </summary>
     public static string ResourcePath;
 
+    /// <summary>
+    /// PrefabPath is path of prefab resources root directory.
+    /// </summary>
+    public static string PrefabPath;
+
 
     /*
         Presets Paths
     */
     /// <summary>
-    /// ProfilePath is path of Profile Preset.
+    /// ProfileIndexPath is path of Profile Preset.
     /// Path: <c>/Assets/Presets/profiles.json</c>
     /// </summary>
-    public static string ProfilePath;
+    public static string ProfileIndexPath;
+
+    public static string PresetProfileDirPath;
 
     /// <summary>
     /// LevelIndexPath is path of Level Index Preset.
@@ -48,20 +55,36 @@ class Configs
         Resources Paths
     */
     /// <summary>
-    /// EmojiPath is path of emoji resources
+    /// ResourceEmojiPath is path of emoji resources
     /// Path: <c>/Assets/Resources/Emojis</c>
     /// </summary>
-    public static string EmojiPath;
+    public static string ResourceEmojiPath;
+
+    /// <summary>
+    /// ResourceProfilePath is path of Profile Resource Directory.
+    /// Path: <c>/Assets/Resources/Profiles</c>
+    /// </summary>
+    public static string ResourceProfilePath;
+
+    /// <summary>
+    /// ResourceProfileImagePath is path of Profile Image Resource Directory.
+    /// Path: <c>/Assets/Resources/Profiles/Images</c>
+    /// </summary>
+    public static string ResourceProfileImagePath;
     
     static Configs()
     {
         PresetPath = Path.Combine(Application.dataPath, "Presets");
         ResourcePath = Path.Combine(Application.dataPath, "Resources");
+        PrefabPath = Path.Combine(Application.dataPath, "Prefabs");
 
-        ProfilePath = Path.Combine(PresetPath, "profiles.json");
+        ProfileIndexPath = Path.Combine(PresetPath, "profiles.json");
+        PresetProfileDirPath = Path.Combine(PresetPath, "profiles");
         LevelIndexPath = Path.Combine(PresetPath, "levels.json");
         LevelDirPath = Path.Combine(PresetPath, "levels");
 
-        EmojiPath = Path.Combine(ResourcePath, "Emojis");
+        ResourceEmojiPath = Path.Combine(ResourcePath, "Emojis");
+        ResourceProfilePath = Path.Combine(ResourcePath, "Profiles");
+        ResourceProfileImagePath = Path.Combine(ResourceProfilePath, "Images");
     }
 }

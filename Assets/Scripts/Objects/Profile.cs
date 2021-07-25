@@ -39,7 +39,7 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-class Profile
+public class Profile
 {
     public string id;
     public string name;
@@ -57,19 +57,19 @@ class Profile
 }
 
 /*
-    The Profiles Class
+    The ProfileIndex Class
     Contains Profile List
 */
 /// <summary>
-/// The Profiles Class.
+/// The ProfileIndex Class.
 /// Contains Profile List.
 /// <example>
 /// <code>
-/// Profiles profiles = new Profiles();
-/// profiles.list = PROFILE_LIST;
+/// ProfileIndex profileIndex = new ProfileIndex();
+/// profileIndex.list = PROFILE_LIST;
 /// </code>
 /// <code>
-/// Profiles profiles = new Profiles(PROFILE_LIST);
+/// ProfileIndex profiles = new ProfileIndex(PROFILE_LIST);
 /// </code>
 /// </example>
 /// <item>
@@ -78,12 +78,12 @@ class Profile
 /// </item>
 /// </summary>
 [System.Serializable]
-class Profiles
+public class ProfileIndex
 {
-    public List<Profile> list;
+    public List<string> list;
 
-    public Profiles(){}
-    public Profiles(List<Profile> List)
+    public ProfileIndex(){}
+    public ProfileIndex(List<string> List)
     {
         list = List;
     }
