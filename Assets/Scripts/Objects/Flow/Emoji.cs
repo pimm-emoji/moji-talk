@@ -54,14 +54,6 @@ public class Emoji
     /// Points when destroyed.
     /// </summary>
     public float ondestroy;
-
-    public Emoji(){}
-    public Emoji(string ID, string Asset, float OnDestroy)
-    {
-        id = ID;
-        asset = Asset;
-        ondestroy = OnDestroy;
-    }
 }
 
 /*
@@ -91,12 +83,6 @@ public class EmojiGenerations
     /// <summary>
     /// Array that contains list of Emoji objects.
     /// </summary>
-    public List<Emoji>[] emojis;
-
-    public EmojiGenerations(){}
-    public EmojiGenerations(int[] Ratio, List<Emoji>[] Emojis)
-    {
-        ratio = Ratio;
-        emojis = Emojis;
-    }
+    public List<Emoji> positiveEmojis;
+    public List<Emoji> negativeEmojis;
 }
