@@ -73,6 +73,7 @@ public class TimingManager : MonoBehaviour
             }
             else if(emojiscore <= 0f)
             {
+                Debug.Log(emojiscore);
                 theComboManager.ResetCombo();
                 theEffect.JudgementEffect(3);
                 theScoreManager.IncreaseScore(3, emojiscore);

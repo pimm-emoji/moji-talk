@@ -23,7 +23,7 @@ public class Emojis : MonoBehaviour {
 	RectTransform rect;
 
 
-	// json emoji 정보 가져오는 코드
+	// json emoji 정보 가져오는 코드 이부분에서 문제가 생긴거 같음.
 	[ContextMenu("LoadDemoGenData")]
 	void LoadDemoData()
 	{
@@ -71,8 +71,12 @@ public class Emojis : MonoBehaviour {
 				Vector3 direction = (col.transform.position - transform.position).normalized;
 				Quaternion rotation = (Quaternion.LookRotation(forward : Vector3.forward, upwards : direction)); //
 
-			
-			
+				// 제대로 넘어오는지 테스트 하기 위한 용도임 !!!!! 나중에 지울것!!!!
+				Debug.Log(emoji.ondestroy); 
+				Debug.Log(emoji.asset);
+				Debug.Log(emoji.id);
+
+
 				// 잘려진 이모지 프리팹 생성
 				GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  
 
