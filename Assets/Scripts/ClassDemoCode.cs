@@ -18,7 +18,7 @@ public class ClassDemoCode : MonoBehaviour
     public EmojiGenerations generateConfig;
 
     // Emoji 자료형은 이모지 관리에 필요한 데이터를 담을 수 있습니다.
-    public Emoji emoji;
+    public Emoji emoji; 
 
     void Start(){}
     void Update(){}

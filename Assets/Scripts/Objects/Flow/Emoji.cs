@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    The Emoji Class
-    Contains data of emoji object
+    The Emoji Class   이모지 클래스
+    Contains data of emoji object   이모지 오브젝트의 데이터를 포함한다.
 */
 /// <summary>
-/// The Emoji Class.
+/// The Emoji Class.   
 /// Contains data of emoji object.
 /// <example>
 /// <code>
@@ -34,13 +34,13 @@ using UnityEngine;
 /// </item>
 /// </summary>
 [System.Serializable]
-public class Emoji
+public class Emoji     //id, asset의 값은 string으로, ondestory 값은 float으로 가지고 있음.
 {
 
     /// <summary>
     /// ID(type) of emoji.
     /// </summary>
-    public string id;
+    public string id;  
 
     /// <summary>
     /// Resource path of emoji.
@@ -48,7 +48,7 @@ public class Emoji
     /// <remarks>
     /// Path: value of <c>Configs.EmojiPath + (this value)</c>
     /// </remarks>
-    public string asset;
+    public string asset; 
 
     /// <summary>
     /// Points when destroyed.
@@ -73,16 +73,16 @@ public class Emoji
 /// </item>
 /// </summary>
 [System.Serializable]
-public class EmojiGenerations
+public class EmojiGenerations 
 {
     /// <summary>
     /// Positive/negative emoji rate to be generated.
     /// </summary>
-    public int[] ratio = {1, 1};
+    public int[] ratio = {1, 1};  
 
     /// <summary>
     /// Array that contains list of Emoji objects.
     /// </summary>
-    public List<Emoji> positiveEmojis;
+    public List<Emoji> positiveEmojis;   //List<>에서 <>는 무슨 역할을 하나요?
     public List<Emoji> negativeEmojis;
 }

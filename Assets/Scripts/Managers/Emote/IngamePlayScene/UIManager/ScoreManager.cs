@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//ondestroy 값 필요
 public class ScoreManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -21,11 +23,12 @@ public class ScoreManager : MonoBehaviour
         txtScore.text = "0";
     }
 
-    public void IncreaseScore(int p_JudgementState)
+    public void IncreaseScore(int p_JudgementState, float e_Judgement)  //파라미터 한개 더 추가하기 (이모지가중치)
     {
         //콤보 증가
         theCombo.IncreaseCombo();
-
+        //이모지 가중치 인트 변환
+        int e_JudgementState = (int)e_Judgement;
         int t_increaseScore = increaseScore;
         //콤보 가중치 계산
         int t_currentCombo = theCombo.GetCurrentCombo();
@@ -33,7 +36,10 @@ public class ScoreManager : MonoBehaviour
 
         //판정 가중치 계산
         t_increaseScore = increaseScore + t_bonusComboScore;
-        t_increaseScore = (int)(t_increaseScore * weight[p_JudgementState]);
+        t_increaseScore = (int)(t_increaseScore * weight[p_JudgementState] * e_JudgementState );
+
+        
+
 
         //점수반영
         currentScore += t_increaseScore;
