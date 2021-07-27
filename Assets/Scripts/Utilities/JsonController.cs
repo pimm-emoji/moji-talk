@@ -30,4 +30,14 @@ class PresetController  //PresetController Å¬·¡½º
         }
         return arr;
     }
+    
+    public static EmojiGenerations LoadGenData(JObject JObject)
+    {
+        List<Emoji> positiveEmojis = JObject["positiveEmojis"].ToObject<List<Emoji>>();
+        var negativeEmojis = JObject["negativeEmojis"].ToObject<List<Emoji>>();
+        EmojiGenerations EmojiGenerations = JObject.ToObject<EmojiGenerations>();
+        EmojiGenerations.positiveEmojis = positiveEmojis;
+        EmojiGenerations.negativeEmojis = negativeEmojis;
+        return EmojiGenerations;
+    }
 }

@@ -52,6 +52,13 @@ public class ClassDemoCode : MonoBehaviour
             이 코드의 경우 generateConfig에 데이터를 추가하고 있으니, generateConfig의 데이터타입인 EmojiGenerations를 T에 넣었습니다.
         */
         ).ToObject<EmojiGenerations>();
+
+        // 새 방법
+        generateConfig = PresetController.LoadGenData(
+            PresetController.LoadJsonToObject(
+                Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+            )
+        );
     }
 
     [ContextMenu("LoadDemoEmojiData")]
