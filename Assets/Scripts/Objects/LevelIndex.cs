@@ -88,7 +88,6 @@ public class LevelData
     /// </summary>
     public List<string> participants;
 
-    public LevelData(){}
     public LevelData(string ID, string Name, string Desc, string Img, string Type, List<string> Participants){
         id = ID;
         name = Name;
