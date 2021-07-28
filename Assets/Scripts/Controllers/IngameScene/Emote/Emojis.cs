@@ -23,11 +23,20 @@ public class Emojis : MonoBehaviour {
 	RectTransform rect;
 
 
-	// json emoji 정보 가져오는 코드 이부분에서 문제가 생긴거 같음.
+	
 	[ContextMenu("LoadDemoGenData")]
 	void LoadDemoData()
 	{
-		generateConfig = PresetController.LoadJsonToObject(Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")).ToObject<EmojiGenerations>();
+		generateConfig = PresetController.LoadJsonToObject(
+			Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+			).ToObject<EmojiGenerations>();
+
+		//새 방법
+		generateConfig = PresetController.LoadGenData(
+			PresetController.LoadJsonToObject(
+				Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+			)
+		);
 	}
 
 	[ContextMenu("LoadDemoEmojiData")]
@@ -45,7 +54,11 @@ public class Emojis : MonoBehaviour {
 		rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 
 		//현재 이모지의 Transform 가져옴
-		rect = GetComponent<RectTransform>();  
+		rect = GetComponent<RectTransform>();
+
+		LoadDemoData();
+		LoadDemoEmojiData();
+
 
 		//자식 오브젝트의 컴포넌트 접근, json 이미지 경로 스프라이트 로딩
 		renderer = transform.GetChild(1).GetComponent<SpriteRenderer>();

@@ -46,14 +46,4 @@ public class ComboManager : MonoBehaviour
         txtCombo.gameObject.SetActive(false);
         goComboImage.SetActive(false);
     }
-
-
-
-  
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
