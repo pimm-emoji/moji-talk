@@ -13,4 +13,5 @@ public class MessageWrapperController : MonoBehaviour
         Text.text = text;
         Background.GetComponent<RectTransform>().sizeDelta = Text.GetComponent<RectTransform>().sizeDelta;
     }
+    public Vector2 GetSize() { return Text.GetComponent<RectTransform>().sizeDelta; }
 }
