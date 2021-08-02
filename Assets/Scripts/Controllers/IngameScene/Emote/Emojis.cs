@@ -1,22 +1,22 @@
-using System.IO;
+ï»¿using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Ãß°¡ÇØ¾ß ÇÒ °Í : 1. Assets/Presets/demo/emojiGenerations.json ÆÄÀÏ ÀĞ¾îµéÀÌ±â
-//2. MojiCircleÀÇ sprite render¿¡ Á¢±ÙÇÏ±â
-//3. ÇØ´ç sprite º¯°æÇÏ±â
+//ì¶”ê°€í•´ì•¼ í•  ê²ƒ : 1. Assets/Presets/demo/emojiGenerations.json íŒŒì¼ ì½ì–´ë“¤ì´ê¸°
+//2. MojiCircleì˜ sprite renderì— ì ‘ê·¼í•˜ê¸°
+//3. í•´ë‹¹ sprite ë³€ê²½í•˜ê¸°
 public class Emojis : MonoBehaviour {
 
-	public GameObject emojiSlicedPrefab; // Àß·ÈÀ» ¶§ÀÇ prefab°ú ´øÁö´Â Èû ¼³Á¤.
+	public GameObject emojiSlicedPrefab; // ì˜ë ¸ì„ ë•Œì˜ prefabê³¼ ë˜ì§€ëŠ” í˜ ì„¤ì •.
 	public float startForce = 15f;
 
-	public EmojiGenerations generateConfig; //json¿¡ ´ã±ä emoji Á¤º¸ °¡Á®¿È
+	public EmojiGenerations generateConfig; //jsonì— ë‹´ê¸´ emoji ì •ë³´ ê°€ì ¸ì˜´
 	public Emoji emoji;
 
-	public SpriteRenderer renderer; //sprite renderer Á¢±Ù
+	public SpriteRenderer renderer; //sprite renderer ì ‘ê·¼
 	public Sprite spr;
 
-	public int isCut = 0;  // Àß·È´ÂÁö ¿©ºÎ ÆÇÁ¤À» À§ÇÑ º¯¼ö
+	public int isCut = 0;  // ì˜ë ¸ëŠ”ì§€ ì—¬ë¶€ íŒì •ì„ ìœ„í•œ ë³€ìˆ˜
 	bool dupli = false;
 
 	Rigidbody2D rb;
@@ -24,43 +24,20 @@ public class Emojis : MonoBehaviour {
 
 
 	
-	[ContextMenu("LoadDemoGenData")]
-	void LoadDemoData()
-	{
-		generateConfig = PresetController.LoadJsonToObject(
-			Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
-			).ToObject<EmojiGenerations>();
-
-		//»õ ¹æ¹ı
-		generateConfig = PresetController.LoadGenData(
-			PresetController.LoadJsonToObject(
-				Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
-			)
-		);
-	}
-
-	[ContextMenu("LoadDemoEmojiData")]
-	void LoadDemoEmojiData()
-	{ 
-		emoji = PresetController.LoadJsonToObject(Path.Combine(Configs.PresetPath, "demo", "emoji.json")).ToObject<Emoji>();
-	}
 
 
 
 	void Start ()  
 	{
-		//rigidbody¿¡ ½ÃÀÛ ÈûÀ» °¡ÇÔ
+		//rigidbodyì— ì‹œì‘ í˜ì„ ê°€í•¨
 		rb = GetComponent<Rigidbody2D>();             
 		rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 
-		//ÇöÀç ÀÌ¸ğÁöÀÇ Transform °¡Á®¿È
+		//í˜„ì¬ ì´ëª¨ì§€ì˜ Transform ê°€ì ¸ì˜´
 		rect = GetComponent<RectTransform>();
 
-		LoadDemoData();
-		LoadDemoEmojiData();
 
-
-		//ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÇ ÄÄÆ÷³ÍÆ® Á¢±Ù, json ÀÌ¹ÌÁö °æ·Î ½ºÇÁ¶óÀÌÆ® ·Îµù
+		//ìì‹ ì˜¤ë¸Œì íŠ¸ì˜ ì»´í¬ë„ŒíŠ¸ ì ‘ê·¼, json ì´ë¯¸ì§€ ê²½ë¡œ ìŠ¤í”„ë¼ì´íŠ¸ ë¡œë”©
 		renderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
 		spr = Resources.Load<Sprite>(emoji.asset);
 
@@ -70,43 +47,43 @@ public class Emojis : MonoBehaviour {
 	}
 
 
-	//Ãæµ¹ ½Ã Ã³¸®ÇÏ´Â ÄÚµå
+	//ì¶©ëŒ ì‹œ ì²˜ë¦¬í•˜ëŠ” ì½”ë“œ
 	void OnTriggerEnter2D (Collider2D col)  
 	{
 
-		// Áßº¹À¸·Î Àß¸²À» ¹æÁö
+		// ì¤‘ë³µìœ¼ë¡œ ì˜ë¦¼ì„ ë°©ì§€
 		if (dupli == false)   
 		{
-			//Blade ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ ½Ã
+			//Blade íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒ ì‹œ
 			if (col.tag == "Blade")  
 			{
-				// Àß¸° ¹æÇâ ¼³Á¤
+				// ì˜ë¦° ë°©í–¥ ì„¤ì •
 				Vector3 direction = (col.transform.position - transform.position).normalized;
 				Quaternion rotation = (Quaternion.LookRotation(forward : Vector3.forward, upwards : direction)); //
 
-				// Á¦´ë·Î ³Ñ¾î¿À´ÂÁö Å×½ºÆ® ÇÏ±â À§ÇÑ ¿ëµµÀÓ !!!!! ³ªÁß¿¡ Áö¿ï°Í!!!!
+				// ì œëŒ€ë¡œ ë„˜ì–´ì˜¤ëŠ”ì§€ í…ŒìŠ¤íŠ¸ í•˜ê¸° ìœ„í•œ ìš©ë„ì„ !!!!! ë‚˜ì¤‘ì— ì§€ìš¸ê²ƒ!!!!
 				Debug.Log(emoji.ondestroy); 
 				Debug.Log(emoji.asset);
 				Debug.Log(emoji.id);
 
 
-				// Àß·ÁÁø ÀÌ¸ğÁö ÇÁ¸®ÆÕ »ı¼º
+				// ì˜ë ¤ì§„ ì´ëª¨ì§€ í”„ë¦¬íŒ¹ ìƒì„±
 				GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  
 
-				// Àß·ÁÁø ÀÌ¸ğÁö ÆÄ±«
+				// ì˜ë ¤ì§„ ì´ëª¨ì§€ íŒŒê´´
 				Destroy(slicedEmoji, 3f);
 
 
-				//¿ø·¡ ÀÌ¸ğÁöÀÇ Å©±â¸¦ 0À¸·Î ¸¸µé¾î ¹ö¸² --- ¹Ù·Î ÆÄ±«ÇÏÁö ¾Ê´Â ÀÌÀ¯´Â ÆÇÁ¤À» À§ÇÔ.
+				//ì›ë˜ ì´ëª¨ì§€ì˜ í¬ê¸°ë¥¼ 0ìœ¼ë¡œ ë§Œë“¤ì–´ ë²„ë¦¼ --- ë°”ë¡œ íŒŒê´´í•˜ì§€ ì•ŠëŠ” ì´ìœ ëŠ” íŒì •ì„ ìœ„í•¨.
 				rect.localScale = new Vector3(0, 0, 0);  
 				Destroy(gameObject, 2f);
-				soundManager.instance.PlaySound();  //Àß¸®´Â È¿°úÀ½
-				isCut = 1;    // ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ ¾µ °ÅÀÓ.
+				soundManager.instance.PlaySound();  //ì˜ë¦¬ëŠ” íš¨ê³¼ìŒ
+				isCut = 1;    // ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì“¸ ê±°ì„.
 				dupli = true;
 
 			}
 
-			else if(col.tag == "Misszone")  // MissZone tag¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ ½Ã
+			else if(col.tag == "Misszone")  // MissZone tagë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒ ì‹œ
 			{ 
 				rect.localScale = new Vector3(0, 0, 0);
 				Destroy(gameObject, 2f);

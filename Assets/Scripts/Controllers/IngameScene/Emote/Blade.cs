@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class Blade : MonoBehaviour {
 
 	bool isCutting = false;
 
-	Vector2 previousPosition;  // 2Â÷¿ø º¤ÅÍ º¯¼ö previousPosition
+	Vector2 previousPosition;  // 2ì°¨ì› ë²¡í„° ë³€ìˆ˜ previousPosition
 
 	GameObject currentBladeTrail;  // 
 
@@ -17,7 +17,7 @@ public class Blade : MonoBehaviour {
 	Camera cam;
 	CircleCollider2D circleCollider;
 
-	void Start ()  // Ä«¸Ş¶ó, ¸®Áöµå¹Ùµğ, circlecollider ÃÊ±â°ª ÀÔ·Â
+	void Start ()  // ì¹´ë©”ë¼, ë¦¬ì§€ë“œë°”ë””, circlecollider ì´ˆê¸°ê°’ ì…ë ¥
 	{
 		cam = Camera.main;  
 		rb = GetComponent<Rigidbody2D>(); //
@@ -25,7 +25,7 @@ public class Blade : MonoBehaviour {
 	}
 
 
-	void Update () {  //¸¶¿ì½º ÀÔ·Â¿¡ µû¶ó¼­ ¾÷µ¥ÀÌÆ®
+	void Update () {  //ë§ˆìš°ìŠ¤ ì…ë ¥ì— ë”°ë¼ì„œ ì—…ë°ì´íŠ¸
 		if (Input.GetMouseButtonDown(0))
 		{
 			StartCutting();
@@ -43,10 +43,10 @@ public class Blade : MonoBehaviour {
 
 	void UpdateCut ()
 	{
-		Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);  // ¸¶¿ì½ºÀÇ ÁÂÇ¥¸¦ ¹Ş¾Æ¼­ newposition¿¡ ÀúÀåÇÔ. ±× ÈÄ ¸®Áöµå ¹Ùµğ·Î ³Ñ°ÜÁÜ 
+		Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);  // ë§ˆìš°ìŠ¤ì˜ ì¢Œí‘œë¥¼ ë°›ì•„ì„œ newpositionì— ì €ì¥í•¨. ê·¸ í›„ ë¦¬ì§€ë“œ ë°”ë””ë¡œ ë„˜ê²¨ì¤Œ 
         rb.position = newPosition;
 
-		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime; // ÃÊ´ç ÀÌµ¿ÇÑ °Å¸®¸¦ minCuttingVelocity¿Í ºñ±³ ÈÄ circlecolliderÀÇ È°¼ºÈ­ ¿©ºÎ °áÁ¤.
+		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime; // ì´ˆë‹¹ ì´ë™í•œ ê±°ë¦¬ë¥¼ minCuttingVelocityì™€ ë¹„êµ í›„ circlecolliderì˜ í™œì„±í™” ì—¬ë¶€ ê²°ì •.
 		if (velocity >= minCuttingVelocity)
 		{
 			circleCollider.enabled = true;
@@ -61,7 +61,7 @@ public class Blade : MonoBehaviour {
 	void StartCutting ()
 	{
 		isCutting = true;
-		currentBladeTrail = Instantiate(bladeTrailPrefab, transform); //bladetail ¿ÀºêÁ§Æ® »ı¼º
+		currentBladeTrail = Instantiate(bladeTrailPrefab, transform); //bladetail ì˜¤ë¸Œì íŠ¸ ìƒì„±
 		previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
 		circleCollider.enabled = false;
 	}
@@ -70,7 +70,7 @@ public class Blade : MonoBehaviour {
 	{
 		isCutting = false;
 		currentBladeTrail.transform.SetParent(null);
-		Destroy(currentBladeTrail, 2f); // 2f ÈÄ¿¡ currentbladetrail »èÁ¦
+		Destroy(currentBladeTrail, 2f); // 2f í›„ì— currentbladetrail ì‚­ì œ
 		circleCollider.enabled = false;
 	}
 

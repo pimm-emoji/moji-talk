@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7447264900085321588}
   - component: {fileID: 7420641960557358500}
   m_Layer: 0
-  m_Name: Emoji2_Sliced
+  m_Name: Emoji_Sliced
   m_TagString: Goodemoji
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

@@ -382,13 +382,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2f57842be2a349928b7a64b33a48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emojiPrefab1: {fileID: 1353405809762312, guid: 704d358c39d32b2479bc6cfe1a6e6a65, type: 3}
-  emojiPrefab2: {fileID: 0}
+  emojiPrefab: {fileID: 1353405809762312, guid: 704d358c39d32b2479bc6cfe1a6e6a65, type: 3}
   spawnPoints:
   - {fileID: 673611551}
   - {fileID: 774759978}
   - {fileID: 329969926}
   - {fileID: 832389286}
+  emojidata:
+    id: 
+    asset: 
+    ondestroy: 0
+  generateConfig:
+    ratio: 0100000001000000
+    positiveEmojis:
+    - id: thumbsup
+      asset: thumbsup
+      ondestroy: 1
+    - id: happy
+      asset: happy
+      ondestroy: 1.1
+    negativeEmojis:
+    - id: weary
+      asset: weary
+      ondestroy: -1
+    - id: angry
+      asset: angry
+      ondestroy: -0.8
   bpm: 100
 --- !u!1 &226098925
 GameObject:
@@ -735,11 +754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec14598bb3c70f4e9ee00ff6f9e59c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassDemoGameObject: {fileID: 442926356}
-  genCfg:
-    ratio: 0100000001000000
-    positiveEmojis: []
-    negativeEmojis: []
 --- !u!1 &529500883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,9 +1560,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2f57842be2a349928b7a64b33a48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emojiPrefab1: {fileID: 1353405809762312, guid: 90f0646d584031846a42116f6c9761d5, type: 3}
-  emojiPrefab2: {fileID: 1353405809762312, guid: 90f0646d584031846a42116f6c9761d5, type: 3}
+  emojiPrefab: {fileID: 0}
   spawnPoints: []
+  emojidata:
+    id: 
+    asset: 
+    ondestroy: 0
+  generateConfig:
+    ratio: 0100000001000000
+    positiveEmojis: []
+    negativeEmojis: []
   bpm: 128
 --- !u!4 &1690412896
 Transform:
