@@ -16,3 +16,4 @@ Moji Talk은 화면에 나타나는 이모지를 처리하여 가상의 대화 �
 Moji Talk은 다른 라이선스의 보호를 받는 외부 프로젝트를 활용합니다.  
  * [Pretendard](./Assets/Fonts/Pretendard-1.0) - 글꼴 - [SIL Open Font License](./Assets/Fonts/Pretendard-1.0/LICENSE.txt)  
  * [Newtonsoft Json.net](./Assets/Packages/Newtonsoft.Json) - 라이브러리 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)  
+ * [Twemoji(Graphics)](./Assets/Resources/Twemoji) - 이미지 리소스 - [CC-BY 4.0](https://github.com/twitter/twemoji/blob/master/LICENSE-GRAPHICS) - [Release 13.1.0](https://github.com/twitter/twemoji/releases/tag/v13.1.0)  
