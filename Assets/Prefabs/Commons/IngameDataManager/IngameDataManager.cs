@@ -20,7 +20,7 @@ public class IngameDataManager : MonoBehaviour
     public List<Profile> participants;
     public List<Level> flow;
 
-    void Start()
+    void Awake()
     {
         // Set IngameDataManager unique.
         if (instance == null) instance = this;
@@ -33,8 +33,11 @@ public class IngameDataManager : MonoBehaviour
     public string GetLevelID() { return levelID; }
 
     public void SetLevelData(LevelData LevelData) { levelData = LevelData; }
-    public void LoadLevelData() {}
+    public void LoadLevelData() { LoadLevelData(levelID); }
+    public void LoadLevelData(string LevelID)
+    { levelData = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<LevelData>(); }
     public LevelData GetLevelData() { return levelData; }
+    public LevelData GetLevelData(string LevelID) { LoadLevelData(LevelID); return levelData; }
 
     public void SetLevelFlow(List<Level> Flow) { flow = Flow; }
     public void LoadLevelFlow() { LoadLevelFlow(levelID); }
@@ -65,11 +68,17 @@ public class IngameDataManager : MonoBehaviour
     }
     public List<Profile> GetParticipants() { return participants; }
 
-    public void LoadLevel(string LevelID)
-    {
-        levelID = LevelID;
-        LoadLevel();
-    }
+    public void LoadLevel(string LevelID) { levelID = LevelID; LoadLevel(); }
     public void LoadLevel()
-    {}
+    {
+        LoadLevelData(levelID);
+        LoadLevelFlow(levelID);
+        LoadParticipants(levelData);
+    }
+
+
+    [ContextMenu("DebugLoadLevelData")] public void DebugLoadLevelData() { LoadLevelData("first"); }
+    [ContextMenu("DebugLoadLevelFlow")] public void DebugLoadLevelFlow() { SetLevelID("first"); LoadLevelFlow(); }
+    [ContextMenu("DebugLoadParticipants")] public void DebugLoadParticipants() { LoadParticipants(); }
+    [ContextMenu("DebugLoadLevel")] public void DebugLoadLevel() { LoadLevel("first"); }
 }
