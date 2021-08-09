@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1886492893045166654}
+  - component: {fileID: 352480868143688064}
   m_Layer: 0
   m_Name: IngameDataManager
   m_TagString: Untagged
@@ -30,3 +31,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352480868143688064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615811422690510889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013bdd3d1d75c394ea86638a199c88c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelID: 
+  levelData:
+    id: 
+    name: 
+    desc: 
+    img: 
+    type: 
+    participants: []
+  participants: []
+  flow: []

@@ -4,11 +4,13 @@ using UnityEngine;
 public class EmojiBridge : MonoBehaviour
 {
     public GameObject emojiObject;
+    public Emoji emoji;
     
-    public void Init(string EmojiID)
+    public void Init(Emoji Emoji)
     {
+        emoji = Emoji;
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
-            Configs.ResourceEmojiPath + EmojiID
+            Configs.ResourceEmojiPath + Emoji.asset
         );
     }
 
