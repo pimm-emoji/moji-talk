@@ -28,17 +28,6 @@ public class GameManager : MonoBehaviour
     /// Call <c>GameManager.instance</c> when need to use <c>GameManager</c>.
     /// </summary>
     public static GameManager instance = null;
-    
-    public Dictionary<string, LevelData> levels;
-    public List<string> ProfileIndex;
-    
-    /*
-        These are related to IngamePlayScene.
-    */
-    public string IngamePlaySceneLevel;
-    public LevelData IngamePlaySceneLevelData;
-    public List<Profile> IngamePlaySceneParticipants;
-    public Flow Flow;
 
     private void Awake()
     {
@@ -48,56 +37,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    [ContextMenu("Load Profile Index")]
-    public void LoadProfileIndexPreset()
-    {
-        ProfileIndex = PresetController.LoadSingleDepth<string>(
-            PresetController.LoadJsonToArray(Configs.ProfileIndexPath)
-        );
-        //print(PresetController.LoadJson(Configs.ProfileIndexPath).GetType());
-        /*ProfileIndex = PresetController.LoadSingleList<string>(
-            PresetController.LoadJson(Configs.ProfileIndexPath)
-        );*/
-    }
-    public List<string> GetProfileIndexPreset() { LoadProfileIndexPreset(); return this.ProfileIndex; }
-
-    /*
-        These are related to IngamePlayScene.
-    */
-    public void SetLevel(string LevelID) { IngamePlaySceneLevel = LevelID; }
-
-    /*
-        Loads LevelFlow
-    */
-    public void LoadLevelFlow() { LoadLevelFlow(IngamePlaySceneLevel); }
-    public void LoadLevelFlow(string LevelID)
-    {
-        Flow.flow = PresetController.LoadSingleDepth<Level>(
-            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
-        );
-    }
-    public Flow GetLevelFlow() { return GetLevelFlow(IngamePlaySceneLevel); }
-    public Flow GetLevelFlow(string LevelID) { SetLevel(LevelID); LoadLevelFlow(); return Flow; }
-
-    /*
-        Set Participants
-    */
-    public void SetParticipants(List<Profile> participants) { IngamePlaySceneParticipants = participants; }
-    /*
-        Load Participants
-    */
-    public void LoadParticipants(){}
-
-    /*
-        Load Data that needs load level fully.
-    */
-    public void LoadLevel() { LoadLevel(IngamePlaySceneLevel); }
-    public void LoadLevel(string Level)
-    {
-        SetLevel(Level);
-        // Load Profile Data that uses in game.
-        LoadLevelFlow(Level);
-    }
 
     /*
         The LoadScene Method

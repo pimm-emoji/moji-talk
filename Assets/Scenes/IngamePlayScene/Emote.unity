@@ -703,11 +703,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateConfig:
     ratio: 0100000001000000
-    positiveEmojis: []
-    negativeEmojis: []
+    positiveEmojis:
+    - id: thumbsup
+      asset: thumbsup
+      ondestroy: 1
+    - id: happy
+      asset: happy
+      ondestroy: 1.1
+    negativeEmojis:
+    - id: weary
+      asset: weary
+      ondestroy: -1
+    - id: angry
+      asset: angry
+      ondestroy: -0.8
   emoji:
     id: thumbsup
-    asset: thumbsup.png
+    asset: thumbsup
     ondestroy: 1
 --- !u!4 &442926358
 Transform:
@@ -738,8 +750,20 @@ MonoBehaviour:
   ClassDemoGameObject: {fileID: 442926356}
   genCfg:
     ratio: 0100000001000000
-    positiveEmojis: []
-    negativeEmojis: []
+    positiveEmojis:
+    - id: thumbsup
+      asset: thumbsup
+      ondestroy: 1
+    - id: happy
+      asset: happy
+      ondestroy: 1.1
+    negativeEmojis:
+    - id: weary
+      asset: weary
+      ondestroy: -1
+    - id: angry
+      asset: angry
+      ondestroy: -0.8
 --- !u!1 &529500883
 GameObject:
   m_ObjectHideFlags: 0
