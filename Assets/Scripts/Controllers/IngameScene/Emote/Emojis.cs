@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//추가해야 할 것 : 1. Assets/Presets/demo/emojiGenerations.json 파일 읽어들이기
-//2. MojiCircle의 sprite render에 접근하기
-//3. 해당 sprite 변경하기
+
 public class Emojis : MonoBehaviour {
 
 	public GameObject emojiSlicedPrefab; // 잘렸을 때의 prefab과 던지는 힘 설정.
@@ -19,8 +17,14 @@ public class Emojis : MonoBehaviour {
 	public int isCut = 0;  // 잘렸는지 여부 판정을 위한 변수
 	bool dupli = false;
 
+	Vector3 MousePosition;
+	Vector3 CenterPosition;
+	Camera Camera;
+	public float distance;
+
 	Rigidbody2D rb;
 	RectTransform rect;
+
 
 
 	
@@ -38,19 +42,23 @@ public class Emojis : MonoBehaviour {
 
 
 		//자식 오브젝트의 컴포넌트 접근, json 이미지 경로 스프라이트 로딩
-		renderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
-		spr = Resources.Load<Sprite>(emoji.asset);
-
+		renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+		string emojipath = "Emojis/" + emoji.asset;
+		spr = Resources.Load<Sprite>(emojipath);
 		renderer.sprite = spr;
+
+		// distance 구하기
+		Camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		distance = 500f;
+
 
 
 	}
 
 
 	//충돌 시 처리하는 코드
-	void OnTriggerEnter2D (Collider2D col)  
+	void OnTriggerExit2D (Collider2D col)  
 	{
-
 		// 중복으로 잘림을 방지
 		if (dupli == false)   
 		{
@@ -61,10 +69,6 @@ public class Emojis : MonoBehaviour {
 				Vector3 direction = (col.transform.position - transform.position).normalized;
 				Quaternion rotation = (Quaternion.LookRotation(forward : Vector3.forward, upwards : direction)); //
 
-				// 제대로 넘어오는지 테스트 하기 위한 용도임 !!!!! 나중에 지울것!!!!
-				Debug.Log(emoji.ondestroy); 
-				Debug.Log(emoji.asset);
-				Debug.Log(emoji.id);
 
 
 				// 잘려진 이모지 프리팹 생성
@@ -74,10 +78,12 @@ public class Emojis : MonoBehaviour {
 				Destroy(slicedEmoji, 3f);
 
 
-				//원래 이모지의 크기를 0으로 만들어 버림 --- 바로 파괴하지 않는 이유는 판정을 위함.
-				rect.localScale = new Vector3(0, 0, 0);  
+				
+				// 스프라이트 비활성화(판정을 위해 바로 파괴하지는 않음)
+				renderer.enabled = false;
+				rect.localScale = new Vector3(0, 0, 0);
+
 				Destroy(gameObject, 2f);
-				soundManager.instance.PlaySound();  //잘리는 효과음
 				isCut = 1;    // 다른 스크립트에서 쓸 거임.
 				dupli = true;
 
@@ -92,5 +98,28 @@ public class Emojis : MonoBehaviour {
 			}
 		}
 	}
+
+	// 중심과 이모지 사이 거리 측정
+	void OnTriggerStay2D(Collider2D col)
+    {
+		if (col.tag == "Blade")
+        {
+			float distanceupd;
+			CenterPosition = rect.transform.position;
+			MousePosition = Input.mousePosition;
+
+			
+			
+			MousePosition = Camera.ScreenToWorldPoint(MousePosition);
+			//CenterPosition = RectTransformUtility.WorldToScreenPoint(Camera, CenterPosition);
+			distanceupd = Vector3.Distance(MousePosition, CenterPosition);
+			if(distanceupd < distance)
+            {
+				distance = distanceupd;
+            }
+		}
+	}
+
+	
 
 }

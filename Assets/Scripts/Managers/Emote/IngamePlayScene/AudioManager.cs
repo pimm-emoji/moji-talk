@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,33 +8,33 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public string name;                  
+    public string name;
     public AudioClip clip;
 }
 
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;   //instance »ı¼º
+    public static AudioManager instance;   //instance ìƒì„±
 
-    [SerializeField] Sound[] sfx = null;    
+    [SerializeField] Sound[] sfx = null;
     [SerializeField] Sound[] bgm = null;
 
     [SerializeField] AudioSource bgmPlayer = null;
     [SerializeField] AudioSource[] sfxPlayer = null;
-    
+
     void Start()
     {
         instance = this;
     }
 
-    public void PlayBGM(string p_bgmName)   // ÀÔ·Â¹ŞÀº ÆÄ¶ó¹ÌÅÍ°¡ bgm ¹è¿­ ¾È¿¡ ÀÖÀ» ½Ã 
+    public void PlayBGM(string p_bgmName)   // ì…ë ¥ë°›ì€ íŒŒë¼ë¯¸í„°ê°€ bgm ë°°ì—´ ì•ˆì— ìˆì„ ì‹œ 
     {
-        for(int i = 0; i<bgm.Length; i++)
+        for (int i = 0; i < bgm.Length; i++)
         {
-            if(p_bgmName == bgm[i].name)
+            if (p_bgmName == bgm[i].name)
             {
-                bgmPlayer.clip = bgm[i].clip;   //ÇØ´ç ¿Àµğ¿À Å¬¸³À¸·Î ¼³Á¤ÈÄ Àç»ı
+                bgmPlayer.clip = bgm[i].clip;   //í•´ë‹¹ ì˜¤ë””ì˜¤ í´ë¦½ìœ¼ë¡œ ì„¤ì •í›„ ì¬ìƒ
                 bgmPlayer.Play();
             }
         }
@@ -42,16 +42,16 @@ public class AudioManager : MonoBehaviour
 
     public void StopBGM()
     {
-        bgmPlayer.Stop();            // bgm Á¤Áö
+        bgmPlayer.Stop();            // bgm ì •ì§€
     }
 
-    public void PlaySFX(string p_sfxName)  // ÀÔ·Â¹ŞÀº ÆÄ¶ó¹ÌÅÍ°¡ sfxName ¾È¿¡ ÀÖÀ» ½Ã
+    public void PlaySFX(string p_sfxName)  // ì…ë ¥ë°›ì€ íŒŒë¼ë¯¸í„°ê°€ sfxName ì•ˆì— ìˆì„ ì‹œ
     {
         for (int i = 0; i < sfx.Length; i++)
         {
             if (p_sfxName == sfx[i].name)
             {
-                for(int x= 0; x< sfxPlayer.Length; x++)   //sfxÇÃ·¹ÀÌ¾î°¡ ²Ë Â÷ÀÖ´Â°¡?
+                for (int x = 0; x < sfxPlayer.Length; x++)   //sfxí”Œë ˆì´ì–´ê°€ ê½‰ ì°¨ìˆëŠ”ê°€?
                 {
                     if (!sfxPlayer[x].isPlaying)
                     {
@@ -60,12 +60,12 @@ public class AudioManager : MonoBehaviour
                         return;
                     }
                 }
-                Debug.Log("¸ğµç ¿Àµğ¿À ÇÃ·¹ÀÌ¾î°¡ Àç»ıÁßÀÔ´Ï´Ù.");
+                Debug.Log("ëª¨ë“  ì˜¤ë””ì˜¤ í”Œë ˆì´ì–´ê°€ ì¬ìƒì¤‘ì…ë‹ˆë‹¤.");
                 return;
             }
         }
 
-        Debug.Log(p_sfxName + "ÀÌ¸§ÀÇ È¿°úÀ½ÀÌ ¾ø½À´Ï´Ù.");
+        Debug.Log(p_sfxName + "ì´ë¦„ì˜ íš¨ê³¼ìŒì´ ì—†ìŠµë‹ˆë‹¤.");
     }
 
 }
