@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     /// Call <c>GameManager.instance</c> when need to use <c>GameManager</c>.
     /// </summary>
     public static GameManager instance = null;
+    public int flowIndex = 0;
 
     private void Awake()
     {
@@ -37,7 +38,19 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public void LoadScene(string id)
+    {
+        SceneManager.LoadScene(id);
+    }
 
+    public void LoadFlowIndex()
+    {
+        flowIndex++;
+    }
+    public void LoadFlowIndex(int Index)
+    {
+        flowIndex = Index;
+    }
     /*
         The LoadScene Method
         This Method should be enabled when scene number has been assigned.

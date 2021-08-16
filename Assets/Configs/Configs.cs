@@ -88,3 +88,12 @@ public class Configs
         ResourceProfileImagePath = Path.Combine(ResourceProfilePath, "Images");
     }
 }
+
+public class EmojiGeneratingConfig
+{
+    public static float GenCycle = 3f;
+    public static float GenCycleOffset = 3f;
+    public static float GenPositionOffset = 3f;
+    public static int GenMaximunEmojis = 4;
+    public static float[] GenMaximumEmojisRatio = {0, 1, 2, 3, 1};
+}
