@@ -52,10 +52,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3.5
+  m_Mass: 5.1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 100
+  m_AngularDrag: 0
+  m_GravityScale: 230
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emojiSlicedPrefab: {fileID: 1353405809762312, guid: 513fb1485db6d6742ae9ee271f6e5f71, type: 3}
-  startForce: 5000
+  startForce: 10000
   generateConfig:
     ratio: 0100000001000000
     positiveEmojis: []

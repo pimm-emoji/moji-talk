@@ -5,7 +5,7 @@ using UnityEngine;
 public class Blade : MonoBehaviour {
 
 	public GameObject bladeTrailPrefab;       
-	public float minCuttingVelocity = .001f;  
+	public float minCuttingVelocity = 0f;  
 
 	bool isCutting = false;
 
@@ -29,7 +29,18 @@ public class Blade : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0))
 		{
 			StartCutting();
-		} else if (Input.GetMouseButtonUp(0))
+			int ran = Random.Range(0, 2);
+			if(ran == 0)
+				AudioManager.instance.PlaySFX("swish1");
+			else if(ran == 1)
+
+				AudioManager.instance.PlaySFX("swish2");
+			else
+				AudioManager.instance.PlaySFX("swish3");
+
+		} 
+		
+		else if (Input.GetMouseButtonUp(0))
 		{
 			StopCutting();
 		}
@@ -43,18 +54,13 @@ public class Blade : MonoBehaviour {
 
 	void UpdateCut ()
 	{
+
 		Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);  // 마우스의 좌표를 받아서 newposition에 저장함. 그 후 리지드 바디로 넘겨줌 
         rb.position = newPosition;
 
 		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime; // 초당 이동한 거리를 minCuttingVelocity와 비교 후 circlecollider의 활성화 여부 결정.
-		if (velocity >= minCuttingVelocity)
-		{
-			circleCollider.enabled = true;
-		} else
-		{
-			circleCollider.enabled = false;
-		}
-
+		circleCollider.enabled = true;
+	
 		previousPosition = newPosition;
 	}
 
@@ -62,8 +68,8 @@ public class Blade : MonoBehaviour {
 	{
 		isCutting = true;
 		currentBladeTrail = Instantiate(bladeTrailPrefab, transform); //bladetail 오브젝트 생성
-		previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
-		circleCollider.enabled = false;
+
+		circleCollider.enabled = true;
 	}
 
 	void StopCutting ()
