@@ -58,9 +58,11 @@ public class Blade : MonoBehaviour {
 		Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);  // 마우스의 좌표를 받아서 newposition에 저장함. 그 후 리지드 바디로 넘겨줌 
         rb.position = newPosition;
 
-		float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime; // 초당 이동한 거리를 minCuttingVelocity와 비교 후 circlecollider의 활성화 여부 결정.
-		circleCollider.enabled = true;
-	
+		//float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime; // 초당 이동한 거리를 minCuttingVelocity와 비교 후 circlecollider의 활성화 여부 결정.
+		
+
+
+
 		previousPosition = newPosition;
 	}
 
@@ -68,6 +70,7 @@ public class Blade : MonoBehaviour {
 	{
 		isCutting = true;
 		currentBladeTrail = Instantiate(bladeTrailPrefab, transform); //bladetail 오브젝트 생성
+		
 
 		circleCollider.enabled = true;
 	}

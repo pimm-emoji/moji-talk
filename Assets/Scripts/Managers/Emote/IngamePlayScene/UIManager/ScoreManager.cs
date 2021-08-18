@@ -1,49 +1,54 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//ondestroy °ª ÇÊ¿ä
+//ondestroy ê°’ í•„ìš”
 public class ScoreManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] UnityEngine.UI.Text txtScore = null;  //½ºÄÚ¾î¸¦ Ç¥½ÃÇÒ ÅØ½ºÆ® °´Ã¼ ¼³Á¤
+    [SerializeField] UnityEngine.UI.Text txtScore = null;  //ìŠ¤ì½”ì–´ë¥¼ í‘œì‹œí•  í…ìŠ¤íŠ¸ ê°ì²´ ì„¤ì •
 
-    [SerializeField] int increaseScore = 10;   //±âº» »ó½Â Á¡¼ö
-    int currentScore = 0;
+    [SerializeField] float increaseScore = 1000f;   //ê¸°ë³¸ ìƒìŠ¹ ì ìˆ˜
 
-    [SerializeField] float[] weight = null;    //ÆÇÁ¤º° °¡ÁßÄ¡ ÀÔ·Â
-    [SerializeField] int comboBonusScore = 10;  //ÄŞº¸ º¸³Ê½º Á¡¼ö ÀÔ·Â
+    float currentScore;
+    int IntcurrentScore;
+
+    [SerializeField] float[] weight = null;    //íŒì •ë³„ ê°€ì¤‘ì¹˜ ì…ë ¥
+    [SerializeField] int comboBonusScore = 100;  //ì½¤ë³´ ë³´ë„ˆìŠ¤ ì ìˆ˜ ì…ë ¥
 
     ComboManager theCombo;
     void Start()
     {
-        theCombo = FindObjectOfType<ComboManager>();   //ÄŞº¸ ¸Å´ÏÁ® ½ºÅ©¸³Æ® ºÒ·¯¿È
-        currentScore = 0;
+        GameManager.instance.InitScore();
+        theCombo = FindObjectOfType<ComboManager>();   //ì½¤ë³´ ë§¤ë‹ˆì ¸ ìŠ¤í¬ë¦½íŠ¸ ë¶ˆëŸ¬ì˜´
+        currentScore = 0f;
         txtScore.text = "0";
     }
 
-    public void IncreaseScore(int p_JudgementState, float e_Judgement)  //ÆÄ¶ó¹ÌÅÍ ÇÑ°³ ´õ Ãß°¡ÇÏ±â (ÀÌ¸ğÁö°¡ÁßÄ¡)
+    public void IncreaseScore(int p_JudgementState, float ondestroy)  //íŒŒë¼ë¯¸í„° í•œê°œ ë” ì¶”ê°€í•˜ê¸° (ì´ëª¨ì§€ê°€ì¤‘ì¹˜)
     {
-        //ÄŞº¸ Áõ°¡
+        //ì½¤ë³´ ì¦ê°€
         theCombo.IncreaseCombo();
-        //ÀÌ¸ğÁö °¡ÁßÄ¡ ÀÎÆ® º¯È¯
-        int e_JudgementState = (int)e_Judgement;
-        int t_increaseScore = increaseScore;
-        //ÄŞº¸ °¡ÁßÄ¡ °è»ê
+
+        
+        float t_increaseScore = increaseScore;
+
+        //ì½¤ë³´ ê°€ì¤‘ì¹˜ ê³„ì‚°
         int t_currentCombo = theCombo.GetCurrentCombo();
         int t_bonusComboScore = (t_currentCombo / 10) * comboBonusScore;
 
-        //ÆÇÁ¤ °¡ÁßÄ¡ °è»ê
+        //íŒì • ê°€ì¤‘ì¹˜ ê³„ì‚°
         t_increaseScore = increaseScore + t_bonusComboScore;
-        t_increaseScore = (int)(t_increaseScore * weight[p_JudgementState] * e_JudgementState );
+        t_increaseScore = t_increaseScore * weight[p_JudgementState] * ondestroy;
 
-        
+        GameManager.instance.AddScore(t_increaseScore);
 
 
-        //Á¡¼ö¹İ¿µ
-        currentScore += t_increaseScore;
-        txtScore.text = string.Format("{0:#,##0}", currentScore);
+        //ì ìˆ˜ë°˜ì˜
+        currentScore = GameManager.instance.GetScore();
+        IntcurrentScore = (int)currentScore;
+   
+        txtScore.text = string.Format("{0:#,##0}", IntcurrentScore);
     }
 
 }
