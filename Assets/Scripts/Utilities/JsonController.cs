@@ -31,3 +31,9 @@ class PresetController
         return arr;
     }
 }
+
+class AssetLoader : MonoBehaviour
+{
+    public static JObject LoadJsonToObject(string path) { return JObject.Parse(Resources.Load<TextAsset>(path).text); }
+    public static JArray LoadJsonToArray(string path) { return JArray.Parse(Resources.Load<TextAsset>(path).text); }
+}

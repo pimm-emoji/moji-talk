@@ -1,0 +1,5 @@
+{
+  "id": "bomb",
+  "asset": "Emojis/Negatives/bomb.png",
+  "ondestroy": 0
+}

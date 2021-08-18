@@ -55,7 +55,7 @@ public class IngamePlayScene : MonoBehaviour
             else if (flow[i].type == "emote")
             {
                 // Processing Emote Scene
-
+                //Emoji.loadEmoji()
                 yield return new WaitForSeconds(flow[i].duration / 1000);
             }
             else if (flow[i].type == "end")

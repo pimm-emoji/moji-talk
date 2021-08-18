@@ -90,6 +90,7 @@
     }
   },
   {
-    "type": "end"
+    "type": "end",
+    "endings": "a"
   }
 ]

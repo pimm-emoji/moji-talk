@@ -17,7 +17,7 @@ public class LevelSelectScene : MonoBehaviour
             GameObject newObject = Instantiate(WrapperControllerPrefab) as GameObject;
             newObject.transform.SetParent(GameObject.Find("Content").transform);
             newObject.GetComponent<RectTransform>().sizeDelta = new Vector2(800f, 200f);
-            newObject.GetComponent<WrapperController>().Init(items.Value.name, items.Value.desc, items.Value.img);
+            newObject.GetComponent<LevelSelectWrapperController>().Init(items.Value.name, items.Value.desc, items.Value.img);
         }
     }
 }
