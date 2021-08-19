@@ -9,9 +9,10 @@ using UnityEngine.UI;
 public class IngamePlayScene : MonoBehaviour
 {    
     public GameObject MessageWrapperPrefab;
+    public GameObject ScrollViewObject;
     public GameObject ScrollViewContent;
-    public float Spacing = 15;
-    public int HorizontalPadding = 40;
+    float[] offset = {ChattingConfig.VerticalLayoutGroupOffset[0], ChattingConfig.VerticalLayoutGroupOffset[1], ChattingConfig.VerticalLayoutGroupOffset[2], ChattingConfig.VerticalLayoutGroupOffset[3]};
+    float Spacing = ChattingConfig.VerticalLayoutGroupOffset[4];
     List<Level> flow;
 
     void Start()
@@ -19,8 +20,10 @@ public class IngamePlayScene : MonoBehaviour
         IngameDataManager.instance.LoadLevel("debug");
         flow = IngameDataManager.instance.GetLevelFlow();
         VerticalLayoutGroup VerticalLayoutGroup = ScrollViewContent.GetComponent<VerticalLayoutGroup>();
-        VerticalLayoutGroup.spacing = Spacing;
-        VerticalLayoutGroup.padding = new RectOffset(HorizontalPadding, HorizontalPadding, 0, 0);
+        RectTransform rectTransform = ScrollViewContent.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, offset[3]);
+        VerticalLayoutGroup.spacing = Spacing * 2;
+        VerticalLayoutGroup.padding = new RectOffset((int)offset[0], (int)offset[1], (int)offset[2], (int)offset[3]);
         StartCoroutine(ProcessingFlows());
     }
 
@@ -36,12 +39,14 @@ public class IngamePlayScene : MonoBehaviour
                 {
                     // Processing Message
                     print(message.content);
-                    GameObject newObject = Instantiate(MessageWrapperPrefab);
+                    GameObject newObject = Instantiate(MessageWrapperPrefab) as GameObject;
                     newObject.transform.SetParent(GameObject.Find("Content").transform);
-                    newObject.GetComponent<MessageWrapperController>().Init(message.content);
-                    var newObjectRectSize = newObject.GetComponent<MessageWrapperController>().GetSize();
+                    newObject.GetComponent<ChattingWrapperController>().init(message.author, message.content, message.author != "player" ? 0 : 1);
+                    AddScrollViewContentHeight(newObject);
+                    MoveToBottom();
+                    /*var newObjectRectSize = newObject.GetComponent<ChattingWrapperController>().GetSize();
                     AddScrollViewContentHeight(newObjectRectSize.y);
-                    newObject.GetComponent<RectTransform>().sizeDelta = newObjectRectSize;
+                    newObject.GetComponent<RectTransform>().sizeDelta = newObjectRectSize;*/
 
                     yield return new WaitForSeconds(message.delay / 1000);
                 }
@@ -50,7 +55,7 @@ public class IngamePlayScene : MonoBehaviour
             else if (flow[i].type == "emote")
             {
                 // Processing Emote Scene
-
+                //Emoji.loadEmoji()
                 yield return new WaitForSeconds(flow[i].duration / 1000);
             }
             else if (flow[i].type == "end")
@@ -60,9 +65,13 @@ public class IngamePlayScene : MonoBehaviour
         }
     }
 
-    void AddScrollViewContentHeight(float height)
+    void AddScrollViewContentHeight(GameObject GameObject)
     {
         Vector2 RectSize = ScrollViewContent.GetComponent<RectTransform>().sizeDelta;
+        float height = GameObject.GetComponent<RectTransform>().sizeDelta.y;
         ScrollViewContent.GetComponent<RectTransform>().sizeDelta = new Vector2(RectSize.x, RectSize.y + height + Spacing);
     }
+    void MoveToTop() { MoveScroll(1); }
+    void MoveToBottom() { MoveScroll(0); }
+    void MoveScroll(float value) { ScrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
 }

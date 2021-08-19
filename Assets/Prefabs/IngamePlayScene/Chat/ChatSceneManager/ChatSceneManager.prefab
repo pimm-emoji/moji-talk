@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1984579241913635836}
   - component: {fileID: 1984579241913635839}
-  - component: {fileID: 1984579241913635837}
   m_Layer: 0
   m_Name: ChatSceneManager
   m_TagString: Untagged
@@ -44,16 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac93ff54cad8178b0283b795d10b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1984579241913635837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984579241913635838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e81a012872c3c1f1a778f8e10b08ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userListPanel: {fileID: 0}
+  MessageWrapperPrefab: {fileID: 0}
+  ScrollViewContent: {fileID: 0}
+  Spacing: 15
+  HorizontalPadding: 40

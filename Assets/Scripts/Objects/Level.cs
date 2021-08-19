@@ -73,6 +73,8 @@ public class Level
     /// List of Message objects.
     /// </summary>
     public List<Message> chats;
+
+    public string ending;
 }
 
 /*
@@ -99,16 +101,6 @@ public class Level
 [System.Serializable]
 public class Flow
 {
-    /// <summary>
-    /// List of <c>Level</c> objects.
-    /// </summary>
     public List<Level> flow;
 
-    public Flow(){
-        flow = new List<Level>();
-    }
-    public Flow(List<Level> Flow)
-    {
-        flow = Flow;
-    }
 }
