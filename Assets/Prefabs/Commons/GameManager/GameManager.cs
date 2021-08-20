@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     // * UpdateScore()
     // * SetScore()
     public float score = 0f;
+    public int nowFlowIndex = 0;
     
     /*
         These are related to IngamePlayScene.
@@ -53,6 +54,9 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
+
+
+        //IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
     }
 
     [ContextMenu("Debug InitScore")] public void InitScore() { score = 0f; }
