@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager instance = null;
 
+    public float score = 0f;
+
     private void Awake()
     {
         // Set GameManager unique.

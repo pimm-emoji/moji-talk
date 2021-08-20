@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WrapperController : MonoBehaviour
+public class LevelSelectWrapperController : MonoBehaviour
 {
     public Text Name;
     public Text Description;

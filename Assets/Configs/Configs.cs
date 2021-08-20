@@ -4,87 +4,19 @@ using UnityEngine;
 /*
     The internal system configs of moji talk
 */
-public class Configs
+
+class ChattingConfig
 {
-    /*
-        Primary Assets Paths
-    */
-    /// <summary>
-    /// PresetPath is path of Preset.
-    /// Path: <c>/Assets/Presets</c>
-    /// </summary>
-    public static string PresetPath;
+    public static float[] namePadding = {10f, 5f}; // width, height
+    public static float[] contentPadding = {15f, 7.5f}; // width, height
 
-    /// <summary>
-    /// ResourcePath is path of common resources root directory.
-    /// Path: <c>/Assets/Resources</c>
-    /// </summary>
-    public static string ResourcePath;
+    public static float[,] gradientSettings;
+    public static byte[] backgroundColorRGB = {11, 150, 198, 255};
 
-    /// <summary>
-    /// PrefabPath is path of prefab resources root directory.
-    /// </summary>
-    public static string PrefabPath;
+    public static float[] VerticalLayoutGroupOffset = {40, 40, 40, 40, 30};
 
-
-    /*
-        Presets Paths
-    */
-    /// <summary>
-    /// ProfileIndexPath is path of Profile Preset.
-    /// Path: <c>/Assets/Presets/profiles.json</c>
-    /// </summary>
-    public static string ProfileIndexPath;
-
-    public static string PresetProfileDirPath;
-
-    /// <summary>
-    /// LevelIndexPath is path of Level Index Preset.
-    /// Path: <c>/Assets/Presets/levels.json</c>
-    /// </summary>
-    public static string LevelIndexPath;
-
-    /// <summary>
-    /// LevelDirPath is path of Path of Level Data Directory.
-    /// Path: <c>/Assets/Presets/levels</c>
-    /// </summary>
-    public static string LevelDirPath;
-
-
-    /*
-        Resources Paths
-    */
-    /// <summary>
-    /// ResourceEmojiPath is path of emoji resources
-    /// Path: <c>/Assets/Resources/Emojis</c>
-    /// </summary>
-    public static string ResourceEmojiPath;
-
-    /// <summary>
-    /// ResourceProfilePath is path of Profile Resource Directory.
-    /// Path: <c>/Assets/Resources/Profiles</c>
-    /// </summary>
-    public static string ResourceProfilePath;
-
-    /// <summary>
-    /// ResourceProfileImagePath is path of Profile Image Resource Directory.
-    /// Path: <c>/Assets/Resources/Profiles/Images</c>
-    /// </summary>
-    public static string ResourceProfileImagePath;
-    
-    static Configs()
+    public ChattingConfig()
     {
-        PresetPath = Path.Combine(Application.dataPath, "Presets");
-        ResourcePath = Path.Combine(Application.dataPath, "Resources");
-        PrefabPath = Path.Combine(Application.dataPath, "Prefabs");
-
-        ProfileIndexPath = Path.Combine(PresetPath, "profiles.json");
-        PresetProfileDirPath = Path.Combine(PresetPath, "profiles");
-        LevelIndexPath = Path.Combine(PresetPath, "levels.json");
-        LevelDirPath = Path.Combine(PresetPath, "levels");
-
-        ResourceEmojiPath = Path.Combine(ResourcePath, "Emojis");
-        ResourceProfilePath = Path.Combine(ResourcePath, "Profiles");
-        ResourceProfileImagePath = Path.Combine(ResourceProfilePath, "Images");
+        gradientSettings = new float[,] {{0f, 0f}, {0.4f, 0.4f}, {1f, 1f}}; // time, alpha
     }
 }
