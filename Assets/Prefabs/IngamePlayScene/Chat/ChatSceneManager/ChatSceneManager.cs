@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /*
     The IngamePlayScene
 */
-public class IngamePlayScene : MonoBehaviour
+public class ChatSceneManager : MonoBehaviour
 {    
     public GameObject MessageWrapperPrefab;
     public GameObject ScrollViewObject;

@@ -40,10 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984579241913635838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70ac93ff54cad8178b0283b795d10b62, type: 3}
+  m_Script: {fileID: 11500000, guid: 576713d0dc25448b6861c799d55630c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MessageWrapperPrefab: {fileID: 0}
+  ScrollViewObject: {fileID: 0}
   ScrollViewContent: {fileID: 0}
-  Spacing: 15
-  HorizontalPadding: 40
