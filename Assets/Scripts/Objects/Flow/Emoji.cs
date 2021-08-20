@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Emoji
+public class Emoji     //id, asset�� ���� string����, ondestory ���� float���� ������ ����.
 {
     public string id;
     public string asset;
@@ -27,7 +27,7 @@ public class Emoji
 }
 
 [System.Serializable]
-public class EmojiGenerations
+public class EmojiGenerations 
 {
     public int[] ratio = {1, 1};
 

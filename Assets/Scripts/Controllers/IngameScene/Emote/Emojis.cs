@@ -1,55 +1,95 @@
+ï»¿using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Emojis : MonoBehaviour {
 
-	public GameObject emojiSlicedPrefab; //emojislicedprefab , startforce º¯¼ö
+	public GameObject emojiSlicedPrefab; // ì˜ë ¸ì„ ë•Œì˜ prefabê³¼ ë˜ì§€ëŠ” í˜ ì„¤ì •.
 	public float startForce = 15f;
-	
-	public int isCut = 0; 
+
+	public EmojiGenerations generateConfig; //jsonì— ë‹´ê¸´ emoji ì •ë³´ ê°€ì ¸ì˜´
+	public Emoji emoji;
+
+	public SpriteRenderer renderer; //sprite renderer ì ‘ê·¼
+	public Sprite spr;
+
+	public int isCut = 0;  // ì˜ë ¸ëŠ”ì§€ ì—¬ë¶€ íŒì •ì„ ìœ„í•œ ë³€ìˆ˜
 	bool dupli = false;
 
+	Vector3 MousePosition;
+	Vector3 CenterPosition;
+	Camera Camera;
+	public float distance;
+
 	Rigidbody2D rb;
-	RectTransform rect;   
+	RectTransform rect;
+
+
+
+	
+
+
 
 	void Start ()  
 	{
-		rb = GetComponent<Rigidbody2D>();             //rigidbody¿¡ ½ÃÀÛ ÈûÀ» °¡ÇÔ
+		//rigidbodyì— ì‹œì‘ í˜ì„ ê°€í•¨
+		rb = GetComponent<Rigidbody2D>();             
 		rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 
-		rect = GetComponent<RectTransform>();  //ÇöÀç ÀÌ¸ğÁöÀÇ Transform °¡Á®¿È
+		//í˜„ì¬ ì´ëª¨ì§€ì˜ Transform ê°€ì ¸ì˜´
+		rect = GetComponent<RectTransform>();
+
+
+		//ìì‹ ì˜¤ë¸Œì íŠ¸ì˜ ì»´í¬ë„ŒíŠ¸ ì ‘ê·¼, json ì´ë¯¸ì§€ ê²½ë¡œ ìŠ¤í”„ë¼ì´íŠ¸ ë¡œë”©
+		renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+		string emojipath = "Emojis/" + emoji.asset;
+		spr = Resources.Load<Sprite>(emojipath);
+		renderer.sprite = spr;
+
+		// distance êµ¬í•˜ê¸°
+		Camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		distance = 500f;
+
+
 
 	}
 
-	void OnTriggerEnter2D (Collider2D col)  //Ãæµ¹ ½Ã
+
+	//ì¶©ëŒ ì‹œ ì²˜ë¦¬í•˜ëŠ” ì½”ë“œ
+	void OnTriggerExit2D (Collider2D col)  
 	{
-
-		if (dupli == false)   // Áßº¹À¸·Î Àß¸²À» ¹æÁö
+		// ì¤‘ë³µìœ¼ë¡œ ì˜ë¦¼ì„ ë°©ì§€
+		if (dupli == false)   
 		{
-			if (col.tag == "Blade")  //Blade ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ ½Ã
+			//Blade íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒ ì‹œ
+			if (col.tag == "Blade")  
 			{
-
+				// ì˜ë¦° ë°©í–¥ ì„¤ì •
 				Vector3 direction = (col.transform.position - transform.position).normalized;
 				Quaternion rotation = (Quaternion.LookRotation(forward : Vector3.forward, upwards : direction)); //
 
-			
-			
 
-				GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  // Àß¸° °úÀÏ ¿ÀºêÁ§Æ® »ı¼º
 
-				
+				// ì˜ë ¤ì§„ ì´ëª¨ì§€ í”„ë¦¬íŒ¹ ìƒì„±
+				GameObject slicedEmoji = Instantiate(emojiSlicedPrefab, transform.position, rotation);  
+
+				// ì˜ë ¤ì§„ ì´ëª¨ì§€ íŒŒê´´
 				Destroy(slicedEmoji, 3f);
 
-				rect.localScale = new Vector3(0, 0, 0);  // Å©±â¸¦ 0À¸·Î ¸¸µé¾î ¹ö¸² --- ¹Ù·Î ÆÄ±«ÇÏÁö ¾Ê´Â ÀÌÀ¯´Â ÆÇÁ¤À» À§ÇÔ.
+
+				
+				// ìŠ¤í”„ë¼ì´íŠ¸ ë¹„í™œì„±í™”(íŒì •ì„ ìœ„í•´ ë°”ë¡œ íŒŒê´´í•˜ì§€ëŠ” ì•ŠìŒ)
+				renderer.enabled = false;
+				rect.localScale = new Vector3(0, 0, 0);
+
 				Destroy(gameObject, 2f);
-				soundManager.instance.PlaySound();  //Àß¸®´Â È¿°úÀ½
-				isCut = 1;    // ´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ ¾µ °ÅÀÓ.
+				isCut = 1;    // ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì“¸ ê±°ì„.
 				dupli = true;
 
 			}
 
-			else if(col.tag == "Misszone")  // MissZone tag¸¦ °¡Áø ¿ÀºêÁ§Æ®¿Í Ãæµ¹ ½Ã
+			else if(col.tag == "Misszone")  // MissZone tagë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒ ì‹œ
 			{ 
 				rect.localScale = new Vector3(0, 0, 0);
 				Destroy(gameObject, 2f);
@@ -58,5 +98,28 @@ public class Emojis : MonoBehaviour {
 			}
 		}
 	}
+
+	// ì¤‘ì‹¬ê³¼ ì´ëª¨ì§€ ì‚¬ì´ ê±°ë¦¬ ì¸¡ì •
+	void OnTriggerStay2D(Collider2D col)
+    {
+		if (col.tag == "Blade")
+        {
+			float distanceupd;
+			CenterPosition = rect.transform.position;
+			MousePosition = Input.mousePosition;
+
+			
+			
+			MousePosition = Camera.ScreenToWorldPoint(MousePosition);
+			//CenterPosition = RectTransformUtility.WorldToScreenPoint(Camera, CenterPosition);
+			distanceupd = Vector3.Distance(MousePosition, CenterPosition);
+			if(distanceupd < distance)
+            {
+				distance = distanceupd;
+            }
+		}
+	}
+
+	
 
 }

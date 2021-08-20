@@ -1,8 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
- // ÀÌ¸ğÁö¸¦ º£¾úÀ» ¶§ ÆÇÁ¤À» ÇÏ´Â ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
+ // ì´ëª¨ì§€ë¥¼ ë² ì—ˆì„ ë•Œ íŒì •ì„ í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
+
+
 
 public class TimingManager : MonoBehaviour
 {
@@ -13,7 +15,10 @@ public class TimingManager : MonoBehaviour
 
     ScoreManager theScoreManager;
     ComboManager theComboManager;
+    AudioManager theAudioManager;
 
+    float emojiscore;
+    float distance;
    
 
     void Start()
@@ -23,6 +28,9 @@ public class TimingManager : MonoBehaviour
         rectTransform = transform.parent.gameObject.GetComponent<RectTransform>();
         parscript = transform.parent.parent.gameObject.GetComponent<Emojis>();
         theComboManager = FindObjectOfType<ComboManager>();
+        theAudioManager = AudioManager.instance;
+
+        emojiscore = parscript.emoji.ondestroy;
        
     }
 
@@ -30,50 +38,70 @@ public class TimingManager : MonoBehaviour
     void Update()
     {
      
-        if (parscript.isCut == 1)  //emojis ½ºÅ©¸³Æ®¿¡¼­ isCut°ªÀÌ 1ÀÌ¶ó¸é(Àß·ÈÀ» ¶§°¡ 1ÀÓ)
+        if (parscript.isCut == 1)  //emojis ìŠ¤í¬ë¦½íŠ¸ì—ì„œ isCutê°’ì´ 1ì´ë¼ë©´(ì˜ë ¸ì„ ë•Œê°€ 1ì„)
         {
-
-            //ÁÙ¾îµå´Â ¿ø Å©±âÀÇ x ½ºÄÉÀÏ °ªÀ» °¡Á®¿È. ±× ÈÄ ÆÇÁ¤
-            float scale = rectTransform.localScale.x;  
-            if (scale >= 32 && scale <= 36)
+            distance = parscript.distance;
+            Debug.Log(distance);
+            // if ê°€ì¤‘ì¹˜ ê°’ì´ 0ë³´ë‹¤ í¬ë‹¤ë©´
+            if (emojiscore > 0f)
             {
-                Debug.Log("Perfect");
-                theEffect.JudgementEffect(0);  //0¹ø ÀÌÆåÆ® ÀÛµ¿
-                theScoreManager.IncreaseScore(0);  // 0¹ø Á¡¼ö»ó½Â ÀÛµ¿
-            }
+                if (distance <= 30f)
+                {
+                    Debug.Log("Perfect");
+                    theEffect.JudgementEffect(0);  //0ë²ˆ ì´í™íŠ¸ ì‘ë™
+                    theScoreManager.IncreaseScore(0, emojiscore);  // 0ë²ˆ ì ìˆ˜ìƒìŠ¹ ì‘ë™, ì¶”ê°€í•  ê²ƒ : ì´ëª¨ì§€ ê°€ì¤‘ì¹˜ ê°’ ë°›ì•„ì„œ ê°™ì´ ë„˜ê²¨ì¤Œ
+                    theAudioManager.PlaySFX("Touch");
+                }
 
-             else if (scale > 36 && scale <= 48)
-             {
-                Debug.Log("Cool");
-                theEffect.JudgementEffect(1);
-                theScoreManager.IncreaseScore(1);
-            }
+                else if (distance > 30f && distance<= 60f)
+                {
+                    Debug.Log("Cool");
+                    theEffect.JudgementEffect(1);
+                    theScoreManager.IncreaseScore(1, emojiscore);
+                    theAudioManager.PlaySFX("Touch");
+                }
 
-             else if (scale > 48 && scale <= 72)
-             {
-                Debug.Log("Good");
-                theEffect.JudgementEffect(2);
-                theScoreManager.IncreaseScore(2);
-            }
+                else if (distance > 60f && distance <= 110f)
+                {
+                    Debug.Log("Good");
+                    theEffect.JudgementEffect(2);
+                    theScoreManager.IncreaseScore(2, emojiscore);
+                    theAudioManager.PlaySFX("Touch");
+                }
 
-             else if (scale > 72 || scale < 36)
-             {
-                Debug.Log("Bad");
+                else if (distance > 110f)
+                {
+                    Debug.Log("Bad");
+                    theComboManager.ResetCombo();
+                    theEffect.JudgementEffect(3);
+                    theScoreManager.IncreaseScore(3, emojiscore);
+                    theAudioManager.PlaySFX("Touch");
+                }
+            }
+            else if(emojiscore <= 0f)
+            {
+                Debug.Log(emojiscore);
                 theComboManager.ResetCombo();
                 theEffect.JudgementEffect(3);
-                theScoreManager.IncreaseScore(3);
+                theScoreManager.IncreaseScore(3, emojiscore);
+                theAudioManager.PlaySFX("Touch");
+
             }
 
-            parscript.isCut = 3;  // Áßº¹À¸·Î Àß¸®´Â °ÍÀ» ¹æÁö.
+            parscript.isCut = 3;  // ì¤‘ë³µìœ¼ë¡œ ì˜ë¦¬ëŠ” ê²ƒì„ ë°©ì§€.
          
       
         }
-        else if(parscript.isCut == 2)  // Àß¸®Áö ¾ÊÀº ÀÌ¸ğÁö°¡ MISSZone¿¡ ´ê¾ÒÀ» °æ¿ì(misszoneÀº emojis ½ºÅ©¸³Æ®¿¡ µîÀå)
+        else if(parscript.isCut == 2)  // ì˜ë¦¬ì§€ ì•Šì€ ì´ëª¨ì§€ê°€ MISSZoneì— ë‹¿ì•˜ì„ ê²½ìš°(misszoneì€ emojis ìŠ¤í¬ë¦½íŠ¸ì— ë“±ì¥)
         {
-            Debug.Log("Miss");
-            theComboManager.ResetCombo();
-            theEffect.JudgementEffect(4);  
-            parscript.isCut = 3;   
+            if(emojiscore > 0f)
+            {
+                Debug.Log("Miss");
+                theComboManager.ResetCombo();
+                theEffect.JudgementEffect(4);  
+                parscript.isCut = 3;   
+            }
+            
         }
 
     }

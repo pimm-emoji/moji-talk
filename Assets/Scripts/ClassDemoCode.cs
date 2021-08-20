@@ -18,7 +18,7 @@ public class ClassDemoCode : MonoBehaviour
     public EmojiGenerations generateConfig;
 
     // Emoji 자료형은 이모지 관리에 필요한 데이터를 담을 수 있습니다.
-    public Emoji emoji;
+    public Emoji emoji; 
 
     void Start(){}
     void Update(){}
@@ -52,6 +52,13 @@ public class ClassDemoCode : MonoBehaviour
             이 코드의 경우 generateConfig에 데이터를 추가하고 있으니, generateConfig의 데이터타입인 EmojiGenerations를 T에 넣었습니다.
         */
         ).ToObject<EmojiGenerations>();
+
+        // 새 방법
+        generateConfig = PresetController.LoadGenData(
+            PresetController.LoadJsonToObject(
+                Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+            )
+        );
     }
 
     [ContextMenu("LoadDemoEmojiData")]

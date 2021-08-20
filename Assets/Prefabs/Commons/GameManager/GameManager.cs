@@ -28,8 +28,24 @@ public class GameManager : MonoBehaviour
     /// Call <c>GameManager.instance</c> when need to use <c>GameManager</c>.
     /// </summary>
     public static GameManager instance = null;
+    
+    public Dictionary<string, LevelData> levels;
+    public List<string> ProfileIndex;
 
+    // "score" variable is gameflow's score.
+    // It must be updated through methods
+    // * InitScore()
+    // * UpdateScore()
+    // * SetScore()
     public float score = 0f;
+    
+    /*
+        These are related to IngamePlayScene.
+    */
+    public string IngamePlaySceneLevel;
+    public LevelData IngamePlaySceneLevelData;
+    public List<Profile> IngamePlaySceneParticipants;
+    public Flow Flow;
 
     private void Awake()
     {
@@ -39,6 +55,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    [ContextMenu("Debug InitScore")] public void InitScore() { score = 0f; }
+    public void AddScore(float ScoreDelta) { score += ScoreDelta; }
+    public void SetScore(float Score) { score = Score; }
+    public float GetScore() { return score; }
+    [ContextMenu("Debug AddScore (ScoreDelta: 1)")] public void DebugAddScore() { AddScore(1); }
+    [ContextMenu("Debug SetScore (Score: 4)")] public void DebugSetScore() { SetScore(4); }
+    [ContextMenu("Debug GetScore through Print")] public void DebugGetScore() { print(GetScore()); }
 
     /*
         The LoadScene Method
