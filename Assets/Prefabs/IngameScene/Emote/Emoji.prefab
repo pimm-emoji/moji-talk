@@ -58,7 +58,7 @@ Rigidbody2D:
   m_GravityScale: 230
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &3559836529009067967
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314cab2f1221e9043a33743614923195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emojiSlicedPrefab: {fileID: 1353405809762312, guid: 513fb1485db6d6742ae9ee271f6e5f71, type: 3}
+  emojiSlicedPrefab: {fileID: 1353405809762312, guid: 1b763905a6a074f33829404ab13d14a2, type: 3}
   startForce: 10000
   generateConfig:
     ratio: 0100000001000000
@@ -83,6 +83,7 @@ MonoBehaviour:
     id: 
     asset: 
     ondestroy: 0
+    sprite: {fileID: 0}
   renderer: {fileID: 1209824732208467491}
   spr: {fileID: 0}
   isCut: 0
