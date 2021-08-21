@@ -13,14 +13,19 @@ public class EmojiSpawner : MonoBehaviour {
 	public int bpm = 128;
 
 	[ContextMenu("LoadDemoGenData")]
-	void LoadDemoData()
+	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
 	{
-		//새 방법
+		//예전 코드-- generateconfig 값을 인게임 매니져에서 가져오면서 기존 코드 주석처리 해놓음.
+		/*
 		generateConfig = PresetController.LoadGenData(
 			PresetController.LoadJsonToObject(
 				Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
 			)
 		);
+		*/
+
+
+		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 
 	void Start () {
@@ -56,15 +61,6 @@ public class EmojiSpawner : MonoBehaviour {
 				int mojirange = Random.Range(0, generateConfig.negativeEmojis.Count);
 				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.negativeEmojis[mojirange];
 			}
-
-			// if 난수 구현 결과 positive라면
-
-			// spawnedEmoji.GetComponent<Emojis>().emoji = (positive 데이터);
-
-			// positive 데이터 가지고 오는 방법? generateConfig[1] 이런 식으로 참조하면 되나? 아니면 generateConfig.positiveEmojis[1] 이런식으로 참조해야 하나?
-			// 이 때 여러 .length 에서 랜덤으로 하나 뽑기.
-
-
 
 			spawnedEmoji.transform.SetParent(this.transform);
 			Destroy(spawnedEmoji, 5f);

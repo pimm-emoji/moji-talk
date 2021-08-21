@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager instance = null;
     
-    public Dictionary<string, LevelData> levels;
+    public Dictionary<string, LevelData> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
     public List<string> ProfileIndex;
 
     // "score" variable is gameflow's score.
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
 
-
+        //IngameDataManager.instance.
         //IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
     }
 

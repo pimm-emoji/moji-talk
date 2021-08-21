@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,30 +16,30 @@ public class IngameDataManager : MonoBehaviour
     public static IngameDataManager instance = null;
 
     public string levelID;
-    public LevelData levelData;
+    public LevelData levelData;  
     public List<Profile> participants;
     public List<Level> flow;
 
     void Awake()
     {
         // Set IngameDataManager unique.
-        if (instance == null) instance = this;
+        if (instance == null) instance = this;  
         else if (instance != this) Destroy(this.gameObject);
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject); // 이 오브젝트는 다른 씬으로 넘어가도 파괴되지 않음
     }
 
-    public void SetLevelID(string LevelID) { levelID = LevelID; }
+    public void SetLevelID(string LevelID) { levelID = LevelID; }  //string 형식의 LevelID를 지정하거나 리턴받음
     // public void LoadLevelID() {}
     public string GetLevelID() { return levelID; }
 
-    public void SetLevelData(LevelData LevelData) { levelData = LevelData; }
+    public void SetLevelData(LevelData LevelData) { levelData = LevelData; }//LevelData 형식의 leveldata를 설정하거나 로드하거나 리턴받음
     public void LoadLevelData() { LoadLevelData(levelID); }
     public void LoadLevelData(string LevelID)
     { levelData = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<LevelData>(); }
     public LevelData GetLevelData() { return levelData; }
     public LevelData GetLevelData(string LevelID) { LoadLevelData(LevelID); return levelData; }
 
-    public void SetLevelFlow(List<Level> Flow) { flow = Flow; }
+    public void SetLevelFlow(List<Level> Flow) { flow = Flow; } // 리스트<레벨> 형식의 flow를 지정하거나 로드하거나 리턴받음
     public void LoadLevelFlow() { LoadLevelFlow(levelID); }
     public void LoadLevelFlow(string LevelID) 
     {
@@ -49,7 +49,7 @@ public class IngameDataManager : MonoBehaviour
     }
     public List<Level> GetLevelFlow() { return flow; }
 
-    public void SetParticipants(List<Profile> Participants) { participants = Participants; }
+    public void SetParticipants(List<Profile> Participants) { participants = Participants; } //리스트<프로필> 형태의 participants를 지정하거나 로드하거나 리턴받음
     public void LoadParticipants() { LoadParticipants(levelData); }
     public void LoadParticipants(LevelData LevelData) {
         participants = new List<Profile>();
@@ -68,7 +68,7 @@ public class IngameDataManager : MonoBehaviour
     }
     public List<Profile> GetParticipants() { return participants; }
 
-    public void LoadLevel(string LevelID) { levelID = LevelID; LoadLevel(); }
+    public void LoadLevel(string LevelID) { levelID = LevelID; LoadLevel(); } //LoadLevel 함수. 레벨데이터, 레벨플로우, participants를 모두 로드한다
     public void LoadLevel()
     {
         LoadLevelData(levelID);
