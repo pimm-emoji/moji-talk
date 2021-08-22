@@ -16,19 +16,22 @@ public class EmojiSpawner : MonoBehaviour {
 	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
 	{
 		//예전 코드-- generateconfig 값을 인게임 매니져에서 가져오면서 기존 코드 주석처리 해놓음.
-		/*
+	/*
 		generateConfig = PresetController.LoadGenData(
 			PresetController.LoadJsonToObject(
 				Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+	
 			)
 		);
-		*/
+	*/	
 
 
 		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 
 	void Start () {
+		IngameDataManager.instance.LoadLevel("1");
+
 		StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
 	
 	}
