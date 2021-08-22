@@ -16,7 +16,7 @@ public class EmojiSpawner : MonoBehaviour {
 	
 
 	void Start () {
-		IngameDataManager.instance.LoadLevel("1");  // ingamedatamanger에서 "1" 레벨을 로드하고
+		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
 
 		StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
 	
