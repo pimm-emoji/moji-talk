@@ -18,8 +18,8 @@ public class EmojiSpawner : MonoBehaviour {
 	void Start () {
 		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
 
-		StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
-	
+		//StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
+		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 
 
