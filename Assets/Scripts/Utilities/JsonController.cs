@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -7,21 +7,21 @@ using Newtonsoft.Json.Linq;
 /*
     The PresetController
 */
-class PresetController  //PresetController Å¬·¡½º
+class PresetController  //PresetController í´ë˜ìŠ¤
 {
-    public static JObject LoadJsonToObject(string path) { return JObject.Parse(File.ReadAllText(path)); }  //Jobject ¸Ş¼Òµå.  path ½ºÆ®¸µÀ» °Ë»öÇØ¼­ ÆÄ½ÌÇÑ µÚ ±× JObject¸¦ ¸®ÅÏÇÑ´Ù.
-    public static JArray LoadJsonToArray(string path) { return JArray.Parse(File.ReadAllText(path)); } // JArray ¸Ş¼Òµå. path¸¦ ¹Ş¾Æ ÆÄ½ÌÇÑµÚ ±× JArray¸¦ ¸®ÅÏÇÑ´Ù.
+    public static JObject LoadJsonToObject(string path) { return JObject.Parse(File.ReadAllText(path)); }  //Jobject ë©”ì†Œë“œ.  path ìŠ¤íŠ¸ë§ì„ ê²€ìƒ‰í•´ì„œ íŒŒì‹±í•œ ë’¤ ê·¸ JObjectë¥¼ ë¦¬í„´í•œë‹¤.
+    public static JArray LoadJsonToArray(string path) { return JArray.Parse(File.ReadAllText(path)); } // JArray ë©”ì†Œë“œ. pathë¥¼ ë°›ì•„ íŒŒì‹±í•œë’¤ ê·¸ JArrayë¥¼ ë¦¬í„´í•œë‹¤.
 
-    public static Dictionary<string, T> LoadSingleDepth<T>(JObject Object)  // ÀÌ°Ô ¹ºÁö ¸ğ¸£°ÚÀ½
+    public static Dictionary<string, T> LoadSingleDepth<T>(JObject Object)  // ì´ê²Œ ë­”ì§€ ëª¨ë¥´ê² ìŒ
     {
         Dictionary<string, T> dict = new Dictionary<string, T>();
         foreach (var obj in Object)
         {
-            dict.Add(obj.Key, obj.Value.ToObject<T>());    // Obj.Value.ToObject<t>°¡ ¹«¾ùÀÎÁö ¸ğ¸£°ÚÀ½
+            dict.Add(obj.Key, obj.Value.ToObject<T>());    // Obj.Value.ToObject<t>ê°€ ë¬´ì—‡ì¸ì§€ ëª¨ë¥´ê² ìŒ
         }
         return dict;
     }
-    public static List<T> LoadSingleDepth<T>(JArray Array)   // Àú <T>°¡ ¹ºÁö ¸ğ¸£°ÚÀ½
+    public static List<T> LoadSingleDepth<T>(JArray Array)   // ì € <T>ê°€ ë­”ì§€ ëª¨ë¥´ê² ìŒ
     {
         List<T> arr = new List<T>();
         foreach (var obj in Array)
