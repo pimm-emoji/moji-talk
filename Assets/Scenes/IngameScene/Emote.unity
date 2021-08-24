@@ -1745,8 +1745,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6299403451144795995, guid: 7453f30cb60a7b7469c08f9881889d8f, type: 3}
+      propertyPath: nowFlowIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299403451144795995, guid: 7453f30cb60a7b7469c08f9881889d8f, type: 3}
       propertyPath: Flow.flow.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7453f30cb60a7b7469c08f9881889d8f, type: 3}

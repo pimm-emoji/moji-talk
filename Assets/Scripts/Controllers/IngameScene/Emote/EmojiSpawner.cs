@@ -147,16 +147,16 @@ public class EmojiSpawner : MonoBehaviour
 		{
 			yield return new WaitForSeconds(60f / bpm);
 
-			int mode = Random.Range(0, 3);
-			if (mode == 0)
+			int mode = Random.Range(0, 6);
+			if (mode <=3)
 			{
 				mode0();
 			}
-			else if (mode == 1)
+			else if (mode == 4)
 			{
 				mode1();
 			}
-			else if (mode == 2)
+			else if (mode == 5)
 			{
 				mode2();
 			}
