@@ -45,7 +45,7 @@ public class Emojis : MonoBehaviour {
 		//자식 오브젝트의 컴포넌트 접근, json 이미지 경로 스프라이트 로딩
 		renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
 		newemoji = Emoji.LoadEmoji(emoji.id);
-		renderer.sprite = newemoji.sprite;
+		renderer.sprite = Resources.Load<Sprite>(Path.Combine("Emojis", newemoji.asset));
 
 		// distance 구하기
 		Camera = GameObject.Find("Main Camera").GetComponent<Camera>();
