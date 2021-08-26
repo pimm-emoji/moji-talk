@@ -17,12 +17,15 @@ public class EmojiSceneManager : MonoBehaviour
 
     void Start()
     {
+    }
+
+    public void StartScene()
+    {
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
         IngameDataManager.instance.LoadLevel("first");
         flow = IngameDataManager.instance.GetLevelFlow();
         previousscore = 0f;
         StartCoroutine(ProcessingFlows());
-
     }
 
      IEnumerator ProcessingFlows()

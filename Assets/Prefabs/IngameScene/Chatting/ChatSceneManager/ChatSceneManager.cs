@@ -19,7 +19,7 @@ public class ChatSceneManager : MonoBehaviour
     {
         StartScene();
     }
-    void StartScene()
+    public void StartScene()
     {
         IngameDataManager.instance.LoadLevel("debug");
         flow = IngameDataManager.instance.GetLevelFlow();
