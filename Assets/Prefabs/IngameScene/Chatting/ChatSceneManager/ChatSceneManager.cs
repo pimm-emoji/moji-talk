@@ -17,7 +17,6 @@ public class ChatSceneManager : MonoBehaviour
 
     void Start()
     {
-        StartScene();
     }
     public void StartScene()
     {

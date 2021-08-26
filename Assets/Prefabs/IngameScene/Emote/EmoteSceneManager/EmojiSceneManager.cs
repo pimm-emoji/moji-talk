@@ -29,7 +29,18 @@ public class EmojiSceneManager : MonoBehaviour
         StartCoroutine(ProcessingFlows());
     }
 
-     IEnumerator ProcessingFlows()
+    /*
+        점수가 나오게 되면
+        divider.Add(100);
+        for(int i; i < divider.count)
+        {
+            if (score < divider[i]) 
+            {
+                index[i] 분기로 보냄
+            }
+        }
+    */
+    IEnumerator ProcessingFlows()
     {
         int i = 1; // index
         flimittime = flow[i].duration / 1000;

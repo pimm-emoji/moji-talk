@@ -39,7 +39,7 @@ public class Branch
     /// <summary>
     /// Internal Mood Parameter divider.
     /// </summary>
-    public float[] divider;
+    public List<float> divider;
 
     /// <summary>
     /// Defines the next flow to go to based on the divider result.
@@ -48,10 +48,10 @@ public class Branch
     /// <remarks>
     /// The <c>index</c> must be 1 longer than the <c>divider</c>.
     /// </remarks>
-    public int[] index;
+    public List<int> index;
 
     public Branch(){}
-    public Branch(float[] Divider, int[] Index)
+    public Branch(List<float> Divider, List<int> Index)
     {
         divider = Divider;
         index = Index;
