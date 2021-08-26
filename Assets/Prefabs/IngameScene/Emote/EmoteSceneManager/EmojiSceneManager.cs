@@ -17,6 +17,7 @@ public class EmojiSceneManager : MonoBehaviour
 
     void Start()
     {
+        StartScene();
     }
 
     public void StartScene()
