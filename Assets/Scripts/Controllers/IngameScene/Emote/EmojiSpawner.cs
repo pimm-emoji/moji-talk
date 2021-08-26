@@ -10,7 +10,8 @@ public class EmojiSpawner : MonoBehaviour
 	public Transform[] spawnPoints;
 	public Emoji emojidata;
 	public EmojiGenerations generateConfig;
-
+	public bool spawnswitch = true;
+	bool duplicate = false;
 	public int bpm = 128;
 
 	[ContextMenu("LoadDemoGenData")]
@@ -18,15 +19,31 @@ public class EmojiSpawner : MonoBehaviour
 
 	void Start () {
 		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
-		Debug.Log("Eflow"   + GameManager.instance.nowFlowIndex);
-		StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
-		generateConfig = IngameDataManager.instance.flow[1].generates;
+		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
 	}
+
+	void Update()
+    {
+		if(spawnswitch == false){
+			StopCoroutine(SpawnEmojis());
+			duplicate = false;
+        }
+
+		else if(spawnswitch == true){
+			if (duplicate == false)
+			{
+				StartCoroutine(SpawnEmojis());
+				duplicate = true;
+			}
+
+		}
+
+    }
 
 
 	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
 	{
-		generateConfig = IngameDataManager.instance.flow[1].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
+		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
 	}
 
 

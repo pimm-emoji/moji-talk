@@ -61,7 +61,7 @@ public class TimingManager : MonoBehaviour
                     theAudioManager.PlaySFX("Touch");
                 }
 
-                else if (distance > 60f && distance <= 110f)
+                else if ((distance > 60f && distance <= 110f)||distance == 500f)
                 {
                     Debug.Log("Good");
                     theEffect.JudgementEffect(2);
@@ -69,7 +69,7 @@ public class TimingManager : MonoBehaviour
                     theAudioManager.PlaySFX("Touch");
                 }
 
-                else if (distance > 110f)
+                else if (distance > 110f && distance < 500f)
                 {
                     Debug.Log("Bad");
                     theComboManager.ResetCombo();
@@ -77,6 +77,7 @@ public class TimingManager : MonoBehaviour
                     theScoreManager.IncreaseScore(3, emojiscore);
                     theAudioManager.PlaySFX("Touch");
                 }
+                
             }
             else if(emojiscore <= 0f)
             {
