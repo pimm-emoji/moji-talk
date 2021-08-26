@@ -89,3 +89,13 @@ public class Configs
         ResourceProfileImagePath = Path.Combine(ResourceProfilePath, "Images");
     }
 }
+public class PathVariables
+{
+    public static string userDataStorageDirectory;
+    public static string userDataStorageFilename = "DataStorage.moji";
+    
+    static PathVariables()
+    {
+        userDataStorageDirectory = Path.Combine(Application.dataPath, "Saves");
+    }
+}
