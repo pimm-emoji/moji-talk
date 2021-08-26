@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class EmojiBridge : MonoBehaviour
 {
-    public GameObject emojiObject;
     public Emoji emoji;
     
+    [ContextMenu("Debug")] public void DebugEmoji()
+    {
+        emoji = Emoji.LoadEmoji("apple");
+    }
+
     public void Init(Emoji Emoji)
     {
         emoji = Emoji;

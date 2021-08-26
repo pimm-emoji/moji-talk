@@ -16,12 +16,12 @@
     "generates": {
       "ratio": [1, 1],
       "positiveEmojis": [
-        { "id": "thumbsup", "asset": "thumbsup.png", "ondestroy": 1 },
-        { "id": "happy", "asset": "happy.png", "ondestroy": 1.1 }
+        { "id": "thumbsup", "asset": "thumbsup", "ondestroy": 1 },
+        { "id": "happy", "asset": "happy", "ondestroy": 1.1 }
       ],
       "negativeEmojis": [
-        { "id": "weary", "asset": "weary.png", "ondestroy": -1 },
-        { "id": "angry", "asset": "angry.png", "ondestroy": -0.8 }
+        { "id": "weary", "asset": "weary", "ondestroy": -1 },
+        { "id": "angry", "asset": "angry", "ondestroy": -0.8 }
       ]
     },
     "branch": {

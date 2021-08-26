@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class EmojiSpawner : MonoBehaviour {
+public class EmojiSpawner : MonoBehaviour
+{
 
-	public GameObject emojiPrefab; 
+	public GameObject emojiPrefab;
 	public Transform[] spawnPoints;
 	public Emoji emojidata;
 	public EmojiGenerations generateConfig;
-
+	public bool spawnswitch = true;
+	bool duplicate = false;
 	public int bpm = 128;
 
 	[ContextMenu("LoadDemoGenData")]
@@ -17,164 +19,166 @@ public class EmojiSpawner : MonoBehaviour {
 
 	void Start () {
 		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
-
-		//StartCoroutine(SpawnEmojis()); // 생성 후 delay 초마다 멈추기
 		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 
-
-	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
-	{
-		//예전 코드-- generateconfig 값을 인게임 매니져에서 가져오면서 기존 코드 주석처리 해놓음.
-	/*
-		generateConfig = PresetController.LoadGenData(
-			PresetController.LoadJsonToObject(
-				Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
-	
-			)
-		);
-	*/	
-
-
-		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
-	}
-
-	// 그런데 Object reference not set to an instance of an object 오류가 뜸
-
-
-
-
-
-	// 긍정, 부정 이모지 중 선택
-	public int Selmojiconfig(int ratio)
+	void Update()
     {
-		if (ratio <=0)
-		{
-			int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
-			return mojirange;
-			
-		}
-
-		else if (ratio>0 && ratio <2)
-		{
-			int mojirange = Random.Range(0, generateConfig.negativeEmojis.Count);
-			return mojirange;
-	
-		}
-        else
-        {
-			return 0;
-        }
-	}
-
-
-	//note가 나오는 4가지 모드
-	IEnumerator NoteMode(int notemode)
-    {
-		if(notemode == 0)
-        {
-			for(int i = 0; i < 5; i++)
-            {
-				yield return new WaitForSeconds(60f / bpm);
-				int spawnIndex = Random.Range(0, spawnPoints.Length);
-				Transform spawnPoint = spawnPoints[spawnIndex];
-
-				GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-
-				LoadDemoData();
-
-				int ratio = Random.Range(0, 2);
-				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[Selmojiconfig(ratio)];
-
-				spawnedEmoji.transform.SetParent(this.transform);
-				Destroy(spawnedEmoji, 5f);
-			}
-		}
-
-		else if(notemode == 1)
-        {
-			yield return new WaitForSeconds(60f / bpm);
-			for(int i=0; i< 4; i++)
-            {
-				Transform spawnPoint = spawnPoints[i];
-				GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-				LoadDemoData();
-
-				int ratio = 0;
-				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[Selmojiconfig(ratio)];
-
-				spawnedEmoji.transform.SetParent(this.transform);
-				Destroy(spawnedEmoji, 5f);
-			}
+		if(spawnswitch == false){
+			StopCoroutine(SpawnEmojis());
+			duplicate = false;
         }
 
-		else if(notemode == 2)
-        {
-			yield return new WaitForSeconds(60f / bpm);
-			for (int i = 4; i > 0; i--)
+		else if(spawnswitch == true){
+			if (duplicate == false)
 			{
-				Transform spawnPoint = spawnPoints[i];
-				GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-				LoadDemoData();
-
-				int ratio = 0;
-				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[Selmojiconfig(ratio)];
-
-				spawnedEmoji.transform.SetParent(this.transform);
-				Destroy(spawnedEmoji, 5f);
+				StartCoroutine(SpawnEmojis());
+				duplicate = true;
 			}
 
-		}
-
-		else if(notemode ==3)
-        {
-			for (int i = 0; i < 5; i++)
-			{
-				yield return new WaitForSeconds(60f / bpm);
-				int spawnIndex = Random.Range(4, spawnPoints.Length);
-				Transform spawnPoint = spawnPoints[spawnIndex];
-
-				GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-
-				LoadDemoData();
-
-				int ratio = Random.Range(0, 2);
-				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[Selmojiconfig(ratio)];
-
-				spawnedEmoji.transform.SetParent(this.transform);
-				Destroy(spawnedEmoji, 5f);
-			}
-		}
-
-		else if(notemode == 4)
-        {
-			yield return new WaitForSeconds(60f / bpm);
-			for (int i = 4; i > 0; i--)
-			{
-				Transform spawnPoint = spawnPoints[i];
-				GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-				LoadDemoData();
-
-				int ratio = Random.Range(0, 2);
-				spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[Selmojiconfig(ratio)];
-
-				spawnedEmoji.transform.SetParent(this.transform);
-				Destroy(spawnedEmoji, 5f);
-			}
 		}
 
     }
 
 
-	// 위의 모드 4가지 중 랜덤으로 생성
-	IEnumerator SpawnEmojis ()
+	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
 	{
-        while (true)
+		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
+	}
+
+
+
+
+
+
+	void mode0()
+    {
+		int spawnIndex = Random.Range(0, spawnPoints.Length);
+		Transform spawnPoint = spawnPoints[spawnIndex];
+
+		GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
+
+		LoadDemoData();
+
+
+
+		int ratio = Random.Range(0, 2);
+
+		if (ratio == 0)
+		{
+			int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
+			spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[mojirange];
+		}
+
+		else if (ratio == 1)
+		{
+			int mojirange = Random.Range(0, generateConfig.negativeEmojis.Count);
+			spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.negativeEmojis[mojirange];
+		}
+
+		spawnedEmoji.transform.SetParent(this.transform);
+		Destroy(spawnedEmoji, 5f);
+    }
+
+	
+	void mode1()
+    {
+		for(int i = 0; i < 4; i++)
         {
-			int notemode = Random.Range(0, 5);
-			NoteMode(notemode);
+			int spawnIndex = i;
+			Transform spawnPoint = spawnPoints[spawnIndex];
+			GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
+			LoadDemoData();
+			int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
+			spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[mojirange];
+
+			spawnedEmoji.transform.SetParent(this.transform);
+			Destroy(spawnedEmoji, 5f);
+		}
+
+    }
+
+	void mode2()
+	{
+		int spawnIndex = Random.Range(0, spawnPoints.Length);
+		int spawnIndex2 = Random.Range(0, spawnPoints.Length);
+		while (spawnIndex == spawnIndex2)
+		{
+			spawnIndex2 = Random.Range(0, spawnPoints.Length);
+		}
+		Transform spawnPoint = spawnPoints[spawnIndex];
+		Transform spawnPoint2 = spawnPoints[spawnIndex2];
+		GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
+		GameObject spawnedEmoji2 = Instantiate(emojiPrefab, spawnPoint2.position, spawnPoint2.rotation);
+
+		for (int i = 0; i < 2; i++)
+		{
+			if (i == 0)
+			{
+				int ratio = Random.Range(0, 2);
+
+				if (ratio == 0)
+				{
+					int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
+					spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[mojirange];
+				}
+
+				else if (ratio == 1)
+				{
+					int mojirange = Random.Range(0, generateConfig.negativeEmojis.Count);
+					spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.negativeEmojis[mojirange];
+				}
+			}
+			else if (i == 1)
+			{
+				int ratio = Random.Range(0, 2);
+
+				if (ratio == 0)
+				{
+					int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
+					spawnedEmoji2.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[mojirange];
+				}
+
+				else if (ratio == 1)
+				{
+					int mojirange = Random.Range(0, generateConfig.negativeEmojis.Count);
+					spawnedEmoji2.GetComponent<Emojis>().emoji = generateConfig.negativeEmojis[mojirange];
+
+				}
+			}
+		}
+
+		spawnedEmoji.transform.SetParent(this.transform);
+		spawnedEmoji2.transform.SetParent(this.transform);
+		Destroy(spawnedEmoji, 5f);
+		Destroy(spawnedEmoji2, 5f);
+
+
+	}
+
+
+
+	IEnumerator SpawnEmojis()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(60f / bpm);
+
+			int mode = Random.Range(0, 6);
+			if (mode <=3)
+			{
+				mode0();
+			}
+			else if (mode == 4)
+			{
+				mode1();
+			}
+			else if (mode == 5)
+			{
+				mode2();
+			}
 		}
 	}
-	
 }
+
 

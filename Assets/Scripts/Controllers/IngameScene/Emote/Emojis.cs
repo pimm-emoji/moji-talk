@@ -10,6 +10,7 @@ public class Emojis : MonoBehaviour {
 
 	public EmojiGenerations generateConfig; //json에 담긴 emoji 정보 가져옴
 	public Emoji emoji;
+	public Emoji newemoji;
 
 	public SpriteRenderer renderer; //sprite renderer 접근
 	public Sprite spr;
@@ -43,7 +44,7 @@ public class Emojis : MonoBehaviour {
 
 		//자식 오브젝트의 컴포넌트 접근, json 이미지 경로 스프라이트 로딩
 		renderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-		Emoji newemoji = Emoji.LoadEmoji(emoji.id);
+		newemoji = Emoji.LoadEmoji(emoji.id);
 		renderer.sprite = newemoji.sprite;
 
 		// distance 구하기
