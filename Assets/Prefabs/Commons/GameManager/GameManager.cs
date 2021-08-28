@@ -51,14 +51,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("nowf = " + nowFlowIndex);//테스트
+        
 
 
         // Set GameManager unique.
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-        Debug.Log("nowf = " + nowFlowIndex);//테스트
+     
 
         //IngameDataManager.instance.
         //IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;

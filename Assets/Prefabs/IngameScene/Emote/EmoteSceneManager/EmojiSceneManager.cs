@@ -9,7 +9,13 @@ public class EmojiSceneManager : MonoBehaviour
     int dividercount;
     List<Level> flow;
     bool dupl;
+    public static EmojiSceneManager instance = null;
 
+    void Awake()
+    {
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(this.gameObject);
+    }
     void Start()
     {
         StartScene();
@@ -20,7 +26,8 @@ public class EmojiSceneManager : MonoBehaviour
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
         IngameDataManager.instance.LoadLevel("first");
         flow = IngameDataManager.instance.GetLevelFlow();
-        StartCoroutine(ProcessingFlows());
+        emojispawner.spawnswitch = false;
+        //StartCoroutine(ProcessingFlows());
 
 
         dupl = false;
@@ -34,7 +41,7 @@ public class EmojiSceneManager : MonoBehaviour
     }
 
 
-    IEnumerator ProcessingFlows()
+    public IEnumerator ProcessingFlows()
     {
         int i = 1; // index
 
