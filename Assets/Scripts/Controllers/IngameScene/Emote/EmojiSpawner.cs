@@ -160,7 +160,7 @@ public class EmojiSpawner : MonoBehaviour
 
 	IEnumerator SpawnEmojis()
 	{
-		while (true)
+		while (spawnswitch)
 		{
 			yield return new WaitForSeconds(60f / bpm);
 

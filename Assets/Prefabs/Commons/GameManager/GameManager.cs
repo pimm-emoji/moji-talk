@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
     // * InitScore()
     // * UpdateScore()
     // * SetScore()
-    public float score = 0f;
+    public float userTotalScore = 0f;
+    public float branchIndexingScore = 0f;
     public int nowFlowIndex = 1;
     
     /*
@@ -63,10 +64,18 @@ public class GameManager : MonoBehaviour
         //IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
     }
 
-    [ContextMenu("Debug InitScore")] public void InitScore() { score = 0f; }
-    public void AddScore(float ScoreDelta) { score += ScoreDelta; }
-    public void SetScore(float Score) { score = Score; }
-    public float GetScore() { return score; }
+    [ContextMenu("Debug InitScore")] public void InitScore() { userTotalScore = 0f; }
+    public void InitBranchScore() { branchIndexingScore = 0f; }
+
+
+    public void AddScore(float ScoreDelta) { userTotalScore += ScoreDelta; branchIndexingScore += ScoreDelta; }
+
+    public void SetScore(float Score) { userTotalScore = Score; }
+    public void SetBranchScore(float Score) { branchIndexingScore = Score; }
+
+    public float GetScore() { return userTotalScore; }
+    public float GetBranchScore() { return branchIndexingScore; }
+
     [ContextMenu("Debug AddScore (ScoreDelta: 1)")] public void DebugAddScore() { AddScore(1); }
     [ContextMenu("Debug SetScore (Score: 4)")] public void DebugSetScore() { SetScore(4); }
     [ContextMenu("Debug GetScore through Print")] public void DebugGetScore() { print(GetScore()); }

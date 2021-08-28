@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         GameManager.instance.InitScore();
+        GameManager.instance.InitBranchScore();
         theCombo = FindObjectOfType<ComboManager>();   //콤보 매니져 스크립트 불러옴
         currentScore = 0f;
         txtScore.text = "0";
