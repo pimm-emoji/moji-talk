@@ -15,6 +15,12 @@ public class LevelData
     public List<Ending> endings;
     public List<string> usingEmojis;
 
+    public LevelData(string ID, string Name, List<Ending> Endings)
+    {
+        id = ID;
+        name = Name;
+        endings = Endings;
+    }
     public LevelData(string ID, string Name, string Desc, string Img, string Type, List<string> Participants, List<Ending> Endings){
         id = ID;
         name = Name;
@@ -31,4 +37,13 @@ public class Ending
 {
     public string id; // a
     public string name; // Memory of 'A' Time
+    public Ending(string ID)
+    {
+        id = ID;
+    }
+    public Ending(string ID, string Name)
+    {
+        id = ID;
+        name = Name;
+    }
 }

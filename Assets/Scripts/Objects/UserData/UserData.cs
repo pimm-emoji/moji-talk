@@ -7,5 +7,6 @@ public class UserData
 {
     public string userName;
     public string userIcon;
-    public List<LevelData> unlockedLevels;
+    public List<string> unlockedLevels;
+    public List<LevelData> unlockedLevelData;
 }

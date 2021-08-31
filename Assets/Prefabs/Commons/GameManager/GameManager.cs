@@ -32,36 +32,68 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, LevelData> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
     public List<string> ProfileIndex;
 
+    public string nowLevelID;
+    public float elapsedTime = 0;
+    public float elapsedFlowTime = 0;
+    public string endingID;
+
     // "score" variable is gameflow's score.
     // It must be updated through methods
     // * InitScore()
     // * UpdateScore()
     // * SetScore()
     public float score = 0f;
-    public int nowFlowIndex = 1;
+    public float userTotalScore = 0f;
+    public float branchIndexingScore = 0f;
+    public int nowFlowIndex = -1;
     
-    /*
-        These are related to IngamePlayScene.
-    */
-    public string IngamePlaySceneLevel;
-    public LevelData IngamePlaySceneLevelData;
-    public List<Profile> IngamePlaySceneParticipants;
-    public Flow Flow;
-
+    public UserData userData;
     private void Awake()
     {
-        Debug.Log("nowf = " + nowFlowIndex);//테스트
-
-
         // Set GameManager unique.
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-        Debug.Log("nowf = " + nowFlowIndex);//테스트
 
-        //IngameDataManager.instance.
-        //IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
+        userData = UserDataManager.LoadStorage();
     }
+
+
+    private List<Level> flow;
+    public void InitFlow()
+    {
+        IngameDataManager.instance.LoadLevel(nowLevelID);
+        flow = IngameDataManager.instance.flow;
+    }
+
+    public void TriggerFlow()
+    {
+        if (nowFlowIndex == -1) nowFlowIndex++;
+        else
+        {
+            if (flow[nowFlowIndex].type == "emote") nowFlowIndex = flow[nowFlowIndex].branch.index[0];
+            else if (flow[nowFlowIndex].type == "chatting")
+            {
+                flow[nowFlowIndex].branch.divider.Add(100);
+                for (int i = 0; i < flow[nowFlowIndex].branch.divider.Count; i++)
+                {
+                    if (branchIndexingScore < flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow[nowFlowIndex].branch.index[i];
+                }
+            }
+            else if (flow[nowFlowIndex].type == "end")
+            {
+                if (userData.unlockedLevelData.Find(x => x.id == nowLevelID) == null)
+                {
+                    userData.unlockedLevelData.Add(new LevelData(nowLevelID, nowLevelID, new List<Ending>()));
+                }
+                userData.unlockedLevelData.Find(x => x.id == nowLevelID).endings.Add(new Ending(
+                    flow[nowFlowIndex].ending
+                ));
+                UserDataManager.SaveStorage(userData);
+            }
+        }
+    }
+    // 새 스테이지 해금 코드 아직 작성 않음
 
     [ContextMenu("Debug InitScore")] public void InitScore() { score = 0f; }
     public void AddScore(float ScoreDelta) { score += ScoreDelta; }
