@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /*
     The IngamePlayScene
@@ -58,12 +59,13 @@ public class ChatSceneManager : MonoBehaviour
             else if (flow[i].type == "emote")
             {
                 // Processing Emote Scene
-                //Emoji.loadEmoji()
+                EmojiSceneManager.instance.StartCoroutine(ProcessingFlows());
                 yield return new WaitForSeconds(flow[i].duration / 1000);
             }
             else if (flow[i].type == "end")
             {
                 Flag = false;
+
             }
         }
     }
