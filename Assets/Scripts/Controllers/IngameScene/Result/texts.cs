@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿pusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,59 +9,31 @@ public class texts : MonoBehaviour
     GameObject Textbox;
     public Text myText;
     // Start is called before the first frame update
+
+    public void changetext(string name, string intext)
+    {
+        Textbox = GameObject.Find(name);
+        myText = Textbox.GetComponent<Text>();
+        myText.text = intext;
+    }
     void Start()
     {
-        for (int i = 1; i < 14; i++)
-        {
+        /* 
+        if(스테이지 완료 시){
+            changetext(1, "스테이지 완료");
+        elseif(스테이지 실패시{
+            changetext(text1, "스테이지 실패" );
 
-            string textname = string.Format("text{0}", i);
-            Debug.Log(textname);
-            Textbox = GameObject.Find(textname);
-            myText = Textbox.GetComponent<Text>();
-            switch (i)
-            {
-                case 1:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 2:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 3:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 4:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 5:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 6:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 7:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 8:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 9:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 10:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 11:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
-                case 12:
-                    myText.text ="텍스트를 입력하세요";
-                    break;
-                case 13:
-                    myText.text = "텍스트를 입력하세요";
-                    break;
+        changetext(text2, "스테이지 이름 받아오기");
+        changetext(text3, "엔딩 이름");
+        changetext(text4, "이름 획득");
+        changetext(text5, "돌아가기");
+        changetext(text6, "
 
-            }
-        }
+        
+
     }
+        
+      
 
 }
