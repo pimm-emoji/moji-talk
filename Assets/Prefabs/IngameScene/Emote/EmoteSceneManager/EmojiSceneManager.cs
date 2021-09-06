@@ -56,7 +56,7 @@ public class EmojiSceneManager : MonoBehaviour
         for (int a = 0; a < dividercount; a++)
         {
 
-            if (dupl = false)
+            if (dupl == false)
             {
                 if (BranchScore <= flow[i].branch.divider[a])
                 {
