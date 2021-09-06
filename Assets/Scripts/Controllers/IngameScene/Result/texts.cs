@@ -43,11 +43,11 @@ public class texts : MonoBehaviour
                 Text bigtext;
                 Text smalltext;
 
-                float y = (float)307.5 - 15 * t;
+                float y = (float)850 - 142 * t;
    
-                GameObject newAchvPrefab = Instantiate(AchvPrefab, new Vector3(668.5f, y, 0), Quaternion.identity);
-                GameObject AchvBig = newAchvPrefab.transform.GetChild(0).gameObject;
-                GameObject AchvSmall = newAchvPrefab.transform.GetChild(1).gameObject;
+                GameObject newAchvPrefab = Instantiate(AchvPrefab, new Vector3(1630f, y, 0), Quaternion.identity);
+                GameObject AchvBig = newAchvPrefab.transform.GetChild(1).gameObject;
+                GameObject AchvSmall = newAchvPrefab.transform.GetChild(2).gameObject;
                 bigtext = AchvBig.GetComponent<Text>();
                 smalltext = AchvSmall.GetComponent<Text>();
                 bigtext.text = "i번째 업적 이름 받아오기";
