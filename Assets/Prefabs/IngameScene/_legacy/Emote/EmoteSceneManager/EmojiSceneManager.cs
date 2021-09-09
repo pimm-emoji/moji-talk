@@ -26,8 +26,7 @@ public class EmojiSceneManager : MonoBehaviour
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
         IngameDataManager.instance.LoadLevel("first");
         flow = IngameDataManager.instance.GetLevelFlow();
-        emojispawner.spawnswitch = false;
-        //StartCoroutine(ProcessingFlows());
+        StartCoroutine(ProcessingFlows());
 
 
         dupl = false;
