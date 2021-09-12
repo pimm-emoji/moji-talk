@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private List<Level> flow;
+    private Flow flow;
     public void InitFlow()
     {
         IngameDataManager.instance.LoadLevel(nowLevelID);
@@ -70,23 +70,24 @@ public class GameManager : MonoBehaviour
         if (nowFlowIndex == -1) nowFlowIndex++;
         else
         {
-            if (flow[nowFlowIndex].type == "emote") nowFlowIndex = flow[nowFlowIndex].branch.index[0];
-            else if (flow[nowFlowIndex].type == "chatting")
+            if (flow.flow[nowFlowIndex].type == "emote") nowFlowIndex = flow.flow[nowFlowIndex].branch.index[0];
+            else if (flow.flow[nowFlowIndex].type == "chatting")
             {
-                flow[nowFlowIndex].branch.divider.Add(100);
-                for (int i = 0; i < flow[nowFlowIndex].branch.divider.Count; i++)
+                flow.flow[nowFlowIndex].branch.divider.Add(100);
+                for (int i = 0; i < flow.flow[nowFlowIndex].branch.divider.Count; i++)
                 {
-                    if (branchIndexingScore < flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow[nowFlowIndex].branch.index[i];
+                    if (branchIndexingScore < flow.flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow.flow[nowFlowIndex].branch.index[i];
                 }
             }
-            else if (flow[nowFlowIndex].type == "end")
+            else if (flow.flow[nowFlowIndex].type == "end")
             {
                 if (userData.unlockedLevelData.Find(x => x.id == nowLevelID) == null)
                 {
                     userData.unlockedLevelData.Add(new Level(nowLevelID, nowLevelID, new List<Ending>()));
                 }
                 userData.unlockedLevelData.Find(x => x.id == nowLevelID).endings.Add(new Ending(
-                    flow[nowFlowIndex].ending
+                    flow.flow[nowFlowIndex].endingID,
+                    flow.flow[nowFlowIndex].endingID
                 ));
                 UserDataManager.SaveStorage(userData);
             }

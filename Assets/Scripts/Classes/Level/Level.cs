@@ -17,17 +17,17 @@ public class Level
 
     public Level()
     {
-        id = new string();
-        name = new string();
-        desc = new string();
-        imgAssetName = new string();
-        type = new string();
+        id = "";
+        name = "";
+        desc = "";
+        imgAssetName = "";
+        type = "";
         participants = new List<string>();
         isCleared = new bool();
         endings = new List<Ending>();
         usingEmojis = new List<string>();
     }
-    public Level(string ID, string Name, List<Ending> Ending)
+    public Level(string ID, string Name, List<Ending> Endings)
     {
         id = ID;
         name = Name;
@@ -52,8 +52,8 @@ public class Ending
     public string name;     // or not to [B]e
     public Ending()
     {
-        id = new string();
-        name = new string();
+        id = "";
+        name = "";
     }
     public Ending(string ID, string Name)
     {

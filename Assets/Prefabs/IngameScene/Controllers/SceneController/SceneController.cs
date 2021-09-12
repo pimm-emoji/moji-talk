@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
     EmojiSpawner emojispawner;
     float BranchScore;
     int dividercount;
-    List<Level> flow;
+    Flow flow;
     bool dupl;
     public static SceneController instance = null;
 
@@ -46,20 +46,20 @@ public class SceneController : MonoBehaviour
 
 
         emojispawner.spawnswitch = true;
-        yield return new WaitForSeconds(flow[i].duration / 1000);
+        yield return new WaitForSeconds(flow.flow[i].duration / 1000);
         emojispawner.spawnswitch = false;
         BranchScore = GameManager.instance.GetBranchScore();
 
-        dividercount = flow[i].branch.divider.Count;
+        dividercount = flow.flow[i].branch.divider.Count;
 
         for (int a = 0; a < dividercount; a++)
         {
 
             if (dupl == false)
             {
-                if (BranchScore <= flow[i].branch.divider[a])
+                if (BranchScore <= flow.flow[i].branch.divider[a])
                 {
-                    i = flow[i].branch.index[a];
+                    i = flow.flow[i].branch.index[a];
                     dupl = true;
                 }
             }

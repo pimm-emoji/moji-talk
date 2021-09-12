@@ -78,12 +78,12 @@ public class Message
 
     public Message()
     {
-        author = new string();
-        type = new string();
-        content = new string();
-        delay = new string();
+        author = "";
+        type = "";
+        content = "";
+        delay = 0;
     }
-    public Message(string Author, string Type, string Content, string Delay)
+    public Message(string Author, string Type, string Content, float Delay)
     {
         author = Author;
         type = Type;

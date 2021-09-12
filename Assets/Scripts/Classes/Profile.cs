@@ -18,10 +18,10 @@ public class Profile
 
     public Profile()
     {
-        id = new string();
-        name = new string();
-        desc = new string();
-        imgAssetName = new string();
+        id = "";
+        name = "";
+        desc = "";
+        imgAssetName = "";
     }
     public Profile(string ID, string Name, string Desc, string ImgAssetName)
     {

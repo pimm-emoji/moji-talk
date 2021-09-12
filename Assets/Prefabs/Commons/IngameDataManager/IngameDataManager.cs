@@ -43,8 +43,10 @@ public class IngameDataManager : MonoBehaviour
     // 4 references must be modified
     public void LoadLevel(string LevelID)
     {
+        Dictionary<string, Level> presetDict = JsonIO.LoadJsonFileToObject<Dictionary<string, Level>>("Presets/levels");
+        level = presetDict[LevelID];
         //Todo
-        level = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<Level>();
+        //level = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<Level>();
     }
     public Level GetLevel()
     {
@@ -66,10 +68,7 @@ public class IngameDataManager : MonoBehaviour
     }
     public void LoadLevelFlow(string LevelID) 
     {
-        // Todo
-        flow = PresetController.LoadSingleDepth<Level>(
-            PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
-        );
+        flow = JsonIO.LoadJsonFileToObject<Flow>(Path.Combine(Configs.LevelDirPath, LevelID, "flow"));
     }
     public Flow GetLevelFlow()
     {
