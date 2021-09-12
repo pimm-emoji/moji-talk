@@ -804,6 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97145edda8b94b40adbbf6bf0755385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
   AchvPrefab: {fileID: 7931215347434548601, guid: f61affe8a4e121a44a317b82ec5ac3c4, type: 3}
   myText: {fileID: 0}
   achvlist: 01000001
