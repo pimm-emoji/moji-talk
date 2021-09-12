@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class LevelSelectScene : MonoBehaviour
 {
-    public Dictionary<string, LevelData> levels;
+    public Dictionary<string, Level> levels;
     public GameObject WrapperControllerPrefab;
     void Start()
     {
-        levels = PresetController.LoadSingleDepth<LevelData>(
+        levels = PresetController.LoadSingleDepth<Level>(
             PresetController.LoadJsonToObject(Configs.LevelIndexPath)
         );
-        foreach (KeyValuePair<string, LevelData> items in levels)
+        foreach (KeyValuePair<string, Level> items in levels)
         {
             GameObject newObject = Instantiate(WrapperControllerPrefab) as GameObject;
             newObject.transform.SetParent(GameObject.Find("Content").transform);

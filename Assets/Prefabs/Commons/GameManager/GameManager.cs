@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager instance = null;
     
-    public Dictionary<string, LevelData> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
+    public Dictionary<string, Level> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
     public List<string> ProfileIndex;
 
     public string nowLevelID;
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
             {
                 if (userData.unlockedLevelData.Find(x => x.id == nowLevelID) == null)
                 {
-                    userData.unlockedLevelData.Add(new LevelData(nowLevelID, nowLevelID, new List<Ending>()));
+                    userData.unlockedLevelData.Add(new Level(nowLevelID, nowLevelID, new List<Ending>()));
                 }
                 userData.unlockedLevelData.Find(x => x.id == nowLevelID).endings.Add(new Ending(
                     flow[nowFlowIndex].ending

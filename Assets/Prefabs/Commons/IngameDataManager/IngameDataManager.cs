@@ -16,9 +16,9 @@ public class IngameDataManager : MonoBehaviour
     public static IngameDataManager instance = null;
 
     public string levelID;
-    public LevelData levelData;  
+    public Level level;  
     public List<Profile> participants;
-    public List<Level> flow;
+    public Flow flow;
 
     void Awake()
     {
@@ -32,28 +32,61 @@ public class IngameDataManager : MonoBehaviour
     // public void LoadLevelID() {}
     public string GetLevelID() { return levelID; }
 
-    public void SetLevelData(LevelData LevelData) { levelData = LevelData; }//LevelData 형식의 leveldata를 설정하거나 로드하거나 리턴받음
-    public void LoadLevelData() { LoadLevelData(levelID); }
-    public void LoadLevelData(string LevelID)
-    { levelData = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<LevelData>(); }
-    public LevelData GetLevelData() { return levelData; }
-    public LevelData GetLevelData(string LevelID) { LoadLevelData(LevelID); return levelData; }
+    public void SetLevel(Level Level) 
+    {
+        level = Level;
+    }
+    public void LoadLevel()
+    {
+        LoadLevel(levelID);
+    }
+    // 4 references must be modified
+    public void LoadLevel(string LevelID)
+    {
+        //Todo
+        level = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<Level>();
+    }
+    public Level GetLevel()
+    {
+        return level;
+    }
+    public Level GetLevel(string LevelID)
+    {
+        LoadLevel(LevelID); 
+        return level;
+    }
 
-    public void SetLevelFlow(List<Level> Flow) { flow = Flow; } // 리스트<레벨> 형식의 flow를 지정하거나 로드하거나 리턴받음
-    public void LoadLevelFlow() { LoadLevelFlow(levelID); }
+    public void SetLevelFlow(Flow Flow)
+    {
+        flow = Flow;
+    }
+    public void LoadLevelFlow()
+    {
+        LoadLevelFlow(levelID);
+    }
     public void LoadLevelFlow(string LevelID) 
     {
+        // Todo
         flow = PresetController.LoadSingleDepth<Level>(
             PresetController.LoadJsonToArray(Path.Combine(Configs.LevelDirPath, LevelID, "flow.json"))
         );
     }
-    public List<Level> GetLevelFlow() { return flow; }
+    public Flow GetLevelFlow()
+    {
+        return flow;
+    }
 
-    public void SetParticipants(List<Profile> Participants) { participants = Participants; } //리스트<프로필> 형태의 participants를 지정하거나 로드하거나 리턴받음
-    public void LoadParticipants() { LoadParticipants(levelData); }
-    public void LoadParticipants(LevelData LevelData) {
+    public void SetParticipants(List<Profile> Participants)
+    {
+        participants = Participants;
+    }
+    public void LoadParticipants()
+    {
+        LoadParticipants(level);
+    }
+    public void LoadParticipants(Level level) {
         participants = new List<Profile>();
-        foreach (string Participant in LevelData.participants)
+        foreach (string Participant in level.participants)
         {
             participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
         }
@@ -68,17 +101,16 @@ public class IngameDataManager : MonoBehaviour
     }
     public List<Profile> GetParticipants() { return participants; }
 
-    public void LoadLevel(string LevelID) { levelID = LevelID; LoadLevel(); } //LoadLevel 함수. 레벨데이터, 레벨플로우, participants를 모두 로드한다
-    public void LoadLevel()
+    public void LoadLevelEntire(string LevelID) { levelID = LevelID; LoadLevelEntire(); } //LoadLevel 함수. 레벨데이터, 레벨플로우, participants를 모두 로드한다
+    public void LoadLevelEntire()
     {
-        LoadLevelData(levelID);
+        LoadLevel(levelID);
         LoadLevelFlow(levelID);
-        LoadParticipants(levelData);
+        LoadParticipants(level);
     }
 
 
-    [ContextMenu("DebugLoadLevelData")] public void DebugLoadLevelData() { LoadLevelData("first"); }
+    [ContextMenu("DebugLoadLevel")] public void DebugLoadLevel() { LoadLevel("first"); }
     [ContextMenu("DebugLoadLevelFlow")] public void DebugLoadLevelFlow() { SetLevelID("first"); LoadLevelFlow(); }
     [ContextMenu("DebugLoadParticipants")] public void DebugLoadParticipants() { LoadParticipants(); }
-    [ContextMenu("DebugLoadLevel")] public void DebugLoadLevel() { LoadLevel("first"); }
 }
