@@ -51,6 +51,7 @@ public class TimingManager : MonoBehaviour
                     theEffect.JudgementEffect(0);  //0번 이펙트 작동
                     theScoreManager.IncreaseScore(0, emojiscore);  // 0번 점수상승 작동, 추가할 것 : 이모지 가중치 값 받아서 같이 넘겨줌
                     theAudioManager.PlaySFX("Touch");
+                    GameManager.instance.AddPerfect();
                 }
 
                 else if (distance > 30f && distance<= 60f)
@@ -59,6 +60,7 @@ public class TimingManager : MonoBehaviour
                     theEffect.JudgementEffect(1);
                     theScoreManager.IncreaseScore(1, emojiscore);
                     theAudioManager.PlaySFX("Touch");
+                    GameManager.instance.AddGreat();
                 }
 
                 else if ((distance > 60f && distance <= 110f)||distance == 500f)
@@ -67,6 +69,7 @@ public class TimingManager : MonoBehaviour
                     theEffect.JudgementEffect(2);
                     theScoreManager.IncreaseScore(2, emojiscore);
                     theAudioManager.PlaySFX("Touch");
+                    GameManager.instance.AddGood();
                 }
 
                 else if (distance > 110f && distance < 500f)
@@ -76,6 +79,7 @@ public class TimingManager : MonoBehaviour
                     theEffect.JudgementEffect(3);
                     theScoreManager.IncreaseScore(3, emojiscore);
                     theAudioManager.PlaySFX("Touch");
+                    GameManager.instance.AddBad();
                 }
                 
             }
@@ -86,6 +90,7 @@ public class TimingManager : MonoBehaviour
                 theEffect.JudgementEffect(3);
                 theScoreManager.IncreaseScore(3, emojiscore);
                 theAudioManager.PlaySFX("Touch");
+                GameManager.instance.AddBad();
 
             }
 
@@ -100,7 +105,8 @@ public class TimingManager : MonoBehaviour
                 Debug.Log("Miss");
                 theComboManager.ResetCombo();
                 theEffect.JudgementEffect(4);  
-                parscript.isCut = 3;   
+                parscript.isCut = 3;
+                GameManager.instance.AddMiss();
             }
             
         }
