@@ -10,7 +10,6 @@ Moji Talk은 화면에 나타나는 이모지를 처리하여 가상의 대화 �
 # Authors
  * Park, Jonghyeon([@ShapeLayer](https://github.com/ShapeLayer)) - Main Developer, Project Manager  
  * Kim, Jwahoon([@catnofat](https://github.com/catnofat)) - Sub Developer, Sound Manager  
- * Woo, Yuji - Designer  
  
 # External Licenses
 Moji Talk은 다른 라이선스의 보호를 받는 외부 프로젝트를 활용합니다.  
