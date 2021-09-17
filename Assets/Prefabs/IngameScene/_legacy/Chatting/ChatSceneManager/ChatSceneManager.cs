@@ -21,7 +21,7 @@ public class ChatSceneManager : MonoBehaviour
     }
     public void StartScene()
     {
-        IngameDataManager.instance.LoadLevel("debug");
+        IngameDataManager.instance.LoadLevel("first");
         flow = IngameDataManager.instance.GetLevelFlow();
         VerticalLayoutGroup VerticalLayoutGroup = ScrollViewContent.GetComponent<VerticalLayoutGroup>();
         RectTransform rectTransform = ScrollViewContent.GetComponent<RectTransform>();

@@ -16,7 +16,10 @@ public class texts : MonoBehaviour
     GameObject Textbox;
     public Text myText;
     // Start is called before the first frame update
+
+    AchievementsManager achvmanager;
     public bool[] achvlist = new bool[] { true, false, false, true }; //업적 클리어 여부  판단은 어떻게?
+    //
     int t = 0;
     bool stageclear = true;
 
@@ -31,7 +34,11 @@ public class texts : MonoBehaviour
     {
         // CurLevelData = UserDataManager.LoadStorage()[0];
 
+        
+        achvmanager = GameObject.Find("AchvManager").GetComponent<AchievementsManager>();
+        // List<Achievement> achvlist = achvmanager.achievements;
 
+    
         if (stageclear == true){ // CurLevelData.endings[i].id
             changetext("text1", "스테이지 완료");
         }
@@ -50,7 +57,7 @@ public class texts : MonoBehaviour
         for(int i = 0; i < achvlist.Length; i++){
             
             
-
+            // if achvlist[i].condition
             if(achvlist[i] == true){
                 Text bigtext;
                 Text smalltext;
@@ -64,7 +71,10 @@ public class texts : MonoBehaviour
                 GameObject AchvSmall = newAchvPrefab.transform.GetChild(2).gameObject;
                 bigtext = AchvBig.GetComponent<Text>();
                 smalltext = AchvSmall.GetComponent<Text>();
-                bigtext.text = "i번째 업적 이름 받아오기";
+                Debug.Log(achvmanager.achievements[0]); // test
+                bigtext.text = "i번째 업적 이름 받아오기";   //achvlist[i].displayName;
+                // bigtext.text = achvmanager.
+
                 smalltext.text = "i번째 업적 내용받아오기";
             
                 t += 1;

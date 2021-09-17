@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     public float elapsedTime = 0;
     public float elapsedFlowTime = 0;
     public string endingID;
+    public int perfect = 0;
+    public int great = 0;
+    public int good = 0;
+    public int bad = 0;
+    public int miss = 0;
 
     // "score" variable is gameflow's score.
     // It must be updated through methods
@@ -113,6 +118,16 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Debug AddScore (ScoreDelta: 1)")] public void DebugAddScore() { AddScore(1); }
     [ContextMenu("Debug SetScore (Score: 4)")] public void DebugSetScore() { SetScore(4); }
     [ContextMenu("Debug GetScore through Print")] public void DebugGetScore() { print(GetScore()); }
+
+
+
+
+    public void AddPerfect() { perfect += 1; }
+    public void AddGreat() { great += 1; }
+    public void AddGood() { good += 1; }
+    public void AddBad() { bad += 1; }
+    public void AddMiss() { miss += 1; }
+
 
     /*
         The LoadScene Method
