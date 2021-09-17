@@ -97,7 +97,9 @@ public class IngameDataManager : MonoBehaviour
         participants = new List<Profile>();
         foreach (string Participant in level.participants)
         {
-            participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
+            participants.Add(
+                JsonIO.LoadJsonAssetToObject<Profile>($"Presets/Profiles/{Participant}")
+            );
         }
     }
     public void LoadParticipants(List<string> Participants)
@@ -105,7 +107,9 @@ public class IngameDataManager : MonoBehaviour
         participants = new List<Profile>();
         foreach (string Participant in Participants)
         {
-            participants.Add(PresetController.LoadJsonToObject(Path.Combine(Configs.PresetProfileDirPath, $"{Participant}.json")).ToObject<Profile>());
+            participants.Add(
+                JsonIO.LoadJsonAssetToObject<Profile>($"Presets/Profiles/{Participant}")
+            );
         }
     }
     public List<Profile> GetParticipants() { return participants; }
