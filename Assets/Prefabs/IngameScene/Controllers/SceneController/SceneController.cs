@@ -12,8 +12,6 @@ public class SceneController : MonoBehaviour
     bool dupl;
     public static SceneController instance = null;
 
-    List<Level> flow;
-
     public GameObject MessageWrapperPrefab;
     public GameObject ScrollViewObject;
     public GameObject ScrollViewContent;
@@ -79,6 +77,7 @@ public class SceneController : MonoBehaviour
 
     }
 
+    public void StartMessageSpawn(){}/*
     public void StartMessageSpawn()
     {
         IngameDataManager.instance.LoadLevel("first");
@@ -89,7 +88,7 @@ public class SceneController : MonoBehaviour
         VerticalLayoutGroup.spacing = Spacing * 2;
         VerticalLayoutGroup.padding = new RectOffset((int)offset[0], (int)offset[1], (int)offset[2], (int)offset[3]);
         StartCoroutine(ProcessingMessageFlows());
-    }
+    }*/
 
     IEnumerator ProcessingMessageFlows()
     {
@@ -97,9 +96,9 @@ public class SceneController : MonoBehaviour
         int i = 0; // index
         while (Flag)
         {
-            if (flow[i].type == "chatting")
+            if (flow.flow[i].type == "chatting")
             {
-                foreach (var message in flow[i].chats)
+                foreach (var message in flow.flow[i].chats)
                 {
                     // Processing Message
                     print(message.content);
@@ -114,15 +113,15 @@ public class SceneController : MonoBehaviour
 
                     yield return new WaitForSeconds(message.delay / 1000);
                 }
-                i = flow[i].branch.index[0];
+                i = flow.flow[i].branch.index[0];
             }
-            else if (flow[i].type == "emote")
+            else if (flow.flow[i].type == "emote")
             {
                 // Processing Emote Scene
                 StartEmojiSpawn();
                 ResetEmojiSpawn();
             }
-            else if (flow[i].type == "end")
+            else if (flow.flow[i].type == "end")
             {
                 Flag = false;
 

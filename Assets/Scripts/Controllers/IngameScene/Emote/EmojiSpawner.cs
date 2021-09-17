@@ -18,7 +18,7 @@ public class EmojiSpawner : MonoBehaviour
 	
 
 	void Start () {
-		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
+		IngameDataManager.instance.LoadLevelEntire("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
 		generateConfig = IngameDataManager.instance.flow.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 

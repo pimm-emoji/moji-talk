@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class AchievementsManager : MonoBehaviour
 {
     List<Achievement> achievements;
@@ -23,7 +24,7 @@ public class AchievementsManager : MonoBehaviour
             achievements.Add(AssetLoader.LoadJsonToObject($"Presets/achievements/{index_obj}").ToObject<Achievement>());
         }
     }
-}
+}*/
 
 [System.Serializable]
 public class Achievement

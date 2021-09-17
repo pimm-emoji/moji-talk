@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     Flow flow;
     public void InitFlow()
     {
-        IngameDataManager.instance.LoadLevel(nowLevelID);
+        IngameDataManager.instance.LoadLevelEntire(nowLevelID);
         flow = IngameDataManager.instance.flow;
     }
 

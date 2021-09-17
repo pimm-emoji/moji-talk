@@ -17,7 +17,7 @@ public class ChattingSceneCanvasController : MonoBehaviour
     }
     public void StartScene()
     {
-        IngameDataManager.instance.LoadLevel("debug");
+        IngameDataManager.instance.LoadLevelEntire("debug");
         flow = IngameDataManager.instance.GetLevelFlow();
         VerticalLayoutGroup verticalLayoutGroup = ScrollViewContent.GetComponent<VerticalLayoutGroup>();
         RectTransform rectTransform = ScrollViewContent.GetComponent<RectTransform>();

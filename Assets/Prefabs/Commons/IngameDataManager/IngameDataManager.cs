@@ -43,7 +43,6 @@ public class IngameDataManager : MonoBehaviour
     // 4 references must be modified
 
     public List<string> levelIndexList;
-    [ContextMenu("Load Level")]
     public void LoadLevel(string LevelID)
     {
         Dictionary<string, Level> presetDict = new Dictionary<string, Level>();
@@ -123,7 +122,7 @@ public class IngameDataManager : MonoBehaviour
     }
 
 
-    [ContextMenu("DebugLoadLevel")] public void DebugLoadLevel() { LoadLevel("first"); }
+    [ContextMenu("DebugLoadLevelEntire")] public void DebugLoadLevel() { LoadLevelEntire("first"); }
     [ContextMenu("DebugLoadLevelFlow")] public void DebugLoadLevelFlow() { SetLevelID("first"); LoadLevelFlow(); }
     [ContextMenu("DebugLoadParticipants")] public void DebugLoadParticipants() { LoadParticipants(); }
 }
