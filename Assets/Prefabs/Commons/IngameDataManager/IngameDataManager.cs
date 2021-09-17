@@ -41,9 +41,19 @@ public class IngameDataManager : MonoBehaviour
         LoadLevel(levelID);
     }
     // 4 references must be modified
+
+    public List<string> levelIndexList;
+    [ContextMenu("Load Level")]
     public void LoadLevel(string LevelID)
     {
-        Dictionary<string, Level> presetDict = JsonIO.LoadJsonFileToObject<Dictionary<string, Level>>("Presets/levels");
+        Dictionary<string, Level> presetDict = new Dictionary<string, Level>();
+        //print(JsonIO.LoadJsonAssetToObject<LevelIndexWrapper>("Presets/levels"));
+        levelIndexList = JsonIO.LoadJsonAssetToObject<LevelIndexWrapper>("Presets/levels").levels;
+        foreach (string levelIndex in levelIndexList)
+        {
+            Level levelConfigs = JsonIO.LoadJsonAssetToObject<Level>($"Presets/levels/{levelIndex}/configs");
+            presetDict.Add(levelIndex, levelConfigs);
+        }
         level = presetDict[LevelID];
         //Todo
         //level = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<Level>();
@@ -68,7 +78,7 @@ public class IngameDataManager : MonoBehaviour
     }
     public void LoadLevelFlow(string LevelID) 
     {
-        flow = JsonIO.LoadJsonFileToObject<Flow>(Path.Combine(Configs.LevelDirPath, LevelID, "flow"));
+        flow = JsonIO.LoadJsonAssetToObject<Flow>($"Presets/levels/{LevelID}/flow");
     }
     public Flow GetLevelFlow()
     {
@@ -112,4 +122,10 @@ public class IngameDataManager : MonoBehaviour
     [ContextMenu("DebugLoadLevel")] public void DebugLoadLevel() { LoadLevel("first"); }
     [ContextMenu("DebugLoadLevelFlow")] public void DebugLoadLevelFlow() { SetLevelID("first"); LoadLevelFlow(); }
     [ContextMenu("DebugLoadParticipants")] public void DebugLoadParticipants() { LoadParticipants(); }
+}
+
+[System.Serializable]
+public class LevelIndexWrapper
+{
+    public List<string> levels;
 }

@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
     public void StartSpawn()
     {
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
-        IngameDataManager.instance.LoadLevel("first");
+        IngameDataManager.instance.LoadLevelEntire("first");
         flow = IngameDataManager.instance.GetLevelFlow();
         StartCoroutine(ProcessingFlows());
 

@@ -12,7 +12,8 @@ class JsonIO
     }
     public static T LoadJsonAssetToObject<T>(string path)
     {
-        return JsonUtility.FromJson<T>(Resources.Load<TextAsset>(path).text);
+        TextAsset textAsset = Resources.Load<TextAsset>(path);
+        return JsonUtility.FromJson<T>(textAsset.text);
     }
 }
 

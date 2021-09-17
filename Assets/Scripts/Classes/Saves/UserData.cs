@@ -9,4 +9,12 @@ public class UserData
     public string userIcon;
     public List<string> unlockedLevels;
     public List<Level> unlockedLevelData;
+    
+    public UserData()
+    {
+        userName = "";
+        userIcon = "";
+        unlockedLevels = new List<string>();
+        unlockedLevelData = new List<Level>();
+    }
 }

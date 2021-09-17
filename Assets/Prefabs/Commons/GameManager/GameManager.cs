@@ -47,18 +47,21 @@ public class GameManager : MonoBehaviour
     public int nowFlowIndex = 1;
     
     public UserData userData;
-    private void Awake()
+    void Awake()
     {
         // Set GameManager unique.
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
 
+        UserDataManager.InitStorage();
+    }
+    void Start()
+    {
         userData = UserDataManager.LoadStorage();
     }
 
-
-    private Flow flow;
+    Flow flow;
     public void InitFlow()
     {
         IngameDataManager.instance.LoadLevel(nowLevelID);
