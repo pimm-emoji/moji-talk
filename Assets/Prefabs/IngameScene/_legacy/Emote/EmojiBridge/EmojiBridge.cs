@@ -14,7 +14,7 @@ public class EmojiBridge : MonoBehaviour
     {
         emoji = Emoji;
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(
-            Configs.ResourceEmojiPath + Emoji.asset
+            PathVariables.ResourceEmojiPath + Emoji.asset
         );
     }
 

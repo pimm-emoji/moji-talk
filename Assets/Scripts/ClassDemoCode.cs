@@ -47,7 +47,7 @@ public class ClassDemoCode : MonoBehaviour
             /*  Configs.PresetPath 는 Assets/Presets를 의미합니다.
                 자주 사용하는 변수들을 Assets/Configs/Configs.cs에 지정해놓고 사용하고 있습니다.
             */
-            Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+            Path.Combine(PathVariables.PresetPath, "demo", "emojiGenerations.json")
         /*  .ToObject<T>(); 형식으로 사용합니다. T에는 데이터타입(자료형 혹은 클래스)을 넣으면 됩니다.
             이 코드의 경우 generateConfig에 데이터를 추가하고 있으니, generateConfig의 데이터타입인 EmojiGenerations를 T에 넣었습니다.
         */
@@ -56,7 +56,7 @@ public class ClassDemoCode : MonoBehaviour
         // 새 방법
         generateConfig = PresetController.LoadGenData(
             PresetController.LoadJsonToObject(
-                Path.Combine(Configs.PresetPath, "demo", "emojiGenerations.json")
+                Path.Combine(PathVariables.PresetPath, "demo", "emojiGenerations.json")
             )
         );
     }
@@ -65,7 +65,7 @@ public class ClassDemoCode : MonoBehaviour
     void LoadDemoEmojiData()
     {
         // 위 내용을 정리해서 아래와 같이 사용할 수 있습니다.
-        emoji = PresetController.LoadJsonToObject(Path.Combine(Configs.PresetPath, "demo", "emoji.json")).ToObject<Emoji>();
+        emoji = PresetController.LoadJsonToObject(Path.Combine(PathVariables.PresetPath, "demo", "emoji.json")).ToObject<Emoji>();
     }
 
     [ContextMenu("PrintDemoEmojiData")]

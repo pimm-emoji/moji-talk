@@ -10,7 +10,7 @@ public class LevelSelectScene : MonoBehaviour
     void Start()
     {
         levels = PresetController.LoadSingleDepth<Level>(
-            PresetController.LoadJsonToObject(Configs.LevelIndexPath)
+            PresetController.LoadJsonToObject(PathVariables.LevelIndexPath)
         );
         foreach (KeyValuePair<string, Level> items in levels)
         {

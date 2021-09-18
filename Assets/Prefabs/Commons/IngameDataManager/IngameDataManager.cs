@@ -54,8 +54,6 @@ public class IngameDataManager : MonoBehaviour
             presetDict.Add(levelIndex, levelConfigs);
         }
         level = presetDict[LevelID];
-        //Todo
-        //level = JObject.Parse(File.ReadAllText(Configs.LevelIndexPath))[LevelID].ToObject<Level>();
     }
     public Level GetLevel()
     {
