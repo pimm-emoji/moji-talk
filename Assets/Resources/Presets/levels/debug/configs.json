@@ -1,10 +1,10 @@
 {
-  "id": "first",
-  "name": "키사모",
-  "desc": "키위를 사랑하는 모임",
-  "img": "Profiles/Images/dopamine",
+  "id": "debug",
+  "name": "Debug Scene",
+  "desc": "Debug Scene",
+  "img": "Profiles/Images/davidson",
   "type": "single",
-  "participants": ["dopamine"],
+  "participants": ["davidson"],
   "usingEmojis": ["thumbsup", "happy", "weary", "angry", "thinking"],
   "endings": [
     {

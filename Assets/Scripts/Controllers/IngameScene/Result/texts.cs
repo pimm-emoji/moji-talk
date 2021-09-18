@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class texts : MonoBehaviour
 {
     //어떤 leveldata를 불러와야 하는가?  loadstorage하면 leveldata의 리스트가 나오는데 이중 어떤거? 혹은 이미 다른 스크립트에서 함수 지정?
-    LevelData CurLevelData;
+    Level CurLevel;
 
     UserData userData = UserDataManager.LoadStorage();
     int intData;

@@ -19,14 +19,12 @@ public class UserDataManager
 
     public static UserData LoadStorage()
     {
-        return JObject.Parse(
-            File.ReadAllText(
-                Path.Combine(
-                    PathVariables.userDataStorageDirectory,
-                    PathVariables.userDataStorageFilename
-                )
+        return JsonIO.LoadJsonFileToObject<UserData>(
+            Path.Combine(
+                PathVariables.userDataStorageDirectory,
+                PathVariables.userDataStorageFilename
             )
-        ).ToObject<UserData>();
+        );
     }
 
     public static void SaveStorage(UserData userData)

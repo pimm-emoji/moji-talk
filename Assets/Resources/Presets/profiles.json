@@ -1,14 +1,6 @@
-{
-  "dopamine": {
-		"id": "dopamine",
-		"name": "도파민",
-		"desc": "저는 대한민국 최고의 박사, 도파민 박사라고 합니다",
-		"img": "dopamine.png"
-	},
-	"roentgenium": {
-		"id": "roentgenium",
-		"name": "뢴트게늄",
-		"desc": "하지만 저는! 독잔을 거침없이 마시는 줄리엣또!!!",
-		"img": "roentgenium.png"
-	}
-}
+[
+	"davidson",
+	"dopamine",
+	"roentgenium",
+	"windgod"
+]

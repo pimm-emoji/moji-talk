@@ -14,7 +14,7 @@ public class ChatSceneManager : MonoBehaviour
     public GameObject ScrollViewContent;
     float[] offset = {ChattingConfig.VerticalLayoutGroupOffset[0], ChattingConfig.VerticalLayoutGroupOffset[1], ChattingConfig.VerticalLayoutGroupOffset[2], ChattingConfig.VerticalLayoutGroupOffset[3]};
     float Spacing = ChattingConfig.VerticalLayoutGroupOffset[4];
-    List<Level> flow;
+    Flow flow;
 
     void Start()
     {
@@ -37,9 +37,9 @@ public class ChatSceneManager : MonoBehaviour
         int i = 0; // index
         while (Flag)
         {
-            if (flow[i].type == "chatting")
+            if (flow.flow[i].type == "chatting")
             {
-                foreach(var message in flow[i].chats)
+                foreach(var message in flow.flow[i].chats)
                 {
                     // Processing Message
                     print(message.content);
@@ -54,15 +54,15 @@ public class ChatSceneManager : MonoBehaviour
 
                     yield return new WaitForSeconds(message.delay / 1000);
                 }
-                i = flow[i].branch.index[0];
+                i = flow.flow[i].branch.index[0];
             }
-            else if (flow[i].type == "emote")
+            else if (flow.flow[i].type == "emote")
             {
                 // Processing Emote Scene
                 EmojiSceneManager.instance.StartCoroutine(ProcessingFlows());
-                yield return new WaitForSeconds(flow[i].duration / 1000);
+                yield return new WaitForSeconds(flow.flow[i].duration / 1000);
             }
-            else if (flow[i].type == "end")
+            else if (flow.flow[i].type == "end")
             {
                 Flag = false;
 

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager instance = null;
     
-    public Dictionary<string, LevelData> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
+    public Dictionary<string, Level> levels; //string값과 레벨데이터 를 가지고 있는 levels라는 딕셔너리
     public List<string> ProfileIndex;
 
     public string nowLevelID;
@@ -52,21 +52,24 @@ public class GameManager : MonoBehaviour
     public int nowFlowIndex = 1;
     
     public UserData userData;
-    private void Awake()
+    void Awake()
     {
         // Set GameManager unique.
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
 
+        UserDataManager.InitStorage();
+    }
+    void Start()
+    {
         userData = UserDataManager.LoadStorage();
     }
 
-
-    private List<Level> flow;
+    Flow flow;
     public void InitFlow()
     {
-        IngameDataManager.instance.LoadLevel(nowLevelID);
+        IngameDataManager.instance.LoadLevelEntire(nowLevelID);
         flow = IngameDataManager.instance.flow;
     }
 
@@ -75,23 +78,24 @@ public class GameManager : MonoBehaviour
         if (nowFlowIndex == -1) nowFlowIndex++;
         else
         {
-            if (flow[nowFlowIndex].type == "emote") nowFlowIndex = flow[nowFlowIndex].branch.index[0];
-            else if (flow[nowFlowIndex].type == "chatting")
+            if (flow.flow[nowFlowIndex].type == "emote") nowFlowIndex = flow.flow[nowFlowIndex].branch.index[0];
+            else if (flow.flow[nowFlowIndex].type == "chatting")
             {
-                flow[nowFlowIndex].branch.divider.Add(100);
-                for (int i = 0; i < flow[nowFlowIndex].branch.divider.Count; i++)
+                flow.flow[nowFlowIndex].branch.divider.Add(100);
+                for (int i = 0; i < flow.flow[nowFlowIndex].branch.divider.Count; i++)
                 {
-                    if (branchIndexingScore < flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow[nowFlowIndex].branch.index[i];
+                    if (branchIndexingScore < flow.flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow.flow[nowFlowIndex].branch.index[i];
                 }
             }
-            else if (flow[nowFlowIndex].type == "end")
+            else if (flow.flow[nowFlowIndex].type == "end")
             {
                 if (userData.unlockedLevelData.Find(x => x.id == nowLevelID) == null)
                 {
-                    userData.unlockedLevelData.Add(new LevelData(nowLevelID, nowLevelID, new List<Ending>()));
+                    userData.unlockedLevelData.Add(new Level(nowLevelID, nowLevelID, new List<Ending>()));
                 }
                 userData.unlockedLevelData.Find(x => x.id == nowLevelID).endings.Add(new Ending(
-                    flow[nowFlowIndex].ending
+                    flow.flow[nowFlowIndex].endingID,
+                    flow.flow[nowFlowIndex].endingID
                 ));
                 UserDataManager.SaveStorage(userData);
             }

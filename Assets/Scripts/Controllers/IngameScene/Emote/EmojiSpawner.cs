@@ -18,8 +18,8 @@ public class EmojiSpawner : MonoBehaviour
 	
 
 	void Start () {
-		IngameDataManager.instance.LoadLevel("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
-		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;
+		IngameDataManager.instance.LoadLevelEntire("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
+		generateConfig = IngameDataManager.instance.flow.flow[GameManager.instance.nowFlowIndex].generates;
 	}
 
 	void Update()
@@ -43,7 +43,7 @@ public class EmojiSpawner : MonoBehaviour
 
 	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
 	{
-		generateConfig = IngameDataManager.instance.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
+		generateConfig = IngameDataManager.instance.flow.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
 	}
 
 

@@ -8,10 +8,9 @@ public class SceneController : MonoBehaviour
     EmojiSpawner emojispawner;
     float BranchScore;
     int dividercount;
+    Flow flow;
     bool dupl;
     public static SceneController instance = null;
-
-    List<Level> flow;
 
     public GameObject MessageWrapperPrefab;
     public GameObject ScrollViewObject;
@@ -34,7 +33,7 @@ public class SceneController : MonoBehaviour
     public void StartEmojiSpawn()
     {
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
-        IngameDataManager.instance.LoadLevel("first");
+        IngameDataManager.instance.LoadLevelEntire("first");
         flow = IngameDataManager.instance.GetLevelFlow();
         StartCoroutine(ProcessingEmojiFlows());
 
@@ -54,20 +53,20 @@ public class SceneController : MonoBehaviour
     {
      
         emojispawner.spawnswitch = true;
-        yield return new WaitForSeconds(flow[i].duration / 1000);
+        yield return new WaitForSeconds(flow.flow[i].duration / 1000);
         emojispawner.spawnswitch = false;
         BranchScore = GameManager.instance.GetBranchScore();
 
-        dividercount = flow[i].branch.divider.Count;
+        dividercount = flow.flow[i].branch.divider.Count;
 
         for (int a = 0; a < dividercount; a++)
         {
 
             if (dupl == false)
             {
-                if (BranchScore <= flow[i].branch.divider[a])
+                if (BranchScore <= flow.flow[i].branch.divider[a])
                 {
-                    i = flow[i].branch.index[a];
+                    i = flow.flow[i].branch.index[a];
                     dupl = true;
                 }
             }
@@ -78,6 +77,7 @@ public class SceneController : MonoBehaviour
 
     }
 
+    public void StartMessageSpawn(){}/*
     public void StartMessageSpawn()
     {
         IngameDataManager.instance.LoadLevel("first");
@@ -88,7 +88,7 @@ public class SceneController : MonoBehaviour
         VerticalLayoutGroup.spacing = Spacing * 2;
         VerticalLayoutGroup.padding = new RectOffset((int)offset[0], (int)offset[1], (int)offset[2], (int)offset[3]);
         StartCoroutine(ProcessingMessageFlows());
-    }
+    }*/
 
     IEnumerator ProcessingMessageFlows()
     {
@@ -96,9 +96,9 @@ public class SceneController : MonoBehaviour
         int i = 0; // index
         while (Flag)
         {
-            if (flow[i].type == "chatting")
+            if (flow.flow[i].type == "chatting")
             {
-                foreach (var message in flow[i].chats)
+                foreach (var message in flow.flow[i].chats)
                 {
                     // Processing Message
                     print(message.content);
@@ -113,15 +113,15 @@ public class SceneController : MonoBehaviour
 
                     yield return new WaitForSeconds(message.delay / 1000);
                 }
-                i = flow[i].branch.index[0];
+                i = flow.flow[i].branch.index[0];
             }
-            else if (flow[i].type == "emote")
+            else if (flow.flow[i].type == "emote")
             {
                 // Processing Emote Scene
                 StartEmojiSpawn();
                 ResetEmojiSpawn();
             }
-            else if (flow[i].type == "end")
+            else if (flow.flow[i].type == "end")
             {
                 Flag = false;
 
