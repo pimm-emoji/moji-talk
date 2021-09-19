@@ -19,11 +19,14 @@ public class SceneController : MonoBehaviour
     float Spacing = ChattingConfig.VerticalLayoutGroupOffset[4];
     public int i = 0; // index
 
+    public bool activateAutoDebugConfigurationNowLevelIsNull = true;
+
 
     void Awake()
     {
         print($"GameManager.instance.nowLevelID {GameManager.instance.nowLevelID} GameManager.instance.IsNullOrEmpty {!string.IsNullOrEmpty(GameManager.instance.nowLevelID)}");
-        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        if (activateAutoDebugConfigurationNowLevelIsNull)
+            IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
     }
     void Start()
     {

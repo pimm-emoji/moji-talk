@@ -2086,6 +2086,7 @@ MonoBehaviour:
   ScrollViewObject: {fileID: 0}
   ScrollViewContent: {fileID: 0}
   i: 0
+  activateAutoDebugConfigurationNowLevelIsNull: 1
 --- !u!1 &1599574664
 GameObject:
   m_ObjectHideFlags: 0
