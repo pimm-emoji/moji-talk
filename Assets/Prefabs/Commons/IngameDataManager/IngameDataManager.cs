@@ -26,7 +26,21 @@ public class IngameDataManager : MonoBehaviour
         if (instance == null) instance = this;  
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject); // 이 오브젝트는 다른 씬으로 넘어가도 파괴되지 않음
+
+        LoadLevelList();
     }
+
+
+    /* === entire data === */
+
+    public List<string> levelIndexList;
+    public void LoadLevelList()
+    {
+        levelIndexList = JsonIO.LoadJsonAssetToObject<LevelIndexWrapper>("Presets/levels").levels;
+    }
+
+
+    /* === each data === */
 
     public void SetLevelID(string LevelID) { levelID = LevelID; }  //string 형식의 LevelID를 지정하거나 리턴받음
     // public void LoadLevelID() {}
@@ -40,14 +54,12 @@ public class IngameDataManager : MonoBehaviour
     {
         LoadLevel(levelID);
     }
-    // 4 references must be modified
 
-    public List<string> levelIndexList;
     public void LoadLevel(string LevelID)
     {
         Dictionary<string, Level> presetDict = new Dictionary<string, Level>();
+        LoadLevelList();
         //print(JsonIO.LoadJsonAssetToObject<LevelIndexWrapper>("Presets/levels"));
-        levelIndexList = JsonIO.LoadJsonAssetToObject<LevelIndexWrapper>("Presets/levels").levels;
         foreach (string levelIndex in levelIndexList)
         {
             Level levelConfigs = JsonIO.LoadJsonAssetToObject<Level>($"Presets/levels/{levelIndex}/configs");

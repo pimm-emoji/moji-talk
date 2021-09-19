@@ -22,8 +22,8 @@ public class SceneController : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null) instance = this;
-        else if (instance != this) Destroy(this.gameObject);
+        print($"GameManager.instance.nowLevelID {GameManager.instance.nowLevelID} GameManager.instance.IsNullOrEmpty {!string.IsNullOrEmpty(GameManager.instance.nowLevelID)}");
+        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
     }
     void Start()
     {
@@ -33,7 +33,6 @@ public class SceneController : MonoBehaviour
     public void StartEmojiSpawn()
     {
         emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
-        IngameDataManager.instance.LoadLevelEntire("first");
         flow = IngameDataManager.instance.GetLevelFlow();
         StartCoroutine(ProcessingEmojiFlows());
 
