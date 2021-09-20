@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 4344588073124705556}
   - component: {fileID: 3664204413052536464}
   m_Layer: 5
-  m_Name: Content Wrapper
+  m_Name: ChattingWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

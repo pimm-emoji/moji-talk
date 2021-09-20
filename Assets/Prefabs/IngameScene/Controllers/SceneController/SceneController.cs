@@ -12,15 +12,13 @@ public class SceneController : MonoBehaviour
     bool dupl;
     public static SceneController instance = null;
 
-    public GameObject MessageWrapperPrefab;
-    public GameObject ScrollViewObject;
-    public GameObject ScrollViewContent;
     float[] offset = { ChattingConfig.VerticalLayoutGroupOffset[0], ChattingConfig.VerticalLayoutGroupOffset[1], ChattingConfig.VerticalLayoutGroupOffset[2], ChattingConfig.VerticalLayoutGroupOffset[3] };
     float Spacing = ChattingConfig.VerticalLayoutGroupOffset[4];
     public int i = 0; // index
 
     public bool activateAutoDebugConfigurationNowLevelIsNull = true;
 
+    public ChattingPrefabs chattingPrefabs;
 
     void Awake()
     {
@@ -104,7 +102,7 @@ public class SceneController : MonoBehaviour
                 {
                     // Processing Message
                     print(message.content);
-                    GameObject newObject = Instantiate(MessageWrapperPrefab) as GameObject;
+                    GameObject newObject = Instantiate(chattingPrefabs.chattingWrapperPrefab) as GameObject;
                     newObject.transform.SetParent(GameObject.Find("Content").transform);
                     newObject.GetComponent<ChattingWrapperController>().init(message.author, message.content, message.author != "player" ? 0 : 1);
                     AddScrollViewContentHeight(newObject);
@@ -133,12 +131,18 @@ public class SceneController : MonoBehaviour
 
     void AddScrollViewContentHeight(GameObject GameObject)
     {
-        Vector2 RectSize = ScrollViewContent.GetComponent<RectTransform>().sizeDelta;
+        Vector2 RectSize = chattingPrefabs.scrollViewContent.GetComponent<RectTransform>().sizeDelta;
         float height = GameObject.GetComponent<RectTransform>().sizeDelta.y;
-        ScrollViewContent.GetComponent<RectTransform>().sizeDelta = new Vector2(RectSize.x, RectSize.y + height + Spacing);
+        chattingPrefabs.scrollViewContent.GetComponent<RectTransform>().sizeDelta = new Vector2(RectSize.x, RectSize.y + height + Spacing);
     }
     void MoveToTop() { MoveScroll(1); }
     void MoveToBottom() { MoveScroll(0); }
-    void MoveScroll(float value) { ScrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
+    void MoveScroll(float value) { chattingPrefabs.scrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
+}
 
+public class ChattingPrefabs
+{
+    public GameObject chattingWrapperPrefab;
+    public GameObject scrollViewObject;
+    public GameObject scrollViewContent;
 }
