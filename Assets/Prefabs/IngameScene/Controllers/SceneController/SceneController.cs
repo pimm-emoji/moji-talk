@@ -1,148 +1,115 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
-    EmojiSpawner emojispawner;
-    float BranchScore;
-    int dividercount;
+    public IngameSceneGameObjects objects;
+    EmojiSpawner emojiSpawner;
     Flow flow;
-    bool dupl;
-    public static SceneController instance = null;
-
-    float[] offset = { ChattingConfig.VerticalLayoutGroupOffset[0], ChattingConfig.VerticalLayoutGroupOffset[1], ChattingConfig.VerticalLayoutGroupOffset[2], ChattingConfig.VerticalLayoutGroupOffset[3] };
-    float Spacing = ChattingConfig.VerticalLayoutGroupOffset[4];
-    public int i = 0; // index
-
-    public bool activateAutoDebugConfigurationNowLevelIsNull = true;
-
-    public ChattingPrefabs chattingPrefabs;
 
     void Awake()
     {
-        print($"GameManager.instance.nowLevelID {GameManager.instance.nowLevelID} GameManager.instance.IsNullOrEmpty {!string.IsNullOrEmpty(GameManager.instance.nowLevelID)}");
-        if (activateAutoDebugConfigurationNowLevelIsNull)
-            IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        flow = IngameDataManager.instance.GetLevelFlow();
+        emojiSpawner = objects.emojiSpawner.GetComponent<EmojiSpawner>();
     }
+
     void Start()
     {
-        StartMessageSpawn();
+        
     }
 
-    public void StartEmojiSpawn()
+    void Update()
     {
-        emojispawner = GameObject.Find("EmojiNote").GetComponent<EmojiSpawner>();
-        flow = IngameDataManager.instance.GetLevelFlow();
-        StartCoroutine(ProcessingEmojiFlows());
-
-
-        dupl = false;
+        FlowHandler();
     }
 
-    public void ResetEmojiSpawn()
+    public int[] flowIndex = {0, 0};
+    public float previousFlowElapsed = 0;
+    public bool triggerFlow = true;
+    void FlowHandler()
     {
-        emojispawner.spawnswitch = false;
-        GameManager.instance.InitScore();
-        GameManager.instance.InitBranchScore();
-    }
-
-
-    public IEnumerator ProcessingEmojiFlows()
-    {
-     
-        emojispawner.spawnswitch = true;
-        yield return new WaitForSeconds(flow.flow[i].duration / 1000);
-        emojispawner.spawnswitch = false;
-        BranchScore = GameManager.instance.GetBranchScore();
-
-        dividercount = flow.flow[i].branch.divider.Count;
-
-        for (int a = 0; a < dividercount; a++)
+        // Check time elapsed
+        previousFlowElapsed += Time.deltaTime;
+        if (flow.flow[flowIndex[0]].type == "chatting")
         {
-
-            if (dupl == false)
+            if (flow.flow[flowIndex[0]].chats[flowIndex[1]].delay / 1000 < previousFlowElapsed)
             {
-                if (BranchScore <= flow.flow[i].branch.divider[a])
+                // Trigger Next Message
+                if (flow.flow[flowIndex[0]].chats.Count -1 != flowIndex[1])
                 {
-                    i = flow.flow[i].branch.index[a];
-                    dupl = true;
+                    flowIndex[1] += 1;
                 }
+                // Trigger Next Flow
+                else
+                {
+                    flowIndex[0] += 1;
+                    flowIndex[1] = 0;
+                }
+                // Initialize
+                triggerFlow = true;
+                previousFlowElapsed = 0;
             }
         }
-        GameManager.instance.InitBranchScore();
-        StartMessageSpawn();
-
-
-    }
-
-    public void StartMessageSpawn(){}/*
-    public void StartMessageSpawn()
-    {
-        IngameDataManager.instance.LoadLevel("first");
-        flow = IngameDataManager.instance.GetLevelFlow();
-        VerticalLayoutGroup VerticalLayoutGroup = ScrollViewContent.GetComponent<VerticalLayoutGroup>();
-        RectTransform rectTransform = ScrollViewContent.GetComponent<RectTransform>();
-        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, offset[3]);
-        VerticalLayoutGroup.spacing = Spacing * 2;
-        VerticalLayoutGroup.padding = new RectOffset((int)offset[0], (int)offset[1], (int)offset[2], (int)offset[3]);
-        StartCoroutine(ProcessingMessageFlows());
-    }*/
-
-    IEnumerator ProcessingMessageFlows()
-    {
-        bool Flag = true;
-        int i = 0; // index
-        while (Flag)
+        else if (flow.flow[flowIndex[0]].type == "emote")
         {
-            if (flow.flow[i].type == "chatting")
+            if (flow.flow[flowIndex[0]].duration / 1000 < previousFlowElapsed) // Trigger Next Flow
             {
-                foreach (var message in flow.flow[i].chats)
+                // Stop Emoji Spawner Handler
+                StopEmojiSpawner();
+                // Trigger Next Flow
+                Branch branch = flow.flow[flowIndex[0]].branch;
+                branch.divider.Add(100);
+                for (int i = 0; branch.divider[i] > GameManager.instance.branchIndexingScore; i++)
                 {
-                    // Processing Message
-                    print(message.content);
-                    GameObject newObject = Instantiate(chattingPrefabs.chattingWrapperPrefab) as GameObject;
-                    newObject.transform.SetParent(GameObject.Find("Content").transform);
-                    newObject.GetComponent<ChattingWrapperController>().init(message.author, message.content, message.author != "player" ? 0 : 1);
-                    AddScrollViewContentHeight(newObject);
-                    MoveToBottom();
-                    /*var newObjectRectSize = newObject.GetComponent<ChattingWrapperController>().GetSize();
-                    AddScrollViewContentHeight(newObjectRectSize.y);
-                    newObject.GetComponent<RectTransform>().sizeDelta = newObjectRectSize;*/
-
-                    yield return new WaitForSeconds(message.delay / 1000);
+                    flowIndex[0] = branch.index[i];
+                    flowIndex[1] = 0;
+                    break;
                 }
-                i = flow.flow[i].branch.index[0];
+                // Initialize
+                flowIndex[0] += 1;
+                triggerFlow = true;
+                previousFlowElapsed = 0;
             }
-            else if (flow.flow[i].type == "emote")
-            {
-                // Processing Emote Scene
-                StartEmojiSpawn();
-                ResetEmojiSpawn();
-            }
-            else if (flow.flow[i].type == "end")
-            {
-                Flag = false;
+        }
 
+        // Trigger Flow when `triggerFlow` variable is true
+        if (triggerFlow)
+        {
+            if (flow.flow[flowIndex[0]].type == "chatting")
+            {
+                // Add chatting
             }
+            else if (flow.flow[flowIndex[0]].type == "emote")
+            {
+                // Start Emoji Spawner Handler
+                StartEmojiSpawner();
+            }
+            else if (flow.flow[flowIndex[0]].type == "end")
+            {
+                // Trigger Ending
+            }
+            // Initialize
+            triggerFlow = false;
         }
     }
 
-    void AddScrollViewContentHeight(GameObject GameObject)
+    void StartEmojiSpawner()
     {
-        Vector2 RectSize = chattingPrefabs.scrollViewContent.GetComponent<RectTransform>().sizeDelta;
-        float height = GameObject.GetComponent<RectTransform>().sizeDelta.y;
-        chattingPrefabs.scrollViewContent.GetComponent<RectTransform>().sizeDelta = new Vector2(RectSize.x, RectSize.y + height + Spacing);
+        emojiSpawner.spawnswitch = true;
     }
-    void MoveToTop() { MoveScroll(1); }
-    void MoveToBottom() { MoveScroll(0); }
-    void MoveScroll(float value) { chattingPrefabs.scrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
+    void StopEmojiSpawner()
+    {
+        emojiSpawner.spawnswitch = false;
+        GameManager.instance.InitBranchScore();
+    }
 }
 
-public class ChattingPrefabs
+public class IngameSceneGameObjects
 {
     public GameObject chattingWrapperPrefab;
     public GameObject scrollViewObject;
     public GameObject scrollViewContent;
+    public GameObject emojiSpawner;
 }
