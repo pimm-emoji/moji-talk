@@ -10,14 +10,13 @@ public class SceneController : MonoBehaviour
 
     void Awake()
     {
-        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
-        flow = IngameDataManager.instance.GetLevelFlow();
         emojiSpawner = objects.emojiSpawner.GetComponent<EmojiSpawner>();
     }
 
     void Start()
     {
-        
+        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        flow = IngameDataManager.instance.GetLevelFlow();
     }
 
     void Update()
@@ -106,6 +105,7 @@ public class SceneController : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class IngameSceneGameObjects
 {
     public GameObject chattingWrapperPrefab;
