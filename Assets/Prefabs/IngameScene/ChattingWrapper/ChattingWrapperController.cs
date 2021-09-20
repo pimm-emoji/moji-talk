@@ -10,7 +10,7 @@ public class ChattingWrapperController : MonoBehaviour
     public Text nameText;
     public Text contentText;
 
-    public void init(string Name, string Content, int Align) // Align => Left : Right ? is 0
+    public void Init(string Name, string Content, int Align) // Align => Left : Right ? is 0
     {
         RectTransform nameWrapperRect = nameWrapper.GetComponent<RectTransform>();
         RectTransform contentWrapperRect = contentWrapper.GetComponent<RectTransform>();
@@ -30,6 +30,8 @@ public class ChattingWrapperController : MonoBehaviour
             nameWrapperRect.anchorMin = ChattingWrapperRect.Left.anchorMin;
             nameWrapperRect.anchorMax = ChattingWrapperRect.Left.anchorMax;
             nameWrapperRect.pivot = ChattingWrapperRect.Left.childPivot;
+            contentWrapperRect.anchorMin = ChattingWrapperRect.Left.anchorMin;
+            contentWrapperRect.anchorMax = ChattingWrapperRect.Left.anchorMax;
             contentWrapperRect.pivot = ChattingWrapperRect.Left.pivot;
         }
         else
@@ -37,13 +39,15 @@ public class ChattingWrapperController : MonoBehaviour
             nameWrapperRect.anchorMin = ChattingWrapperRect.Right.anchorMin;
             nameWrapperRect.anchorMax = ChattingWrapperRect.Right.anchorMax;
             nameWrapperRect.pivot = ChattingWrapperRect.Right.childPivot;
+            contentWrapperRect.anchorMin = ChattingWrapperRect.Right.anchorMin;
+            contentWrapperRect.anchorMax = ChattingWrapperRect.Right.anchorMax;
             contentWrapperRect.pivot = ChattingWrapperRect.Right.pivot;
         }
     }
     
     [ContextMenu("Debug Chattings (Left)")]
-    void DebugInitLeft() { init("Cally Carly Davidson", "캘리컬리, \n캘리컬리 데이비슨. 이게 내 이름이야.", 0); }
+    void DebugInitLeft() { Init("Cally Carly Davidson", "캘리컬리, \n캘리컬리 데이비슨. 이게 내 이름이야.", 0); }
 
     [ContextMenu("Debug Chattings (Right)")]
-    void DebugInitRight() { init("Cally Carly Davidson", "고맙네 할멈.", 1); }
+    void DebugInitRight() { Init("Cally Carly Davidson", "고맙네 할멈.", 1); }
 }

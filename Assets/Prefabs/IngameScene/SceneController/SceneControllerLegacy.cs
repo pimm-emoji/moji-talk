@@ -104,7 +104,7 @@ public class SceneControllerLegacy : MonoBehaviour
                     print(message.content);
                     GameObject newObject = Instantiate(chattingPrefabs.chattingWrapperPrefab) as GameObject;
                     newObject.transform.SetParent(GameObject.Find("Content").transform);
-                    newObject.GetComponent<ChattingWrapperController>().init(message.author, message.content, message.author != "player" ? 0 : 1);
+                    newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
                     AddScrollViewContentHeight(newObject);
                     MoveToBottom();
                     /*var newObjectRectSize = newObject.GetComponent<ChattingWrapperController>().GetSize();
@@ -140,6 +140,7 @@ public class SceneControllerLegacy : MonoBehaviour
     void MoveScroll(float value) { chattingPrefabs.scrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
 }
 
+[System.Serializable]
 public class ChattingPrefabs
 {
     public GameObject chattingWrapperPrefab;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
@@ -79,6 +80,7 @@ public class SceneController : MonoBehaviour
             if (flow.flow[flowIndex[0]].type == "chatting")
             {
                 // Add chatting
+                AddChattingMessage(flow.flow[flowIndex[0]].chats[flowIndex[1]]);
             }
             else if (flow.flow[flowIndex[0]].type == "emote")
             {
@@ -103,6 +105,33 @@ public class SceneController : MonoBehaviour
         emojiSpawner.spawnswitch = false;
         GameManager.instance.InitBranchScore();
     }
+
+    void AddChattingMessage(Message message)
+    {
+        GameObject newObject = Instantiate(objects.chattingWrapperPrefab) as GameObject;
+        newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
+        objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject);
+        ScrollLogToBottom();
+    }
+    [ContextMenu("Clear Messages (Editor)")]
+    void ClearMessagesEditor()
+    {
+        for (int i = 0; i < objects.scrollViewContent.transform.childCount; i++)
+        {
+            DestroyImmediate(objects.scrollViewContent.transform.GetChild(0).gameObject);
+        }
+    }
+    [ContextMenu("Clear Messages (Play Mode or Runtime)")]
+    void ClearMessages()
+    {
+        for (int i = 0; i < objects.scrollViewContent.transform.childCount; i++)
+        {
+            Destroy(objects.scrollViewContent.transform.GetChild(0).gameObject);
+        }
+    }
+    void ScrollLogTo(float value) { objects.scrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
+    [ContextMenu("Scroll Log to Top")] void ScrollLogToTop() { ScrollLogTo(1); }
+    [ContextMenu("Scroll Log to Bottom")] void ScrollLogToBottom() { ScrollLogTo(0); }
 }
 
 [System.Serializable]
