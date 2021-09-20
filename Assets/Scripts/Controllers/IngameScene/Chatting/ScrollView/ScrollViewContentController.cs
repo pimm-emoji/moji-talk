@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class ScrollViewContentController : MonoBehaviour
         nextMessagePosition += objectHeight + positioningConfig.marginBottom + positioningConfig.marginVerticalIntersection;
         GetComponent<RectTransform>().sizeDelta = new Vector2(
             viewContentRectSize.x,
-            viewContentRectSize.y + objectHeight + positioningConfig.marginTop + positioningConfig.marginBottom + positioningConfig.marginVerticalIntersection
+            Math.Abs(viewContentRectSize.y + objectHeight + positioningConfig.marginTop + positioningConfig.marginBottom + positioningConfig.marginVerticalIntersection) * -1
         );
     }
 }

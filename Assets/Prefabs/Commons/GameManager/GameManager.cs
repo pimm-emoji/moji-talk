@@ -66,46 +66,8 @@ public class GameManager : MonoBehaviour
         userData = UserDataManager.LoadStorage();
     }
 
-    Flow flow;
-    public void InitFlow()
-    {
-        IngameDataManager.instance.LoadLevelEntire(nowLevelID);
-        flow = IngameDataManager.instance.flow;
-    }
-
-    public void TriggerFlow()
-    {
-        if (nowFlowIndex == -1) nowFlowIndex++;
-        else
-        {
-            if (flow.flow[nowFlowIndex].type == "emote") nowFlowIndex = flow.flow[nowFlowIndex].branch.index[0];
-            else if (flow.flow[nowFlowIndex].type == "chatting")
-            {
-                flow.flow[nowFlowIndex].branch.divider.Add(100);
-                for (int i = 0; i < flow.flow[nowFlowIndex].branch.divider.Count; i++)
-                {
-                    if (branchIndexingScore < flow.flow[nowFlowIndex].branch.divider[i]) nowFlowIndex = flow.flow[nowFlowIndex].branch.index[i];
-                }
-            }
-            else if (flow.flow[nowFlowIndex].type == "end")
-            {
-                if (userData.unlockedLevelData.Find(x => x.id == nowLevelID) == null)
-                {
-                    userData.unlockedLevelData.Add(new Level(nowLevelID, nowLevelID, new List<Ending>()));
-                }
-                userData.unlockedLevelData.Find(x => x.id == nowLevelID).endings.Add(new Ending(
-                    flow.flow[nowFlowIndex].endingID,
-                    flow.flow[nowFlowIndex].endingID
-                ));
-                UserDataManager.SaveStorage(userData);
-            }
-        }
-    }
-    // 새 스테이지 해금 코드 아직 작성 않음
-
-    [ContextMenu("Debug InitScore")] public void InitScore() { userTotalScore = 0f; }
+    [ContextMenu("Debug Init Score")] public void InitScore() { userTotalScore = 0f; }
     public void InitBranchScore() { branchIndexingScore = 0f; }
-
 
     public void AddScore(float ScoreDelta) { userTotalScore += ScoreDelta; branchIndexingScore += ScoreDelta; }
 
