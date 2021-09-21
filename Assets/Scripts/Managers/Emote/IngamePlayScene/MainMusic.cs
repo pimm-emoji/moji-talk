@@ -7,7 +7,7 @@ public class MainMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance.PlayBGM("stage");
+        AudioManager.instance.PlayBGM("stage1");
     }
 
     // Update is called once per frame

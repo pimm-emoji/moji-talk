@@ -10,7 +10,7 @@ public class EmojiSpawner : MonoBehaviour
 	public Transform[] spawnPoints;
 	public Emoji emojidata;
 	public EmojiGenerations generateConfig;
-	public bool spawnswitch = true;
+	public bool spawnswitch = false;
 	bool duplicate = false;
 	public int bpm = 128;
 
