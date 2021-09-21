@@ -363,7 +363,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
   - name: swish3
     clip: {fileID: 8300000, guid: 2a703b61aea3f72439a3158717d60436, type: 3}
   - name: menutouch1
-    clip: {fileID: 8300000, guid: 20743ea4717ef5341bcb5d259e718f66, type: 3}
+    clip: {fileID: 8300000, guid: 0cf8026e859963c4dba338dad6998bcb, type: 3}
   bgm:
   - name: stage
     clip: {fileID: 8300000, guid: 483e698b6511e6a489eb86a627d61e89, type: 3}
@@ -513,6 +513,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 86deea07510b4a445874c584686bb945, type: 3}
   - name: BGM2
     clip: {fileID: 0}
+  - name: TITLE
+    clip: {fileID: 8300000, guid: 29f85eaf6d84b144695180451c6e949f, type: 3}
   bgmPlayer: {fileID: 1457177209}
   sfxPlayer:
   - {fileID: 1813608017}

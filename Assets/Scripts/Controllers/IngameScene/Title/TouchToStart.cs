@@ -25,6 +25,7 @@ public class TouchToStart : MonoBehaviour
     {
         SplashObj = this.transform.GetChild(0).gameObject;
         titleimage = SplashObj.GetComponent<Image>();
+        AudioManager.instance.PlayBGM("TITLE");
     }
 
     // Update is called once per frame

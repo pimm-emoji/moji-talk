@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,14 +42,29 @@ public class LevelBoxWrapperController : MonoBehaviour, IPointerEnterHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         imageComponent.color = new Color32(110, 150, 198, 200);
+        if(levelboxWrapper.title.text == "키사모")   //해당 부분에 가져다 대면 재생
+        {
+            AudioManager.instance.PlayBGM("stage1");
+        }
+        else if(levelboxWrapper.title.text == "Aimless")
+        {
+            AudioManager.instance.PlayBGM("stage2");
+        }
+        else if(levelboxWrapper.title.text == "Debug Scene")
+        {
+            AudioManager.instance.PlayBGM("stage3");
+        }
+        
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.instance.nowLevelID = levelID;
+
         SceneManager.LoadScene("IngameScene");
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        AudioManager.instance.StopBGM();
         imageComponent.color = new Color32(0, 41, 64, 143);
     }
 

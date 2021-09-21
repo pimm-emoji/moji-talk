@@ -18,6 +18,7 @@ public class texts : MonoBehaviour
     // Start is called before the first frame update
 
     AchievementsManager achvmanager;
+
     public bool[] achvlist = new bool[] { true, false, false, true }; //업적 클리어 여부  판단은 어떻게?
     //
     int t = 0;
