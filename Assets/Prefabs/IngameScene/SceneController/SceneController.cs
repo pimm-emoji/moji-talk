@@ -30,6 +30,8 @@ public class SceneController : MonoBehaviour
     public int[] flowIndex = {0, 0};
     public float previousFlowElapsed = 0;
     public bool triggerFlow = true;
+
+    // Called Every Frame by Update Method
     void FlowHandler()
     {
         // Check time elapsed
