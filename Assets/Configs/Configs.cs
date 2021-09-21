@@ -20,3 +20,8 @@ class ChattingConfig
         gradientSettings = new float[,] {{0f, 0f}, {0.4f, 0.4f}, {1f, 1f}}; // time, alpha
     }
 }
+
+public class IngameConfig
+{
+    public static string defaultDebuggingLevelID = "first";
+}

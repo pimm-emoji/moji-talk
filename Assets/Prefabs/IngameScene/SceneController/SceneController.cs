@@ -16,7 +16,9 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        if (string.IsNullOrEmpty(GameManager.instance.nowLevelID))
+            GameManager.instance.nowLevelID = IngameConfig.defaultDebuggingLevelID;
+        IngameDataManager.instance.LoadLevelEntire(GameManager.instance.nowLevelID);
         flow = IngameDataManager.instance.GetLevelFlow();
     }
 
@@ -110,7 +112,7 @@ public class SceneController : MonoBehaviour
     {
         GameObject newObject = Instantiate(objects.chattingWrapperPrefab) as GameObject;
         newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
-        objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject);
+        objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject, message.author != "player" ? 0 : 1);
         ScrollLogToBottom();
     }
     [ContextMenu("Clear Messages (Editor)")]
