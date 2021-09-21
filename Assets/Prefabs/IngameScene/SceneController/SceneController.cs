@@ -16,7 +16,9 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        IngameDataManager.instance.LoadLevelEntire(!string.IsNullOrEmpty(GameManager.instance.nowLevelID) ? GameManager.instance.nowLevelID : "first");
+        if (string.IsNullOrEmpty(GameManager.instance.nowLevelID))
+            GameManager.instance.nowLevelID = IngameConfig.defaultDebuggingLevelID;
+        IngameDataManager.instance.LoadLevelEntire(GameManager.instance.nowLevelID);
         flow = IngameDataManager.instance.GetLevelFlow();
     }
 
@@ -28,6 +30,8 @@ public class SceneController : MonoBehaviour
     public int[] flowIndex = {0, 0};
     public float previousFlowElapsed = 0;
     public bool triggerFlow = true;
+
+    // Called Every Frame by Update Method
     void FlowHandler()
     {
         // Check time elapsed
@@ -110,7 +114,7 @@ public class SceneController : MonoBehaviour
     {
         GameObject newObject = Instantiate(objects.chattingWrapperPrefab) as GameObject;
         newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
-        objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject);
+        objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject, message.author != "player" ? 0 : 1);
         ScrollLogToBottom();
     }
     [ContextMenu("Clear Messages (Editor)")]
@@ -132,6 +136,9 @@ public class SceneController : MonoBehaviour
     void ScrollLogTo(float value) { objects.scrollViewObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, value); }
     [ContextMenu("Scroll Log to Top")] void ScrollLogToTop() { ScrollLogTo(1); }
     [ContextMenu("Scroll Log to Bottom")] void ScrollLogToBottom() { ScrollLogTo(0); }
+
+    [ContextMenu("FadeIn Chatting ScrollView Wrapper")] void FadeInScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(1f, ChattingConfig.scrollViewObjectFadeTime[0], false); }
+    [ContextMenu("FadeOut Chatting ScrollView Wrapper")] void FadeOutScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(0f, ChattingConfig.scrollViewObjectFadeTime[1], false); }
 }
 
 [System.Serializable]

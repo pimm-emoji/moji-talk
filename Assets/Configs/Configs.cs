@@ -14,9 +14,15 @@ class ChattingConfig
     public static byte[] backgroundColorRGB = {11, 150, 198, 255};
 
     public static float[] VerticalLayoutGroupOffset = {40, 40, 40, 40, 30};
+    public static float[] scrollViewObjectFadeTime = {1.5f, 1.5f}; // Fade in, Fade out
 
     public ChattingConfig()
     {
         gradientSettings = new float[,] {{0f, 0f}, {0.4f, 0.4f}, {1f, 1f}}; // time, alpha
     }
+}
+
+public class IngameConfig
+{
+    public static string defaultDebuggingLevelID = "first";
 }
