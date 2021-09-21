@@ -14,6 +14,7 @@ class ChattingConfig
     public static byte[] backgroundColorRGB = {11, 150, 198, 255};
 
     public static float[] VerticalLayoutGroupOffset = {40, 40, 40, 40, 30};
+    public static float[] scrollViewObjectFadeTime = {1.5f, 1.5f}; // Fade in, Fade out
 
     public ChattingConfig()
     {
