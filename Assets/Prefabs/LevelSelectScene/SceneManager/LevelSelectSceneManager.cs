@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class LevelSelectSceneManager : MonoBehaviour
     public GameObject levelBoxWrapperInstantiateTarget;
     void Start()
     {
+        fadecontroller.instance.Fadein();
         foreach (string levelID in IngameDataManager.instance.levelIndexList)
         {
             GameObject newObject = Instantiate(levelBoxWrapperPrefab) as GameObject;

@@ -10,12 +10,18 @@ public class LevelBoxWrapperController : MonoBehaviour, IPointerEnterHandler, IP
     public string levelID;
     public LevelBoxWrapper levelboxWrapper;
     public Image imageComponent;
+    bool nextscene = false;
+    bool fadedo = false;
 
     public void Awake()
     {
         imageComponent = GetComponent<Image>();
     }
 
+    public void SceneChange()
+    {
+        SceneManager.LoadScene("IngameScene");
+    }
     public void Init(string ID, string Title, string Description, string Collections)
     {
         levelID = ID;
@@ -58,9 +64,14 @@ public class LevelBoxWrapperController : MonoBehaviour, IPointerEnterHandler, IP
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.instance.nowLevelID = levelID;
+       GameManager.instance.nowLevelID = levelID;
+       fadecontroller.instance.Fadeout();
 
-        SceneManager.LoadScene("IngameScene");
+       Invoke("SceneChange", 2);
+        
+        
+
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {
