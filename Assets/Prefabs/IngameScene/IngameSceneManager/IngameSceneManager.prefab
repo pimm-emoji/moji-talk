@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6274707434435067518}
+  - component: {fileID: 153331583180367158}
   m_Layer: 0
-  m_Name: SceneController
+  m_Name: IngameSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,3 +31,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &153331583180367158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274707434435067519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b658b294500e7274dba774439dee4b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+    chattingWrapperPrefab: {fileID: 8832279277558203834, guid: 7732f28fea7722c4db567e2197ded96f, type: 3}
+    scrollViewObject: {fileID: 0}
+    scrollViewContent: {fileID: 0}
+    emojiSpawner: {fileID: 0}
+  flowIndex: 0000000000000000
+  previousFlowElapsed: 0
+  triggerFlow: 1

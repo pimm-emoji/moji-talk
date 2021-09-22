@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class IngameSceneManager : MonoBehaviour
 {
     public IngameSceneGameObjects objects;
     EmojiSpawner emojiSpawner;
@@ -78,6 +78,13 @@ public class SceneController : MonoBehaviour
                 triggerFlow = true;
                 previousFlowElapsed = 0;
             }
+        }
+
+        // Trigger ChattingScrollView when Flow type is "chatting"
+        if (triggerFlow)
+        {
+            if (flow.flow[flowIndex[0]].type == "chatting" && flowIndex[1] == 0) FadeInScrollView();
+            else if (flow.flow[flowIndex[0]].type == "emote") FadeOutScrollView();
         }
 
         // Trigger Flow when `triggerFlow` variable is true
