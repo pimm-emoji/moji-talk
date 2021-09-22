@@ -260,14 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfx:
-  - name: Touch
-    clip: {fileID: 8300000, guid: 370f0e03301f202429a166399f24a5fc, type: 3}
-  - name: swish1
-    clip: {fileID: 8300000, guid: 0de77b681d50ff3459d626eb8514a107, type: 3}
-  - name: swish2
-    clip: {fileID: 8300000, guid: 82b16b50f74a2d5439fd687c4cb93220, type: 3}
-  - name: swish3
-    clip: {fileID: 8300000, guid: 2a703b61aea3f72439a3158717d60436, type: 3}
+  - name: click
+    clip: {fileID: 8300000, guid: 0cf8026e859963c4dba338dad6998bcb, type: 3}
+  - name: touch
+    clip: {fileID: 8300000, guid: 20743ea4717ef5341bcb5d259e718f66, type: 3}
   bgm:
   - name: stage1
     clip: {fileID: 8300000, guid: 0b13e19170518154faa94ea9bc3efc22, type: 3}

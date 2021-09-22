@@ -9,6 +9,7 @@ public class LevelSelectSceneManager : MonoBehaviour
     void Start()
     {
         fadecontroller.instance.Fadein();
+        AudioManager.instance.PlayBGM("background");
         foreach (string levelID in IngameDataManager.instance.levelIndexList)
         {
             GameObject newObject = Instantiate(levelBoxWrapperPrefab) as GameObject;
