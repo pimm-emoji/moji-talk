@@ -19,6 +19,7 @@ public class ResultSceneManager : MonoBehaviour
         // Load Ending Data
         Ending ending = IngameDataManager.instance.level.endings.Find(x => x.id == GameManager.instance.endingID);
         // Apply to Display
+        objects.titleTextObject.GetComponent<Text>().text = "스테이지 완료";
         objects.stageTitleObject.GetComponent<Text>().text = IngameDataManager.instance.level.name;
         objects.endingTitleObject.GetComponent<Text>().text = ending.name;
         objects.endingDescrpitionObject.GetComponent<Text>().text = $"엔딩 [{ending.id.ToUpper()}] 완료";
