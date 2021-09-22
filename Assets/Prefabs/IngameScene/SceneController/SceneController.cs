@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -94,6 +95,8 @@ public class SceneController : MonoBehaviour
             else if (flow.flow[flowIndex[0]].type == "end")
             {
                 // Trigger Ending
+                GameManager.instance.endingID = flow.flow[flowIndex[0]].ending;
+                SceneManager.LoadScene("ResultScene");
             }
             // Initialize
             triggerFlow = false;

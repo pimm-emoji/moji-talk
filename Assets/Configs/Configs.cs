@@ -26,3 +26,8 @@ public class IngameConfig
 {
     public static string defaultDebuggingLevelID = "first";
 }
+public class ResultSceneConfig
+{
+    public static string defaultDebuggingLevelID = "first";
+    public static string defaultDebuggingEndingID = "a";
+}

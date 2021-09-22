@@ -16,7 +16,7 @@ public class EachChildFlow
     public float duration;
     public EmojiGenerations generates;
     public List<Message> chats;
-    public string endingID;
+    public string ending;
 }
 
 [System.Serializable]
