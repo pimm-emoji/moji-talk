@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3559836529009067967}
   - component: {fileID: 58462411032263590}
   - component: {fileID: 7447264900085321588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Emoji
   m_TagString: Goodemoji
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -84,6 +84,11 @@ MonoBehaviour:
     asset: 
     ondestroy: 0
     sprite: {fileID: 0}
+  newemoji:
+    id: 
+    asset: 
+    ondestroy: 0
+    sprite: {fileID: 0}
   renderer: {fileID: 1209824732208467491}
   spr: {fileID: 0}
   isCut: 0
@@ -122,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6024570520382688985}
   - component: {fileID: 7303809555228375076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TimingController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +176,7 @@ GameObject:
   - component: {fileID: 1124557675571184667}
   - component: {fileID: 1209824732208467491}
   - component: {fileID: 4888614627337159738}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MojiCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

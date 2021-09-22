@@ -10,12 +10,18 @@ public class LevelBoxWrapperController : MonoBehaviour, IPointerEnterHandler, IP
     public string levelID;
     public LevelBoxWrapper levelboxWrapper;
     public Image imageComponent;
+    bool nextscene = false;
+    bool fadedo = false;
 
     public void Awake()
     {
         imageComponent = GetComponent<Image>();
     }
 
+    public void SceneChange()
+    {
+        SceneManager.LoadScene("IngameScene");
+    }
     public void Init(string ID, string Title, string Description, string Collections)
     {
         levelID = ID;
@@ -42,29 +48,41 @@ public class LevelBoxWrapperController : MonoBehaviour, IPointerEnterHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         imageComponent.color = new Color32(110, 150, 198, 200);
+        AudioManager.instance.PlaySFX("touch");
         if(levelboxWrapper.title.text == "키사모")   //해당 부분에 가져다 대면 재생
         {
+            AudioManager.instance.StopBGM();
             AudioManager.instance.PlayBGM("stage1");
         }
         else if(levelboxWrapper.title.text == "Aimless")
         {
+            AudioManager.instance.StopBGM();
             AudioManager.instance.PlayBGM("stage2");
         }
         else if(levelboxWrapper.title.text == "Debug Scene")
         {
+            AudioManager.instance.StopBGM();
             AudioManager.instance.PlayBGM("stage3");
         }
         
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.instance.PlaySFX("click");
         GameManager.instance.nowLevelID = levelID;
+        fadecontroller.instance.Fadeout();
+       
 
-        SceneManager.LoadScene("IngameScene");
+        Invoke("SceneChange", 2);
+        
+        
+
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         AudioManager.instance.StopBGM();
+        AudioManager.instance.PlayBGM("background");
         imageComponent.color = new Color32(0, 41, 64, 143);
     }
 

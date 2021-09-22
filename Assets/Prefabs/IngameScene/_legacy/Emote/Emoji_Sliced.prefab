@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4363370853432732490}
   - component: {fileID: 7447264900085321588}
   - component: {fileID: 7420641960557358500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Emoji_Sliced
   m_TagString: Goodemoji
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 210736948526275641}
   - component: {fileID: 8610379927886195660}
   - component: {fileID: 6311052162217182999}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MojiCircle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1124557675571184667}
   - component: {fileID: 1209824732208467491}
   - component: {fileID: 503872765917821511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MojiCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
