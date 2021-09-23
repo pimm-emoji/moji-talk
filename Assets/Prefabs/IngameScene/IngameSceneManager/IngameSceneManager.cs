@@ -22,6 +22,7 @@ public class IngameSceneManager : MonoBehaviour
             GameManager.instance.nowLevelID = IngameConfig.defaultDebuggingLevelID;
         IngameDataManager.instance.LoadLevelEntire(GameManager.instance.nowLevelID);
         flow = IngameDataManager.instance.GetLevelFlow();
+        StopEmojiSpawner();
     }
 
     void Update()
