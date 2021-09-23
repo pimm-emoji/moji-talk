@@ -51,7 +51,7 @@ public class IngameSceneManager : MonoBehaviour
                 // Trigger Next Flow
                 else
                 {
-                    flowIndex[0] += 1;
+                    flowIndex[0] = flow.flow[flowIndex[0]].branch.index[0];
                     flowIndex[1] = 0;
                 }
                 // Initialize
