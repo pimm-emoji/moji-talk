@@ -74,11 +74,11 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Debug SetScore (Score: 4)")] public void DebugSetScore() { SetScore(4); }
     [ContextMenu("Debug GetScore through Print")] public void DebugGetScore() { print(GetScore()); }
 
-    public void AddPerfect() { counts.perfect += 1; }
-    public void AddGreat() { counts.great += 1; }
-    public void AddGood() { counts.good += 1; }
-    public void AddBad() { counts.bad += 1; }
-    public void AddMiss() { counts.miss += 1; }
+    [ContextMenu("Increase Perfect Count")] public void AddPerfect() { counts.perfect += 1; }
+    [ContextMenu("Increase Great Count")] public void AddGreat() { counts.great += 1; }
+    [ContextMenu("Increase Good Count")] public void AddGood() { counts.good += 1; }
+    [ContextMenu("Increase Bad Count")] public void AddBad() { counts.bad += 1; }
+    [ContextMenu("Increase Miss Count")] public void AddMiss() { counts.miss += 1; }
 
 
     /*
