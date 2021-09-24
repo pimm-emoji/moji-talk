@@ -91,6 +91,25 @@
       }
     },
     {
+      "type": "emote",
+      "duration": 180000,
+      "generates": {
+        "ratio": [1, 1],
+        "positiveEmojis": [
+          { "id": "clap", "asset": "clap", "ondestroy": 1 },
+          { "id": "heart", "asset": "heart", "ondestroy": 1.1 }
+        ],
+        "negativeEmojis": [
+          { "id": "skul", "asset": "skul", "ondestroy": -1 },
+          { "id": "warning", "asset": "warning", "ondestroy": -0.8 }
+        ]
+      },
+      "branch": {
+        "divider": [],
+        "index": [7]
+      }
+    },
+    {
       "type": "end",
       "ending": "a"
     }

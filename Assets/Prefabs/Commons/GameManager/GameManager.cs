@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
     // * SetScore()
     public float userTotalScore = 0f;
     public float branchIndexingScore = 0f;
-    public int nowFlowIndex = 1;
     
     void Awake()
     {
