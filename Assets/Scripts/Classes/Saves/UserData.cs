@@ -17,4 +17,11 @@ public class UserData
         unlockedLevels = new List<string>();
         unlockedLevelData = new List<Level>();
     }
+    public UserData(List<string> UnlockedLevels, List<Level> UnlockedLevelData)
+    {
+        userName = "";
+        userIcon = "";
+        unlockedLevels = UnlockedLevels;
+        unlockedLevelData = UnlockedLevelData;
+    }
 }

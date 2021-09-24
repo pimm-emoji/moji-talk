@@ -36,11 +36,7 @@ public class GameManager : MonoBehaviour
     public float elapsedTime = 0;
     public float elapsedFlowTime = 0;
     public string endingID;
-    public int perfect = 0;
-    public int great = 0;
-    public int good = 0;
-    public int bad = 0;
-    public int miss = 0;
+    public EmojiDestroyCounts counts;
 
     // "score" variable is gameflow's score.
     // It must be updated through methods
@@ -51,19 +47,16 @@ public class GameManager : MonoBehaviour
     public float branchIndexingScore = 0f;
     public int nowFlowIndex = 1;
     
-    public UserData userData;
     void Awake()
     {
         // Set GameManager unique.
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-
-        UserDataManager.InitStorage();
     }
-    void Start()
+    void Update()
     {
-        userData = UserDataManager.LoadStorage();
+        branchIndexingScore = branchIndexingScore >= 100 ? 99 : branchIndexingScore;
     }
 
     [ContextMenu("Debug Init Score")] public void InitScore() { userTotalScore = 0f; }
@@ -81,14 +74,11 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Debug SetScore (Score: 4)")] public void DebugSetScore() { SetScore(4); }
     [ContextMenu("Debug GetScore through Print")] public void DebugGetScore() { print(GetScore()); }
 
-
-
-
-    public void AddPerfect() { perfect += 1; }
-    public void AddGreat() { great += 1; }
-    public void AddGood() { good += 1; }
-    public void AddBad() { bad += 1; }
-    public void AddMiss() { miss += 1; }
+    public void AddPerfect() { counts.perfect += 1; }
+    public void AddGreat() { counts.great += 1; }
+    public void AddGood() { counts.good += 1; }
+    public void AddBad() { counts.bad += 1; }
+    public void AddMiss() { counts.miss += 1; }
 
 
     /*
@@ -119,4 +109,14 @@ public class GameManager : MonoBehaviour
         else if (operation == "prev") SceneManager.LoadScene(current - 1);
     }
     */
+}
+
+[System.Serializable]
+public class EmojiDestroyCounts
+{
+    public int perfect = 0;
+    public int great = 0;
+    public int good = 0;
+    public int bad = 0;
+    public int miss = 0;
 }

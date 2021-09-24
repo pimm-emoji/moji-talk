@@ -19,6 +19,7 @@ public class IngameDataManager : MonoBehaviour
     public Level level;  
     public List<Profile> participants;
     public Flow flow;
+    public UserData userData;
 
     void Awake()
     {
@@ -28,6 +29,8 @@ public class IngameDataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject); // 이 오브젝트는 다른 씬으로 넘어가도 파괴되지 않음
 
         LoadLevelList();
+        UserDataManager.InitStorage();
+        userData = UserDataManager.LoadStorage();
     }
 
 
