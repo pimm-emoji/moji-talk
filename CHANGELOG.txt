@@ -1,0 +1,13 @@
+CHANGELOG
+
+* 수정 사항 병합 과정에서 폴더 구조를 일정하게 맞췄습니다. 수많은 에셋이 새 폴더에 이동했으니 참고해주세요.
+* 대부분은 하위에 IngameScene/Emote 폴더를 생성해서 파일을 옮겼을 뿐입니다.
+ex) Assets/Models/(파일) => Assets/Models/IngameScene/Emote/(파일)
+
+* Image 폴더는 Resources 폴더와 역할이 중복되어 Resources 쪽으로 합쳤습니다.
+  Assets/Image/(파일) => Assets/Resources/IngameScene/Emote/(파일)
+
+* Scripts는 Manager의 경우 Assets/Scripts/Managers/IngamePlayScene/Emote 폴더로,
+  나머지는 Assets/Scripts/Controllers/IngamePlayScene/Emote 폴더로 이동했습니다.
+
+클래스 적용에 필요한 예시 코드는 Assets/Scripts/ClassDemoCode.cs 파일에 작성해두었습니다.

@@ -4,64 +4,30 @@ using UnityEngine;
 /*
     The internal system configs of moji talk
 */
-class Configs
+
+class ChattingConfig
 {
-    /*
-        Primary Assets Paths
-    */
-    /// <summary>
-    /// PresetPath is path of Preset.
-    /// Path: <c>/Assets/Presets</c>
-    /// </summary>
-    public static string PresetPath;
+    public static float[] namePadding = {10f, 5f}; // width, height
+    public static float[] contentPadding = {15f, 7.5f}; // width, height
 
-    /// <summary>
-    /// ResourcePath is path of common resources root directory.
-    /// Path: <c>/Assets/Resources</c>
-    /// </summary>
-    public static string ResourcePath;
+    public static float[,] gradientSettings;
+    public static byte[] backgroundColorRGB = {11, 150, 198, 255};
 
+    public static float[] VerticalLayoutGroupOffset = {40, 40, 40, 40, 30};
+    public static float[] scrollViewObjectFadeTime = {1.5f, 1.5f}; // Fade in, Fade out
 
-    /*
-        Presets Paths
-    */
-    /// <summary>
-    /// ProfilePath is path of Profile Preset.
-    /// Path: <c>/Assets/Presets/profiles.json</c>
-    /// </summary>
-    public static string ProfilePath;
-
-    /// <summary>
-    /// LevelIndexPath is path of Level Index Preset.
-    /// Path: <c>/Assets/Presets/levels.json</c>
-    /// </summary>
-    public static string LevelIndexPath;
-
-    /// <summary>
-    /// LevelDirPath is path of Path of Level Data Directory.
-    /// Path: <c>/Assets/Presets/levels</c>
-    /// </summary>
-    public static string LevelDirPath;
-
-
-    /*
-        Resources Paths
-    */
-    /// <summary>
-    /// EmojiPath is path of emoji resources
-    /// Path: <c>/Assets/Resources/Emojis</c>
-    /// </summary>
-    public static string EmojiPath;
-    
-    static Configs()
+    public ChattingConfig()
     {
-        PresetPath = Path.Combine(Application.dataPath, "Presets");
-        ResourcePath = Path.Combine(Application.dataPath, "Resources");
-
-        ProfilePath = Path.Combine(PresetPath, "profiles.json");
-        LevelIndexPath = Path.Combine(PresetPath, "levels.json");
-        LevelDirPath = Path.Combine(PresetPath, "levels");
-
-        EmojiPath = Path.Combine(ResourcePath, "Emojis");
+        gradientSettings = new float[,] {{0f, 0f}, {0.4f, 0.4f}, {1f, 1f}}; // time, alpha
     }
+}
+
+public class IngameConfig
+{
+    public static string defaultDebuggingLevelID = "first";
+}
+public class ResultSceneConfig
+{
+    public static string defaultDebuggingLevelID = "first";
+    public static string defaultDebuggingEndingID = "a";
 }

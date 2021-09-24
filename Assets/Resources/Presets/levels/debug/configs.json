@@ -1,0 +1,15 @@
+{
+  "id": "debug",
+  "name": "Debug Scene",
+  "desc": "Debug Scene",
+  "img": "Profiles/Images/davidson",
+  "type": "single",
+  "participants": ["davidson"],
+  "usingEmojis": ["thumbsup", "happy", "weary", "angry", "thinking"],
+  "endings": [
+    {
+      "id": "a",
+      "name": "Memory of 'A' Time"
+    }
+  ]
+}
