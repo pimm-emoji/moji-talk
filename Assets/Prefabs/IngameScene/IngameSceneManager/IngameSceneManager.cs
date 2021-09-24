@@ -68,14 +68,16 @@ public class IngameSceneManager : MonoBehaviour
                 // Trigger Next Flow
                 Branch branch = flow.flow[flowIndex[0]].branch;
                 branch.divider.Add(100);
-                for (int i = 0; branch.divider[i] > GameManager.instance.branchIndexingScore; i++)
+                for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    flowIndex[0] = branch.index[i];
-                    flowIndex[1] = 0;
-                    break;
+                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
+                    {
+                        flowIndex[0] = branch.index[i];
+                        flowIndex[1] = 0;
+                        break;
+                    }
                 }
                 // Initialize
-                flowIndex[0] += 1;
                 triggerFlow = true;
                 previousFlowElapsed = 0;
             }

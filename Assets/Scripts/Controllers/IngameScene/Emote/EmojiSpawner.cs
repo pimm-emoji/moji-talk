@@ -13,26 +13,27 @@ public class EmojiSpawner : MonoBehaviour
 	public bool spawnswitch = false;
 	bool duplicate = false;
 	public int bpm = 128;
-
-	[ContextMenu("LoadDemoGenData")]
-	
+	public GameObject sceneManager;
+	IngameSceneManager sceneManagerComponent;
 
 	void Start () {
-		// Disabled LoadLevelEntire Method.
-		//IngameDataManager.instance.LoadLevelEntire("first");  // ingamedatamanger에서 "first" 레벨을 로드하고
-		generateConfig = IngameDataManager.instance.flow.flow[GameManager.instance.nowFlowIndex].generates;
+		sceneManagerComponent = sceneManager.GetComponent<IngameSceneManager>();
+		generateConfig = IngameDataManager.instance.flow.flow[sceneManagerComponent.flowIndex[0]].generates;
 	}
 
 	void Update()
     {
-		if(spawnswitch == false){
+		if(!spawnswitch)
+		{
 			StopCoroutine(SpawnEmojis());
 			duplicate = false;
         }
 
-		else if(spawnswitch == true){
-			if (duplicate == false)
+		else if(spawnswitch)
+		{
+			if (!duplicate)
 			{
+				LoadGenerateConfig();
 				StartCoroutine(SpawnEmojis());
 				duplicate = true;
 			}
@@ -42,14 +43,8 @@ public class EmojiSpawner : MonoBehaviour
     }
 
 
-	void LoadDemoData()  //generateConfig 값을 인게임 매니져에서 가져온다.
-	{
-		generateConfig = IngameDataManager.instance.flow.flow[GameManager.instance.nowFlowIndex].generates;  // start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.
-	}
-
-
-
-
+	void LoadGenerateConfig() { LoadGenerateConfig(IngameDataManager.instance.flow.flow[sceneManagerComponent.flowIndex[0]].generates);  /* start에서 가져온 ingamemanager에서 generate 값을 받아 저장한다.*/ }
+	void LoadGenerateConfig(EmojiGenerations Generations) { generateConfig = Generations; }
 
 
 	void mode0()
@@ -59,7 +54,7 @@ public class EmojiSpawner : MonoBehaviour
 
 		GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
 
-		LoadDemoData();
+		LoadGenerateConfig();
 
 
 
@@ -89,7 +84,7 @@ public class EmojiSpawner : MonoBehaviour
 			int spawnIndex = i;
 			Transform spawnPoint = spawnPoints[spawnIndex];
 			GameObject spawnedEmoji = Instantiate(emojiPrefab, spawnPoint.position, spawnPoint.rotation);
-			LoadDemoData();
+			LoadGenerateConfig();
 			int mojirange = Random.Range(0, generateConfig.positiveEmojis.Count);
 			spawnedEmoji.GetComponent<Emojis>().emoji = generateConfig.positiveEmojis[mojirange];
 
@@ -180,7 +175,7 @@ public class EmojiSpawner : MonoBehaviour
 		GameObject spawnedEmoji2 = Instantiate(emojiPrefab, spawnPoint2.position, spawnPoint2.rotation);
 		GameObject spawnedEmoji3 = Instantiate(emojiPrefab, spawnPoint3.position, spawnPoint3.rotation);
 
-		LoadDemoData();
+		LoadGenerateConfig();
 
 		for (int i = 0; i < 3; i++)
 		{
