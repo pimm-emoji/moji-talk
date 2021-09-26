@@ -20,7 +20,7 @@ public class Emoji
 
     public static Emoji LoadEmoji(string emojiID)
     {
-        Emoji newEmoji = AssetLoader.LoadJsonToObject(Path.Combine("Emojis", "Meta", $"{emojiID}")).ToObject<Emoji>();
+        Emoji newEmoji = JsonIO.LoadJsonAssetToObject<Emoji>($"Emojis/Meta/{emojiID}");
         newEmoji.sprite = Resources.Load<Sprite>(newEmoji.asset);
         return newEmoji;
     }

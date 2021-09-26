@@ -20,10 +20,10 @@ public class AchievementsManager : MonoBehaviour
 
     public void LoadAchievements()
     {
-        List<string> index = PresetController.LoadSingleDepth<string>(AssetLoader.LoadJsonToArray("Presets/achievements"));  //string 형 리스트 index
+        List<string> index = JsonIO.LoadJsonAssetToObject<AchievementsIDIndex>("Presets/achievements").index;
         foreach (string index_obj in index)
         {
-            achievements.Add(AssetLoader.LoadJsonToObject($"Presets/achievements/{index_obj}").ToObject<Achievement>());
+            achievements.Add(JsonIO.LoadJsonAssetToObject<Achievement>($"Presets/achievements/{index_obj}"));
         }
     }
     /*
@@ -48,48 +48,10 @@ public class AchievementsManager : MonoBehaviour
     
 }
     */
+}
 
-    [System.Serializable]
-    public class Achievement
-    {
-        public bool condition;
-        public string id;
-        public string displayName;
-        public string description;
-        public string imgAssetPath;
-        public Sprite imgAssetSprite;
-
-        public Achievement(bool Condition)
-        {
-            condition = Condition;
-        }
-
-        public Achievement(string ID, string DisplayName, string Description)
-        {
-            id = ID;
-            displayName = DisplayName;
-            description = Description;
-        }
-        public Achievement(string ID, string DisplayName, string Description, string ImgAssetPath)
-        {
-            id = ID;
-            displayName = DisplayName;
-            description = Description;
-            imgAssetPath = ImgAssetPath;
-            imgAssetSprite = Resources.Load<Sprite>(imgAssetPath);
-        }
-
-        public void Load(string ImgAssetPath)
-        {
-            imgAssetPath = ImgAssetPath;
-            imgAssetSprite = Resources.Load<Sprite>(imgAssetPath);
-        }
-
-        public static void Grant(string id)
-        {
-
-        }
-        public static void Revoke(string id)
-        { }
-    }
+[System.Serializable]
+public class AchievementsIDIndex
+{
+    public List<string> index;
 }
