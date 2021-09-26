@@ -2,8 +2,6 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 public class UserDataManager
 {
@@ -34,7 +32,7 @@ public class UserDataManager
                 PathVariables.userDataStorageDirectory,
                 PathVariables.userDataStorageFilename
             ),
-            JsonConvert.SerializeObject(userData)
+            JsonUtility.ToJson(userData)
         );
     }
 }
