@@ -1,0 +1,6 @@
+﻿{
+  "id": "badend",
+  "displayName": "면접 탈락",
+  "description": "귀하의 우수한 역량에 불구하고 최종 전형 결과 합격하지 못하였음을 통보 드립니다.",
+  "imgAssetPath": "demo/no_thanks"
+}
