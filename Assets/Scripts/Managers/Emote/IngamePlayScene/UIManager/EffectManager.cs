@@ -1,26 +1,33 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÆÇÁ¤ÀÇ ÀÌÆåÆ® ¿¬ÃâÀ» ´ã´çÇÏ´Â ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
+//íŒì •ì˜ ì´í™íŠ¸ ì—°ì¶œì„ ë‹´ë‹¹í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
 public class EffectManager : MonoBehaviour
 {
-    //Hit ÀÌ¶ó´Â ¹®ÀÚ¿­ÀÌ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ½ÇÇà½ÃÅ°´Â Æ®¸®°ÅÀÓ
+    //Hit ì´ë¼ëŠ” ë¬¸ìì—´ì´ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” íŠ¸ë¦¬ê±°ì„
     string hit = "Hit";
     
     [SerializeField] Animator judgementAnimator = null;
     [SerializeField] UnityEngine.UI.Image judgementlmage = null;
+    [SerializeField] Animator scoreAnimator = null;
+   
 
-    // ½ºÇÁ¶óÀÌÆ® ¼±ÅÃ
+    // ìŠ¤í”„ë¼ì´íŠ¸ ì„ íƒ
     [SerializeField] Sprite[] judgementSprite = null;
     
 
 
-    // ÆÄ¶ó¹ÌÅÍ °ª¿¡ µû¶ó judgementSprite ¹è¿­¿¡¼­ ÇØ´ç ½ºÇÁ¶óÀÌÆ®¸¦ °¡Á®¿È
+    // íŒŒë¼ë¯¸í„° ê°’ì— ë”°ë¼ judgementSprite ë°°ì—´ì—ì„œ í•´ë‹¹ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ê°€ì ¸ì˜´
     public void JudgementEffect(int p_num)
     {
         judgementlmage.sprite = judgementSprite[p_num];
         judgementAnimator.SetTrigger(hit);
+    }
+
+    public void ScoreEffect()
+    {
+        scoreAnimator.SetTrigger(hit);
     }
 
 }
