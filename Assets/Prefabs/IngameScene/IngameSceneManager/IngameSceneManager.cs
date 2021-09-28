@@ -67,15 +67,21 @@ public class IngameSceneManager : MonoBehaviour
                 StopEmojiSpawner();
                 // Trigger Next Flow
                 Branch branch = flow.flow[flowIndex[0]].branch;
-                branch.divider.Add(100);
+                bool isProcessed = false;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
                     if (branch.divider[i] > GameManager.instance.branchIndexingScore)
                     {
                         flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
+                        isProcessed = true;
                         break;
                     }
+                }
+                if (!isProcessed)
+                {
+                    flowIndex[0] = branch.index[branch.index.Count-1];
+                    flowIndex[1] = 0;
                 }
                 // Initialize
                 triggerFlow = true;
