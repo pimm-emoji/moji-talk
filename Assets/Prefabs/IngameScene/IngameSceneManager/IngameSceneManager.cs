@@ -67,15 +67,21 @@ public class IngameSceneManager : MonoBehaviour
                 StopEmojiSpawner();
                 // Trigger Next Flow
                 Branch branch = flow.flow[flowIndex[0]].branch;
-                branch.divider.Add(100);
+                bool isProcessed = false;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
                     if (branch.divider[i] > GameManager.instance.branchIndexingScore)
                     {
                         flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
+                        isProcessed = true;
                         break;
                     }
+                }
+                if (!isProcessed)
+                {
+                    flowIndex[0] = branch.index[branch.index.Count-1];
+                    flowIndex[1] = 0;
                 }
                 // Initialize
                 triggerFlow = true;
@@ -151,8 +157,31 @@ public class IngameSceneManager : MonoBehaviour
     [ContextMenu("Scroll Log to Top")] void ScrollLogToTop() { ScrollLogTo(1); }
     [ContextMenu("Scroll Log to Bottom")] void ScrollLogToBottom() { ScrollLogTo(0); }
 
-    [ContextMenu("FadeIn Chatting ScrollView Wrapper")] void FadeInScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(1f, ChattingConfig.scrollViewObjectFadeTime[0], false); }
-    [ContextMenu("FadeOut Chatting ScrollView Wrapper")] void FadeOutScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(0f, ChattingConfig.scrollViewObjectFadeTime[1], false); }
+    [ContextMenu("FadeIn Chatting ScrollView Wrapper")]
+    void FadeInScrollView()
+    {
+        objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(1f, ChattingConfig.scrollViewObjectFadeTime[0], false);
+        ChildSetActive(true);
+    }
+    [ContextMenu("FadeOut Chatting ScrollView Wrapper")]
+    void FadeOutScrollView()
+    {
+        objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(0f, ChattingConfig.scrollViewObjectFadeTime[1], false);
+        StartCoroutine(WaitForSetActiveFalse());
+    }
+    void ChildSetActive(bool Bool)
+    {
+        foreach (Transform child in objects.scrollViewContent.transform)
+        {
+            child.gameObject.SetActive(Bool);
+        }
+    }
+    IEnumerator WaitForSetActiveFalse()
+    {
+        yield return new WaitForSeconds(ChattingConfig.scrollViewObjectFadeTime[1] * 0.8f);
+        ChildSetActive(false);
+        StopCoroutine(WaitForSetActiveFalse());
+    }
 }
 
 [System.Serializable]

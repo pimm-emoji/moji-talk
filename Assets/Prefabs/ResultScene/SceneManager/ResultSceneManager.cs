@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +7,13 @@ public class ResultSceneManager : MonoBehaviour
 {
     public ResultSceneGameObjects objects;
     public Ending ending;
+
+
+    public GameObject AchvPrefab;
+ 
+
+
+
     void Start()
     {
         // Debugging
@@ -23,6 +30,9 @@ public class ResultSceneManager : MonoBehaviour
         objects.stageTitleObject.GetComponent<Text>().text = IngameDataManager.instance.level.name;
         objects.endingTitleObject.GetComponent<Text>().text = ending.name;
         objects.endingDescrpitionObject.GetComponent<Text>().text = $"엔딩 [{ending.id.ToUpper()}] 완료";
+        objects.endingScore.GetComponent<Text>().text = string.Format("총 스코어 {0}\n Perfect : {1}\n Great: {2} \n Good : {3}\n Bad : {4}\n Miss : {5}\n", GameManager.instance.userTotalScore, GameManager.instance.counts.perfect, GameManager.instance.counts.great, GameManager.instance.counts.good,GameManager.instance.counts.bad,GameManager.instance.counts.miss); 
+
+
     }
 }
 
@@ -35,4 +45,5 @@ public class ResultSceneGameObjects
     public GameObject endingWrapperObject;
     public GameObject endingTitleObject;
     public GameObject endingDescrpitionObject;
+    public GameObject endingScore;
 }

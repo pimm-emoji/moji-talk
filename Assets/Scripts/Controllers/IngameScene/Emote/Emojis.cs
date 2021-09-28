@@ -34,6 +34,7 @@ public class Emojis : MonoBehaviour {
 
 	void Start ()  
 	{
+		
 		//rigidbody에 시작 힘을 가함
 		rb = GetComponent<Rigidbody2D>();             
 		rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);

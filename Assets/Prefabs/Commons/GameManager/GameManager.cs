@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json.Linq;
 
 /*
     The GameManager Class
@@ -52,10 +51,6 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-    }
-    void Update()
-    {
-        branchIndexingScore = branchIndexingScore >= 100 ? 99 : branchIndexingScore;
     }
 
     [ContextMenu("Debug Init Score")] public void InitScore() { userTotalScore = 0f; }

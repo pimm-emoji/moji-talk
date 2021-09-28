@@ -6,90 +6,108 @@ using UnityEngine;
 public class AchievementsManager : MonoBehaviour
 {
     public List<Achievement> achievements;
+    public Ending ending;
 
     void Awake()
     {
         LoadAchievements();
+        //CheckCondition();
         Debug.Log(achievements[0].id);
     }
 
     public void Refresh()
     {
         LoadAchievements();
+        //CheckCondition();
     }
 
     public void LoadAchievements()
     {
-        List<string> index = PresetController.LoadSingleDepth<string>(AssetLoader.LoadJsonToArray("Presets/achievements"));  //string 형 리스트 index
+        List<string> index = JsonIO.LoadJsonAssetToObject<AchievementsIDIndex>("Presets/achievements").index;
         foreach (string index_obj in index)
         {
-            achievements.Add(AssetLoader.LoadJsonToObject($"Presets/achievements/{index_obj}").ToObject<Achievement>());
+            achievements.Add(JsonIO.LoadJsonAssetToObject<Achievement>($"Presets/achievements/{index_obj}"));
         }
     }
     /*
     public void CheckCondition()
     {
-        for(int i = 0; i< achievements.length; i++){    
-        if (achievements[i].id == "hawkeye_1")
-        {
-            if(GameManager.instance.bad + GameManager.instance.miss < 20){
-                achievements[i].condition = true;}
-            else{ achievement[i].condition = false;}
-        }
+        for(int i = 0; i< achievements.Count; i++){    
+            if (x => x.id == "hawkeye_1")
+            {
+                if(GameManager.instance.bad + GameManager.instance.miss < 20){
+                   achievements[i].condition = true;}
+                else{ achievement[i].condition = false;}
+            }
 
-        .....
+
+            else if(x=> x.id == "MemoryofAtime")    
+            {
+                Ending ending = IngameDataManager.instance.level.endings.Find(x => x.id == GameManager.instance.endingID);
+                if(ending.name == "Memory of 'A' Time")
+                {
+                    achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false; }
+            }
+
+
+            else if(x=> x.id == "gameover")    
+            {
+                if(중간에 game over 되었을 시)
+                {
+                    achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false; }
+            }
+
+            else if(x=> x.id == "badend")    
+            {
+                if(최종 엔딩이 bad 엔딩일 시)
+                {
+                    achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false; }
+            }      
+
+            else if(x => x.id == "pumpkin")
+            {
+                if(최종 엔딩이 good 엔딩이고, 분기별 엔딩 점수 중 1번째가 가장 높을 때)
+                {
+                    achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false;}
+                    
+            }
+
+            else if(x=> x.id =="rich")
+            {
+                if(최종 엔딩이 good 엔딩이고, 분기별 엔딩 점수가 2번째가 가장 높을 때)
+                {
+                     achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false;}
+                    
+            }
+
+            else if(x=> x.id =="justice")
+            {
+                if(최종 엔딩이 good 엔딩이고, 분기별 엔딩 점수가 3번째가 가장 높을 때)
+                {
+                     achievements[i].condition = true;
+                }
+                else { achievement[i].condition = false;}
+                    
+            }
             
-        else if(achievements[i].id == "else"){
-        if(achievement 
 
+        }
 
-            ......
-    }
-    
-}
     */
+}
 
-    [System.Serializable]
-    public class Achievement
-    {
-        public bool condition;
-        public string id;
-        public string displayName;
-        public string description;
-        public string imgAssetPath;
-        public Sprite imgAssetSprite;
-
-        public Achievement(bool Condition)
-        {
-            condition = Condition;
-        }
-
-        public Achievement(string ID, string DisplayName, string Description)
-        {
-            id = ID;
-            displayName = DisplayName;
-            description = Description;
-        }
-        public Achievement(string ID, string DisplayName, string Description, string ImgAssetPath)
-        {
-            id = ID;
-            displayName = DisplayName;
-            description = Description;
-            imgAssetPath = ImgAssetPath;
-            imgAssetSprite = Resources.Load<Sprite>(imgAssetPath);
-        }
-
-        public void Load(string ImgAssetPath)
-        {
-            imgAssetPath = ImgAssetPath;
-            imgAssetSprite = Resources.Load<Sprite>(imgAssetPath);
-        }
-
-        public static void Grant(string id)
-        {
-
-        }
-        public static void Revoke(string id)
-        { }
-    }
+[System.Serializable]
+public class AchievementsIDIndex
+{
+    public List<string> index;
 }

@@ -1161,6 +1161,7 @@ GameObject:
   - component: {fileID: 311817228}
   - component: {fileID: 311817227}
   - component: {fileID: 311817226}
+  - component: {fileID: 311817229}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1205,7 +1206,8 @@ MonoBehaviour:
   - 10
   - 8
   - 6
-  - 1
+  - -5
+  - -7
   comboBonusScore: 10
 --- !u!114 &311817227
 MonoBehaviour:
@@ -1228,7 +1230,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d95a42be1a13c804bb23d159ea2b1057, type: 3}
+    m_Font: {fileID: 12800000, guid: d86677266577a5344acb8a5b53560146, type: 3}
     m_FontSize: 100
     m_FontStyle: 1
     m_BestFit: 0
@@ -1249,6 +1251,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311817224}
   m_CullTransparentMesh: 1
+--- !u!95 &311817229
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311817224}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9631c4cd201548540852e472a62c6805, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &399691524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 221.1056}
+  m_AnchoredPosition: {x: 0, y: 28.543907}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &399691526
@@ -1743,6 +1764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   judgementAnimator: {fileID: 863197630}
   judgementlmage: {fileID: 863197631}
+  scoreAnimator: {fileID: 311817229}
   judgementSprite:
   - {fileID: 21300000, guid: e4ee73b7e9dc7c741ad847b05ec82930, type: 3}
   - {fileID: 21300000, guid: 255e1b800ecd56f45a8d4af9ac592ddc, type: 3}
@@ -1889,7 +1911,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1000320975}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.7177799
+  m_Size: 0.8091856
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2451,7 +2473,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d95a42be1a13c804bb23d159ea2b1057, type: 3}
+    m_Font: {fileID: 12800000, guid: d86677266577a5344acb8a5b53560146, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
