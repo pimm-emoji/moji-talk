@@ -157,8 +157,31 @@ public class IngameSceneManager : MonoBehaviour
     [ContextMenu("Scroll Log to Top")] void ScrollLogToTop() { ScrollLogTo(1); }
     [ContextMenu("Scroll Log to Bottom")] void ScrollLogToBottom() { ScrollLogTo(0); }
 
-    [ContextMenu("FadeIn Chatting ScrollView Wrapper")] void FadeInScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(1f, ChattingConfig.scrollViewObjectFadeTime[0], false); }
-    [ContextMenu("FadeOut Chatting ScrollView Wrapper")] void FadeOutScrollView() { objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(0f, ChattingConfig.scrollViewObjectFadeTime[1], false); }
+    [ContextMenu("FadeIn Chatting ScrollView Wrapper")]
+    void FadeInScrollView()
+    {
+        objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(1f, ChattingConfig.scrollViewObjectFadeTime[0], false);
+        ChildSetActive(true);
+    }
+    [ContextMenu("FadeOut Chatting ScrollView Wrapper")]
+    void FadeOutScrollView()
+    {
+        objects.scrollViewObject.GetComponent<Image>().CrossFadeAlpha(0f, ChattingConfig.scrollViewObjectFadeTime[1], false);
+        StartCoroutine(WaitForSetActiveFalse());
+    }
+    void ChildSetActive(bool Bool)
+    {
+        foreach (Transform child in objects.scrollViewContent.transform)
+        {
+            child.gameObject.SetActive(Bool);
+        }
+    }
+    IEnumerator WaitForSetActiveFalse()
+    {
+        yield return new WaitForSeconds(ChattingConfig.scrollViewObjectFadeTime[1] * 0.8f);
+        ChildSetActive(false);
+        StopCoroutine(WaitForSetActiveFalse());
+    }
 }
 
 [System.Serializable]
