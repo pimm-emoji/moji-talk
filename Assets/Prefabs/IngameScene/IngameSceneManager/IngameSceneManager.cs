@@ -35,6 +35,7 @@ public class IngameSceneManager : MonoBehaviour
     public bool triggerFlow = true;
 
     // Called Every Frame by Update Method
+
     void FlowHandler()
     {
         // Check time elapsed
@@ -66,15 +67,16 @@ public class IngameSceneManager : MonoBehaviour
                 // Stop Emoji Spawner Handler
                 StopEmojiSpawner();
                 // Trigger Next Flow
-                Branch branch = flow.flow[flowIndex[0]].branch;
                 bool isProcessed = false;
+                Branch branch = flow.flow[flowIndex[0]].branch;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
+                    if (branch.divider[i] < GameManager.instance.branchIndexingScore)
                     {
-                        flowIndex[0] = branch.index[i];
+                        flowIndex[0] = branch.index[i+1];
                         flowIndex[1] = 0;
                         isProcessed = true;
+                        //GameManager.instance.branchIndexingScore = 0;
                         break;
                     }
                 }
@@ -127,13 +129,13 @@ public class IngameSceneManager : MonoBehaviour
     void StopEmojiSpawner()
     {
         emojiSpawner.spawnswitch = false;
-        GameManager.instance.InitBranchScore();
     }
 
     void AddChattingMessage(Message message)
     {
         GameObject newObject = Instantiate(objects.chattingWrapperPrefab) as GameObject;
-        newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
+        Profile profile = IngameDataManager.instance.participants.Find(x => x.id == message.author);
+        newObject.GetComponent<ChattingWrapperController>().Init(profile.name, message.content, message.author != "player" ? 0 : 1);
         objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject, message.author != "player" ? 0 : 1);
         ScrollLogToBottom();
     }

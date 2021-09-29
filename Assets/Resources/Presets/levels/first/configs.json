@@ -1,15 +1,27 @@
-{
+﻿{
   "id": "first",
-  "name": "키사모",
-  "desc": "키위를 사랑하는 모임",
+  "name": "루돌프",
+  "desc": "현재 취업 준비중",
   "img": "Profiles/Images/dopamine",
   "type": "single",
-  "participants": ["dopamine"],
+  "participants": ["player", "pro_negotiator", "stonk", "coin_nether", "elon_nusk", "waffle_shopkeeper", "first_police", "rudolf"],
   "usingEmojis": ["thumbsup", "happy", "weary", "angry", "thinking"],
   "endings": [
     {
-      "id": "a",
-      "name": "Memory of 'A' Time"
+      "id": "GameOver",
+      "name": "서류탈락"
+    },
+    {
+      "id": "BadEnding",
+      "name": "면접탈락"
+    },
+    {
+      "id": "NormalEnding",
+      "name": "입사성공"
+    },
+    {
+      "id": "GoodEnding",
+      "name": "수석입사"
     }
   ]
 }

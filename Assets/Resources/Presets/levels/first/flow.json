@@ -1,117 +1,760 @@
-{
+﻿{
   "flow": [
     {
+      "__COMMENT__": "INDEX 0",
       "type": "chatting",
       "chats": [
-        { "author": "player", "type": "message", "content": "도파민 박사님도 자기소개 부탁드리겠습니다.", "delay": 1000 },
-        { "author": "dopamine", "type": "meesage", "content": "반갑습니다! \n대한민국 최고의 박사, 도파민박사라고 합니다!", "delay": 10000 }
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "저기요 당근나라 보고 연락드렸어요",
+          "delay": 10000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "네",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "이거 공짜로 뿌리는 분 계시던데 싸게 파실 생각 없나요?",
+          "delay": 10000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "그런데 뭘 공짜로 뿌린다는 거죠?",
+          "delay": 10000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "갤럭시 X요",
+          "delay": 10000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "휴대폰 파는데 보면 다 공짜로 폰준데요",
+          "delay": 10000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "안팝니다",
+          "delay": 10000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "장난이고 가격 흥정 좀 해 봐요",
+          "delay": 10000
+        }
       ],
       "branch": {
+        "__COMMENT__": "전개 1 도입",
         "divider": [],
-        "index": [1]
+        "index": [ 1 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 1",
       "type": "emote",
       "duration": 180000,
       "generates": {
-        "ratio": [1, 1],
+        "ratio": [ 1, 1 ],
         "positiveEmojis": [
-          { "id": "thumbsup", "asset": "thumbsup", "ondestroy": 1 },
-          { "id": "happy", "asset": "happy", "ondestroy": 1.1 }
+          {
+            "id": "thumbsup",
+            "asset": "thumbsup",
+            "ondestroy": 1
+          },
+          {
+            "id": "happy",
+            "asset": "happy",
+            "ondestroy": 1.1
+          }
         ],
         "negativeEmojis": [
-          { "id": "weary", "asset": "weary", "ondestroy": -1 },
-          { "id": "angry", "asset": "angry", "ondestroy": -0.8 }
+          {
+            "id": "weary",
+            "asset": "weary",
+            "ondestroy": -1
+          },
+          {
+            "id": "angry",
+            "asset": "angry",
+            "ondestroy": -0.8
+          }
         ]
       },
       "branch": {
-        "divider": [-50, 0, 50],
-        "index": [2, 3, 4, 5]
+        "__COMMENT__": "전개 1 진행",
+        "divider": [ 2000, 3000 ],
+        "index": [ 2, 3, 4 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 2",
       "type": "chatting",
       "chats": [
-        { "author": "dopamine", "type": "message", "content": "이자리를 빌어 한 말씀 올리겠습니다!!", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "이 도파민! 왁굳님이 왁타버스 계획을 발표했을때!", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "찌릿! 하고 느낌이 왔습니다!", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "갖고 있는 현금을 모두 끌어모아 관련 주식에 전부 때려박았고", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "현재 수익률 -11프로!", "delay": 1000 },
-        { "author": "player", "type": "emoji", "content": "thinking", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "쯧", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "짧게 하는게 더 나았겠는데요?", "delay": 1000 }
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "알겠습니다. 네고 안하겠습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "가격 조금 더 드릴테니 저희 동네 오셔서 직거래 가능한가요?",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "그 정도는 가능합니다.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "제가 시간이 안되서 밤 10시에 순록공원에서 볼 수 있죠?",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "예 알겠습니다.",
+          "delay": 3000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "물건 좀 볼 수 있을까요?",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "여기 있습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "돈을 드려야 되는데, 조금 부족하네요. 저기 ATM기에서 뽑아올게요. 조금만 기다리세요.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "공짜폰 감사드려요",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "emoji",
+          "content": "thinking",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "emoji",
+          "content": "야 이 새끼 거기 멈춰!",
+          "delay": 1000
+        }
       ],
       "branch": {
+        "__COMMENT__": "전개 1: Game Over",
         "divider": [],
-        "index": [6]
+        "index": [ 15 ] 
       }
     },
     {
+      "__COMMENT__": "INDEX 3",
       "type": "chatting",
       "chats": [
-        { "author": "player", "type": "message", "content": "일단 타워를 체크를 하긴 해야돼", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "아예 여기 아니면은..", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "요오오 사이에 있는거야! 요 사이에", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "여기 사이에 있는건데..?", "delay": 1000 }
+        {
+          "author": "player",
+          "type": "message",
+          "content": "이 정도도 다른 물건보다 많이 저렴한 편인데",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "왜 자꾸 말도 안되게 깎으시는 거죠",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "원래가격에서 5만원 깎아드릴테니 더 흥정하지 마세요",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "네 알겠습니다. 지금 송금 완료했어요.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "시세보다 엄청 싸게 샀네요 ㅋㅋㅋ",
+          "delay": 1000
+        }
       ],
       "branch": {
+        "__COMMENT__": "전개 1: Bad",
         "divider": [],
-        "index": [6]
+        "index": [ 5 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 4",
       "type": "chatting",
       "chats": [
-        { "author": "player", "type": "message", "content": "저기요", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "뭘 염탐하러 오신거에요...ㅋㅋㅋ", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "저도 힌트를 보고 왔습니다!!", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "어떤 힌트를 보고 오신거죠?", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "타워에서 400미터 떨어진 곳에 보물이 있습니다!", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "아 ㅋㅋㅋ 아 X됐다 ㅋㅋㅋㅋㅋㅋ", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "어..ㅋㅋㅋ 잠시만요..ㅋㅋㅋㅋㅋ", "delay": 0 },
-        { "author": "player", "type": "system", "content": "exit", "delay": 1000 }
+        {
+          "author": "player",
+          "type": "message",
+          "content": "아까 전부터 말도 안되게 깎으시는데 그냥 물건 안 팔렵니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "이정도도 다른 물건보다 많이 저렴한 편인데.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "알겠습니다 ㅠㅠ  그러면 원래 가격에 살게요.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "안돼 돌아가",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "message",
+          "content": "알겠습니다. 그러면 5만원 더 드리고 토 안달고 바로 송금할게요.",
+          "delay": 1000
+        }
       ],
       "branch": {
+        "__COMMENT__": "전개 1: Good",
         "divider": [],
-        "index": [6]
+        "index": [ 5 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 5",
       "type": "chatting",
       "chats": [
-        { "author": "dopamine", "type": "message", "content": "이건 무조건 구매해야합니다!!", "delay": 1000 },
-        { "author": "player", "type": "message", "content": "ㅋㅋㅋ 왜요?", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "흔한 기회가 아닙니다!! 어서 구매하십시오!!", "delay": 1000 },
-        { "author": "dopamine", "type": "message", "content": "돈은 충분히 있습니다!!", "delay": 1000 }
+        {
+          "author": "player",
+          "type": "message",
+          "content": "도그코인 하나 파신다고 했는데 아직 안 팔렸나요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "네 아직 안 팔렸어요.",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "3000만원이나 하는 물건인데 인증 좀 해주세요.",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "여기 사진 있어요.(사진)",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "2600만원 입금하면 되나요?",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "방금 조금 올라서 2800만원 입금하시면 될 거 같아요.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "예 2700만원 입금했습니다",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "저도 1 도그코인 보냈습니다.",
+          "delay": 1000
+        }
       ],
       "branch": {
+        "__COMMENT__": "전개 2 도입",
         "divider": [],
-        "index": [6]
+        "index": [ 6 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 6, 전개 2 진행",
       "type": "emote",
       "duration": 180000,
       "generates": {
-        "ratio": [1, 1],
+        "ratio": [ 1, 1 ],
         "positiveEmojis": [
-          { "id": "clap", "asset": "clap", "ondestroy": 1 },
-          { "id": "heart", "asset": "heart", "ondestroy": 1.1 }
+          {
+            "id": "clap",
+            "asset": "clap",
+            "ondestroy": 1
+          },
+          {
+            "id": "heart",
+            "asset": "heart",
+            "ondestroy": 1.1
+          }
         ],
         "negativeEmojis": [
-          { "id": "skul", "asset": "skul", "ondestroy": -1 },
-          { "id": "warning", "asset": "warning", "ondestroy": -0.8 }
+          {
+            "id": "skul",
+            "asset": "skul",
+            "ondestroy": -1
+          },
+          {
+            "id": "warning",
+            "asset": "warning",
+            "ondestroy": -0.8
+          }
         ]
       },
       "branch": {
-        "divider": [],
-        "index": [7]
+        "__COMMENT__": "// 이 값은 누적되는 건가요? 누적된다면 값을 늘려야 할 것 같습니다.",
+        "divider": [ 2000, 3000 ],
+        "index": [ 7, 8, 9 ]
       }
     },
     {
+      "__COMMENT__": "INDEX 7",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "player",
+          "type": "message",
+          "content": "끝도 없이 떨어지네요.",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "다시 올라갈 겁니다!",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "저희 다 같이 영차 영차 해보죠",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "영",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "차",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "영",
+          "delay": 1000
+        },
+        {
+          "author": "coin_nether",
+          "type": "message",
+          "content": "링크 : 네이버 뉴스 : 도그코인 ....",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "호재인가요?",
+          "delay": 1000
+        },
+        {
+          "author": "coin_nether",
+          "type": "message",
+          "content": "화재에요.. 정신차리세요 ㅋㅋ",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "화재고 나발이고 일던 저희 큰일 난 거 같은데요",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "도그코인 상장폐지 결정....",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "전개 2: GameOver",
+        "divider": [],
+        "index": [ 15 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 8",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "내린다 해서 손털고 다시 사고 이러면 돈이 남아나지 않아요",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "살살 다루면서 이쁘다 해야 올라가는게 코인입니다.",
+          "delay": 1000
+        },
+
+        {
+          "author": "stonk",
+          "type": "message",
+          "content": "제발 진득히 기다려 주세요",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "코인이 누구네 개이름도 아니고 이쁘다 하면 올라갑니까? 손해 더 보기 전에 팔겠습니다.",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "전개 2: Bad",
+        "divider": [],
+        "index": [ 10 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 9",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "player",
+          "type": "message",
+          "content": "도그코인 가지고 계신 분들 이거 오를까요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "elon_nusk",
+          "type": "message",
+          "content": "Dog Coin, 화폐 미래의.",
+          "delay": 1000
+        },
+
+        {
+          "author": "elon_nusk",
+          "type": "message",
+          "content": "갈꺼니까, Moon",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "일런 너스크 형님! 감사합니다!",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "전개 2: Good",
+        "divider": [],
+        "index": [ 10 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 10",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "와플패드를 대량으로 구입하고 싶으시다고요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "예. 여기가 다른 곳보다 싸서요.",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "어떻게 이렇게 싸게 파는 거죠? 혹시..",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "물건 가격에서 유통비가 큰 거 아시죠?",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "저희는 해외에 지점이 있는 전문업체여서 최대한 가격을 낮출 수 있는 거고요, 코로나 때문에 요즘 자주 반품이 되기도 하거든요.",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "그런거 활용해서 싸게 파는 겁니다.",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "그래서 수량이 얼마 안돼요. 사실거면 빨리 사셔야 되요. 계좌이체만 됩니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "저기요 돈 보냈는데 왜 답장이 없으신가요?",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "위기 1 도입",
+        "divider": [],
+        "index": [ 11 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 11, 전개 2 진행",
+      "type": "emote",
+      "duration": 180000,
+      "generates": {
+        "ratio": [ 1, 1 ],
+        "positiveEmojis": [
+          {
+            "id": "clap",
+            "asset": "clap",
+            "ondestroy": 1
+          },
+          {
+            "id": "heart",
+            "asset": "heart",
+            "ondestroy": 1.1
+          }
+        ],
+        "negativeEmojis": [
+          {
+            "id": "skul",
+            "asset": "skul",
+            "ondestroy": -1
+          },
+          {
+            "id": "warning",
+            "asset": "warning",
+            "ondestroy": -0.8
+          }
+        ]
+      },
+      "branch": {
+        "divider": [ 2000, 3000 ],
+        "index": [ 12, 13, 14 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 12",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "player",
+          "type": "message",
+          "content": "그 사기 사건 어떻게 진행되고 있나요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "이게.. 사기꾼이 동남아 쪽 해외로 도피한 것으로 추정됩니다. 피해 금액도 상당한지라 계속 추적하기는 할 건데 빠른 시일 내에 찾기는 힘들겁니다.",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "제 피해 금액은 되찾기 힘든 건가요?",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "예.. 일단 최대한 추적해 보겠지만 받아낸다 하더라도 상당한 손실이 있을 겁니다.",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "앞으로는 중고 거래할 때 너무 저렴한 물건은 의심해 보세요. 사기꾼은 꼭 잡아내겠습니다.",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "위기 1: Game Over",
+        "divider": [],
+        "index": [ 15 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 13",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "추적 완료했고, 해당 사기꾼 검거 완료하였습니다.",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "정말 감사합니다! 혹시 피해 금액은 받아 낼 수 있나요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "자금을 압류하기는 했는데, 피해자가 많고 일부 찾아내지 못한 게 있어 전부 다 받기는 힘들 거 같습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "앞으로는 중고거래 할 때 너무 저렴한 물건은 의심해보세요.",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "위기 1: Bad // 파트별 good 개수 별로 나눠서 진행해야 하는데 이렇게 하면 될까요?",
+        "divider": [1.5, 2.5 ],
+        "index": [ 16, 17, 18 ]
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 14",
+      "type": "chatting",
+      "chats": [
+        {
+          "author": "player",
+          "type": "message",
+          "content": "그 사기 사건 어떻게 진행되고 있나요?",
+          "delay": 1000
+        },
+
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "추적 완료했고, 해당 사기꾼 검거 완료하였습니다.",
+          "delay": 1000
+        },
+
+        {
+          "author": "player",
+          "type": "message",
+          "content": "정말 감사합니다! 혹시 피해 금액은 받아 낼 수 있나요?",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "다행히도 자금 세탁 하기 전에 잡아내어 피해 금액 몇 일 안에 받아 낼 수 있을 겁니다.",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "앞으로는 중고거래 할 때 너무 저렴한 물건은 의심해보세요.",
+          "delay": 1000
+        },
+        {
+          "author": "rudolf",
+          "type": "message",
+          "content": "감사합니다!",
+          "delay": 1000
+        }
+      ],
+      "branch": {
+        "__COMMENT__": "위기 1: Good // 파트별 good 개수 별로 나눠서 진행해야 하는데 이렇게 하면 될까요?",
+        "divider": [ 1.5, 2.5 ],
+        "index": [ 16, 17, 18 ] 
+      }
+    },
+    {
+      "__COMMENT__": "INDEX 15",
       "type": "end",
-      "ending": "a"
+      "ending": "GameOver"
+    },
+    {
+      "__COMMENT__": "INDEX 16",
+      "type": "end",
+      "ending": "BadEnding"
+    },
+    {
+      "__COMMENT__": "INDEX 17",
+      "type": "end",
+      "ending": "NormalEnding"
+    },
+    {
+      "__COMMENT__": "INDEX 18",
+      "type": "end",
+      "ending": "GoodEnding"
     }
   ]
 }
