@@ -35,6 +35,8 @@ public class IngameSceneManager : MonoBehaviour
     public bool triggerFlow = true;
 
     // Called Every Frame by Update Method
+
+    bool isProcessed = false;
     void FlowHandler()
     {
         // Check time elapsed
@@ -67,14 +69,16 @@ public class IngameSceneManager : MonoBehaviour
                 StopEmojiSpawner();
                 // Trigger Next Flow
                 Branch branch = flow.flow[flowIndex[0]].branch;
-                bool isProcessed = false;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
+                    print($"{i} {branch.divider[i]} {GameManager.instance.branchIndexingScore}");
+                    if (branch.divider[i] < GameManager.instance.branchIndexingScore)
                     {
-                        flowIndex[0] = branch.index[i];
+                        print($"{i} true");
+                        flowIndex[0] = branch.index[i+1];
                         flowIndex[1] = 0;
                         isProcessed = true;
+                        //GameManager.instance.branchIndexingScore = 0;
                         break;
                     }
                 }
@@ -86,7 +90,6 @@ public class IngameSceneManager : MonoBehaviour
                 // Initialize
                 triggerFlow = true;
                 previousFlowElapsed = 0;
-                GameManager.instance.branchIndexingScore = 0;
             }
         }
 
@@ -128,7 +131,6 @@ public class IngameSceneManager : MonoBehaviour
     void StopEmojiSpawner()
     {
         emojiSpawner.spawnswitch = false;
-        GameManager.instance.InitBranchScore();
     }
 
     void AddChattingMessage(Message message)
