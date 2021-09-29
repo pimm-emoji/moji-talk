@@ -36,7 +36,6 @@ public class IngameSceneManager : MonoBehaviour
 
     // Called Every Frame by Update Method
 
-    bool isProcessed = false;
     void FlowHandler()
     {
         // Check time elapsed
@@ -68,13 +67,12 @@ public class IngameSceneManager : MonoBehaviour
                 // Stop Emoji Spawner Handler
                 StopEmojiSpawner();
                 // Trigger Next Flow
+                bool isProcessed = false;
                 Branch branch = flow.flow[flowIndex[0]].branch;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    print($"{i} {branch.divider[i]} {GameManager.instance.branchIndexingScore}");
                     if (branch.divider[i] < GameManager.instance.branchIndexingScore)
                     {
-                        print($"{i} true");
                         flowIndex[0] = branch.index[i+1];
                         flowIndex[1] = 0;
                         isProcessed = true;
