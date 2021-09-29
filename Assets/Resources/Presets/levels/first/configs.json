@@ -4,7 +4,7 @@
   "desc": "현재 취업 준비중",
   "img": "Profiles/Images/dopamine",
   "type": "single",
-  "participants": ["프로협상러"],["제발가즈아"], ["코인불바다"], ["일런너스크"], ["와플대량매입"], ["경찰"]
+  "participants": ["player", "pro_negotiator", "stonk", "coin_nether", "elon_nusk", "waffle_shopkeeper", "first_police", "rudolf"],
   "usingEmojis": ["thumbsup", "happy", "weary", "angry", "thinking"],
   "endings": [
     {

@@ -86,6 +86,7 @@ public class IngameSceneManager : MonoBehaviour
                 // Initialize
                 triggerFlow = true;
                 previousFlowElapsed = 0;
+                GameManager.instance.branchIndexingScore = 0;
             }
         }
 
@@ -133,7 +134,8 @@ public class IngameSceneManager : MonoBehaviour
     void AddChattingMessage(Message message)
     {
         GameObject newObject = Instantiate(objects.chattingWrapperPrefab) as GameObject;
-        newObject.GetComponent<ChattingWrapperController>().Init(message.author, message.content, message.author != "player" ? 0 : 1);
+        Profile profile = IngameDataManager.instance.participants.Find(x => x.id == message.author);
+        newObject.GetComponent<ChattingWrapperController>().Init(profile.name, message.content, message.author != "player" ? 0 : 1);
         objects.scrollViewContent.GetComponent<ScrollViewContentController>().AddChild(newObject, message.author != "player" ? 0 : 1);
         ScrollLogToBottom();
     }
