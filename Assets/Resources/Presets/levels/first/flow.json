@@ -8,7 +8,7 @@
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "저기요 당근나라 보고 연락드렸어요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
@@ -20,37 +20,37 @@
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "이거 공짜로 뿌리는 분 계시던데 싸게 파실 생각 없나요?",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
           "type": "meesage",
           "content": "그런데 뭘 공짜로 뿌린다는 거죠?",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "갤럭시 X요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "휴대폰 파는데 보면 다 공짜로 폰준데요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
           "type": "meesage",
           "content": "안팝니다",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "장난이고 가격 흥정 좀 해 봐요",
-          "delay": 10000
+          "delay": 7000
         }
       ],
       "branch": {
@@ -62,7 +62,7 @@
     {
       "__COMMENT__": "INDEX 1",
       "type": "emote",
-      "duration": 180000,
+      "duration": 18000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -92,7 +92,7 @@
       },
       "branch": {
         "__COMMENT__": "전개 1 진행",
-        "divider": [ 2000, 3000 ],
+        "divider": [ 100, 200 ],
         "index": [ 2, 3, 4 ]
       }
     },
