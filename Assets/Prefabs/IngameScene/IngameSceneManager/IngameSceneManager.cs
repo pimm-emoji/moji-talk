@@ -80,9 +80,9 @@ public class IngameSceneManager : MonoBehaviour
                 Branch branch = flow.flow[flowIndex[0]].branch;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    if (branch.divider[i] < GameManager.instance.branchIndexingScore)
+                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
                     {
-                        flowIndex[0] = branch.index[i+1];
+                        flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
                         isProcessed = true;
                         //GameManager.instance.branchIndexingScore = 0;
@@ -91,7 +91,7 @@ public class IngameSceneManager : MonoBehaviour
                 }
                 if (!isProcessed)
                 {
-                    flowIndex[0] = branch.index[0];
+                    flowIndex[0] = branch.index[branch.index.Count-1];
                     flowIndex[1] = 0;
                 }
                 // Initialize
