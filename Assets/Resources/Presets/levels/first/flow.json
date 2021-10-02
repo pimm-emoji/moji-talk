@@ -405,7 +405,7 @@
     {
       "__COMMENT__": "INDEX 6, 전개 2 진행",
       "type": "emote",
-      "duration": 18000,
+      "duration": 27000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -435,7 +435,7 @@
       },
       "branch": {
         "__COMMENT__": "// 이 값은 누적되는 건가요? 누적된다면 값을 늘려야 할 것 같습니다.",
-        "divider": [ 2000, 3000 ],
+        "divider": [ 3000, 4500 ],
         "index": [ 7, 8, 9 ]
       }
     },
@@ -565,7 +565,13 @@
         {
           "author": "player",
           "type": "message",
-          "content": "코인이 누구네 개이름도 아니고 이쁘다 하면 올라갑니까? 손해 더 보기 전에 팔겠습니다.",
+          "content": "코인이 누구네 개이름도 아니고 이쁘다 하면 올라갑니까? ",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "손해 더 보기 전에 팔겠습니다.",
           "delay": 1000
         },
         {
@@ -712,7 +718,13 @@
         {
           "author": "waffle_shopkeeper",
           "type": "message",
-          "content": "저희는 해외에 지점이 있는 전문업체여서 최대한 가격을 낮출 수 있는 거고요, 코로나 때문에 요즘 자주 반품이 되기도 하거든요.",
+          "content": "저희는 해외에 지점이 있는 전문업체여서 가격을 낮출 수 있는 거고요,",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "코로나 때문에 요즘 자주 반품이 되기도 하거든요.",
           "delay": 1000
         },
         {
@@ -724,7 +736,13 @@
         {
           "author": "waffle_shopkeeper",
           "type": "message",
-          "content": "그래서 수량이 얼마 안돼요. 사실거면 빨리 사셔야 되요. 계좌이체만 됩니다.",
+          "content": "그래서 수량이 얼마 안돼요. 사실거면 빨리 사셔야 되요. ",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "참고로 계좌이체만 됩니다.",
           "delay": 1000
         },
         {
@@ -755,7 +773,7 @@
     {
       "__COMMENT__": "INDEX 11, 전개 2 진행",
       "type": "emote",
-      "duration": 18000,
+      "duration": 38000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -784,7 +802,7 @@
         ]
       },
       "branch": {
-        "divider": [ 2000, 3000 ],
+        "divider": [ 4500, 6500 ],
         "index": [ 12, 13, 14 ]
       }
     },
@@ -802,10 +820,15 @@
         {
           "author": "first_police",
           "type": "message",
-          "content": "이게.. 사기꾼이 동남아 쪽 해외로 도피한 것으로 추정됩니다. 피해 금액도 상당한지라 계속 추적하기는 할 건데 빠른 시일 내에 찾기는 힘들겁니다.",
+          "content": "이게.. 사기꾼이 동남아 쪽 해외로 도피한 것으로 추정됩니다.",
           "delay": 1000
         },
-
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "피해 금액도 상당한지라 계속 추적하기는 할 건데 빠른 시일 내에 찾기는 힘들겁니다.",
+          "delay": 1000
+        },
         {
           "author": "player",
           "type": "message",
@@ -821,7 +844,13 @@
         {
           "author": "first_police",
           "type": "message",
-          "content": "앞으로는 중고 거래할 때 너무 저렴한 물건은 의심해 보세요. 사기꾼은 꼭 잡아내겠습니다.",
+          "content": "앞으로는 중고 거래할 때 너무 저렴한 물건은 의심해 보세요.",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "사기꾼은 꼭 잡아내겠습니다.",
           "delay": 1000
         }
       ],
