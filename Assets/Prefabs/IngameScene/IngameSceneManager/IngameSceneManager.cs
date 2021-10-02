@@ -82,7 +82,7 @@ public class IngameSceneManager : MonoBehaviour
                 }
                 if (!isProcessed)
                 {
-                    flowIndex[0] = branch.index[branch.index.Count-1];
+                    flowIndex[0] = branch.index[0];
                     flowIndex[1] = 0;
                 }
                 // Initialize
