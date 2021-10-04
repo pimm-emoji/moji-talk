@@ -9,6 +9,7 @@ public class IngameSceneManager : MonoBehaviour
     public IngameSceneGameObjects objects;
     EmojiSpawner emojiSpawner;
     Flow flow;
+    EffectManager theEffect;
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class IngameSceneManager : MonoBehaviour
     void Start()
     {
         //AudioManager.instance.PlayBGM("stage1");
+        theEffect = FindObjectOfType<EffectManager>();
         if (string.IsNullOrEmpty(GameManager.instance.nowLevelID))
             GameManager.instance.nowLevelID = IngameConfig.defaultDebuggingLevelID;
         IngameDataManager.instance.LoadLevelEntire(GameManager.instance.nowLevelID);
@@ -35,6 +37,13 @@ public class IngameSceneManager : MonoBehaviour
     public bool triggerFlow = true;
 
     // Called Every Frame by Update Method
+
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene("ResultScene");
+    }
+
 
     void FlowHandler()
     {
@@ -71,9 +80,9 @@ public class IngameSceneManager : MonoBehaviour
                 Branch branch = flow.flow[flowIndex[0]].branch;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    if (branch.divider[i] < GameManager.instance.branchIndexingScore)
+                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
                     {
-                        flowIndex[0] = branch.index[i+1];
+                        flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
                         isProcessed = true;
                         GameManager.instance.branchIndexingScore = 0;
@@ -114,8 +123,25 @@ public class IngameSceneManager : MonoBehaviour
             else if (flow.flow[flowIndex[0]].type == "end")
             {
                 // Trigger Ending
+                string ending = flow.flow[flowIndex[0]].ending;
                 GameManager.instance.endingID = flow.flow[flowIndex[0]].ending;
-                SceneManager.LoadScene("ResultScene");
+                if(ending == "GameOver")
+                {
+                    theEffect.Gameover();
+                }
+                else if(ending =="BadEnding")
+                {
+                    theEffect.Badend();
+                }
+                else if(ending == "NormalEnding")
+                {
+                    theEffect.Normalend();
+                }
+                else if(ending == "GoodEnding")
+                {
+                    theEffect.Goodend();
+                }
+                Invoke("SceneChange", 3);
             }
             // Initialize
             triggerFlow = false;
