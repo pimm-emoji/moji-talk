@@ -193,7 +193,7 @@
     },
     {
       "__COMMENT__": "INDEX 3",
-      "type": "chatting",
+      "type": "badchatting",
       "chats": [
         {
           "author": "player",
@@ -264,7 +264,7 @@
     },
     {
       "__COMMENT__": "INDEX 4",
-      "type": "chatting",
+      "type": "goodchatting",
       "chats": [
         {
           "author": "player",
@@ -539,7 +539,7 @@
     },
     {
       "__COMMENT__": "INDEX 8",
-      "type": "chatting",
+      "type": "badchatting",
       "chats": [
         {
           "author": "stonk",
@@ -613,7 +613,7 @@
     },
     {
       "__COMMENT__": "INDEX 9",
-      "type": "chatting",
+      "type": "goodchatting",
       "chats": [
         {
           "author": "player",
@@ -808,7 +808,7 @@
     },
     {
       "__COMMENT__": "INDEX 12",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "player",
@@ -862,7 +862,7 @@
     },
     {
       "__COMMENT__": "INDEX 13",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "first_police",
@@ -899,7 +899,7 @@
     },
     {
       "__COMMENT__": "INDEX 14",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "player",

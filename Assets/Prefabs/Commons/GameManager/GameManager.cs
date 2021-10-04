@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public float elapsedFlowTime = 0;
     public string endingID;
     public EmojiDestroyCounts counts;
+    public int good = 0;
 
     // "score" variable is gameflow's score.
     // It must be updated through methods
