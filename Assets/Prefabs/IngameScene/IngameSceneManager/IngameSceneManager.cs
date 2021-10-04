@@ -155,7 +155,7 @@ public class IngameSceneManager : MonoBehaviour
                         flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
                         isProcessed = true;
-                        //GameManager.instance.branchIndexingScore = 0;
+                        GameManager.instance.branchIndexingScore = 0;
                         break;
                     }
                 }
