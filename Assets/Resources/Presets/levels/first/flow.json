@@ -7,8 +7,14 @@
         {
           "author": "pro_negotiator",
           "type": "meesage",
+          "content": "프로협상가 님이 입장하셨습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
           "content": "저기요 당근나라 보고 연락드렸어요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
@@ -20,37 +26,37 @@
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "이거 공짜로 뿌리는 분 계시던데 싸게 파실 생각 없나요?",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
           "type": "meesage",
           "content": "그런데 뭘 공짜로 뿌린다는 거죠?",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "갤럭시 X요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "휴대폰 파는데 보면 다 공짜로 폰준데요",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "player",
           "type": "meesage",
           "content": "안팝니다",
-          "delay": 10000
+          "delay": 1000
         },
         {
           "author": "pro_negotiator",
           "type": "meesage",
           "content": "장난이고 가격 흥정 좀 해 봐요",
-          "delay": 10000
+          "delay": 3000
         }
       ],
       "branch": {
@@ -62,7 +68,7 @@
     {
       "__COMMENT__": "INDEX 1",
       "type": "emote",
-      "duration": 180000,
+      "duration": 18000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -92,7 +98,7 @@
       },
       "branch": {
         "__COMMENT__": "전개 1 진행",
-        "divider": [ 2000, 3000 ],
+        "divider": [ 1000, 2000 ],
         "index": [ 2, 3, 4 ]
       }
     },
@@ -165,6 +171,18 @@
           "type": "emoji",
           "content": "야 이 새끼 거기 멈춰!",
           "delay": 1000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "프로협상가 님이 방을 나갔습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 3000
         }
       ],
       "branch": {
@@ -175,7 +193,7 @@
     },
     {
       "__COMMENT__": "INDEX 3",
-      "type": "chatting",
+      "type": "badchatting",
       "chats": [
         {
           "author": "player",
@@ -205,6 +223,36 @@
           "author": "pro_negotiator",
           "type": "message",
           "content": "시세보다 엄청 싸게 샀네요 ㅋㅋㅋ",
+          "delay": 3000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "프로협상가 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님의 잔고가 줄어들었습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프가 새로운 돈벌이를 찾고 있습니다",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "",
           "delay": 1000
         }
       ],
@@ -216,7 +264,7 @@
     },
     {
       "__COMMENT__": "INDEX 4",
-      "type": "chatting",
+      "type": "goodchatting",
       "chats": [
         {
           "author": "player",
@@ -246,8 +294,39 @@
           "author": "pro_negotiator",
           "type": "message",
           "content": "알겠습니다. 그러면 5만원 더 드리고 토 안달고 바로 송금할게요.",
+          "delay": 3000
+        },
+        {
+          "author": "pro_negotiator",
+          "type": "meesage",
+          "content": "프로협상가 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님의 잔고가 증가하였습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프가 새로운 돈벌이를 찾고 있습니다",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "",
           "delay": 1000
         }
+
       ],
       "branch": {
         "__COMMENT__": "전개 1: Good",
@@ -259,6 +338,12 @@
       "__COMMENT__": "INDEX 5",
       "type": "chatting",
       "chats": [
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 코인팝니다 방에 입장하셨습니다.",
+          "delay": 1000
+        },
         {
           "author": "player",
           "type": "message",
@@ -308,7 +393,7 @@
           "author": "stonk",
           "type": "message",
           "content": "저도 1 도그코인 보냈습니다.",
-          "delay": 1000
+          "delay": 3000
         }
       ],
       "branch": {
@@ -320,7 +405,7 @@
     {
       "__COMMENT__": "INDEX 6, 전개 2 진행",
       "type": "emote",
-      "duration": 180000,
+      "duration": 27000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -350,7 +435,7 @@
       },
       "branch": {
         "__COMMENT__": "// 이 값은 누적되는 건가요? 누적된다면 값을 늘려야 할 것 같습니다.",
-        "divider": [ 2000, 3000 ],
+        "divider": [ 3000, 4500 ],
         "index": [ 7, 8, 9 ]
       }
     },
@@ -426,6 +511,24 @@
           "type": "message",
           "content": "도그코인 상장폐지 결정....",
           "delay": 1000
+        },
+        {
+          "author": "coin_nether",
+          "type": "meesage",
+          "content": "코인불바다 님이 방을 나갔습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "meesage",
+          "content": "제발가즈아 님이 방을 나갔습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 3000
         }
       ],
       "branch": {
@@ -436,7 +539,7 @@
     },
     {
       "__COMMENT__": "INDEX 8",
-      "type": "chatting",
+      "type": "badchatting",
       "chats": [
         {
           "author": "stonk",
@@ -462,7 +565,43 @@
         {
           "author": "player",
           "type": "message",
-          "content": "코인이 누구네 개이름도 아니고 이쁘다 하면 올라갑니까? 손해 더 보기 전에 팔겠습니다.",
+          "content": "코인이 누구네 개이름도 아니고 이쁘다 하면 올라갑니까? ",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "message",
+          "content": "손해 더 보기 전에 팔겠습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "stonk",
+          "type": "meesage",
+          "content": "제발가즈아 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님의 잔고가 줄어들었습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프가 모은 돈으로 선물을 찾고 있습니다",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "",
           "delay": 1000
         }
       ],
@@ -474,7 +613,7 @@
     },
     {
       "__COMMENT__": "INDEX 9",
-      "type": "chatting",
+      "type": "goodchatting",
       "chats": [
         {
           "author": "player",
@@ -502,6 +641,36 @@
           "type": "message",
           "content": "일런 너스크 형님! 감사합니다!",
           "delay": 1000
+        },
+        {
+          "author": "elon_nusk",
+          "type": "meesage",
+          "content": "일론너스크 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 방을 나갔습니다.",
+          "delay": 500
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님의 잔고가 증가하였습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프가 모은 돈으로 선물을 찾고 있습니다",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "",
+          "delay": 1000
         }
       ],
       "branch": {
@@ -514,6 +683,12 @@
       "__COMMENT__": "INDEX 10",
       "type": "chatting",
       "chats": [
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "루돌프 님이 와플대량구매/판매 문의 방에 입장하셨습니다.",
+          "delay": 3000
+        },
         {
           "author": "waffle_shopkeeper",
           "type": "message",
@@ -543,7 +718,13 @@
         {
           "author": "waffle_shopkeeper",
           "type": "message",
-          "content": "저희는 해외에 지점이 있는 전문업체여서 최대한 가격을 낮출 수 있는 거고요, 코로나 때문에 요즘 자주 반품이 되기도 하거든요.",
+          "content": "저희는 해외에 지점이 있는 전문업체여서 가격을 낮출 수 있는 거고요,",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "코로나 때문에 요즘 자주 반품이 되기도 하거든요.",
           "delay": 1000
         },
         {
@@ -555,7 +736,13 @@
         {
           "author": "waffle_shopkeeper",
           "type": "message",
-          "content": "그래서 수량이 얼마 안돼요. 사실거면 빨리 사셔야 되요. 계좌이체만 됩니다.",
+          "content": "그래서 수량이 얼마 안돼요. 사실거면 빨리 사셔야 되요. ",
+          "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "message",
+          "content": "참고로 계좌이체만 됩니다.",
           "delay": 1000
         },
         {
@@ -563,6 +750,18 @@
           "type": "message",
           "content": "저기요 돈 보냈는데 왜 답장이 없으신가요?",
           "delay": 1000
+        },
+        {
+          "author": "waffle_shopkeeper",
+          "type": "meesage",
+          "content": "와플대량매입 님이 방을 나갔습니다.",
+          "delay": 1000
+        },
+        {
+          "author": "player",
+          "type": "meesage",
+          "content": "야 이 !@#$#%$",
+          "delay": 3000
         }
       ],
       "branch": {
@@ -574,7 +773,7 @@
     {
       "__COMMENT__": "INDEX 11, 전개 2 진행",
       "type": "emote",
-      "duration": 180000,
+      "duration": 38000,
       "generates": {
         "ratio": [ 1, 1 ],
         "positiveEmojis": [
@@ -603,13 +802,13 @@
         ]
       },
       "branch": {
-        "divider": [ 2000, 3000 ],
+        "divider": [ 4500, 6500 ],
         "index": [ 12, 13, 14 ]
       }
     },
     {
       "__COMMENT__": "INDEX 12",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "player",
@@ -621,10 +820,15 @@
         {
           "author": "first_police",
           "type": "message",
-          "content": "이게.. 사기꾼이 동남아 쪽 해외로 도피한 것으로 추정됩니다. 피해 금액도 상당한지라 계속 추적하기는 할 건데 빠른 시일 내에 찾기는 힘들겁니다.",
+          "content": "이게.. 사기꾼이 동남아 쪽 해외로 도피한 것으로 추정됩니다.",
           "delay": 1000
         },
-
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "피해 금액도 상당한지라 계속 추적하기는 할 건데 빠른 시일 내에 찾기는 힘들겁니다.",
+          "delay": 1000
+        },
         {
           "author": "player",
           "type": "message",
@@ -640,7 +844,13 @@
         {
           "author": "first_police",
           "type": "message",
-          "content": "앞으로는 중고 거래할 때 너무 저렴한 물건은 의심해 보세요. 사기꾼은 꼭 잡아내겠습니다.",
+          "content": "앞으로는 중고 거래할 때 너무 저렴한 물건은 의심해 보세요.",
+          "delay": 1000
+        },
+        {
+          "author": "first_police",
+          "type": "message",
+          "content": "사기꾼은 꼭 잡아내겠습니다.",
           "delay": 1000
         }
       ],
@@ -652,7 +862,7 @@
     },
     {
       "__COMMENT__": "INDEX 13",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "first_police",
@@ -678,18 +888,18 @@
           "author": "first_police",
           "type": "message",
           "content": "앞으로는 중고거래 할 때 너무 저렴한 물건은 의심해보세요.",
-          "delay": 1000
+          "delay": 3000
         }
       ],
       "branch": {
         "__COMMENT__": "위기 1: Bad // 파트별 good 개수 별로 나눠서 진행해야 하는데 이렇게 하면 될까요?",
-        "divider": [1.5, 2.5 ],
+        "divider": [2000, 3000 ],
         "index": [ 16, 17, 18 ]
       }
     },
     {
       "__COMMENT__": "INDEX 14",
-      "type": "chatting",
+      "type": "finalchatting",
       "chats": [
         {
           "author": "player",
@@ -727,7 +937,7 @@
           "author": "rudolf",
           "type": "message",
           "content": "감사합니다!",
-          "delay": 1000
+          "delay": 3000
         }
       ],
       "branch": {

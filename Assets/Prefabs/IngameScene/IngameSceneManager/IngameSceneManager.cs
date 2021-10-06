@@ -9,6 +9,7 @@ public class IngameSceneManager : MonoBehaviour
     public IngameSceneGameObjects objects;
     EmojiSpawner emojiSpawner;
     Flow flow;
+    EffectManager theEffect;
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class IngameSceneManager : MonoBehaviour
     void Start()
     {
         //AudioManager.instance.PlayBGM("stage1");
+        theEffect = FindObjectOfType<EffectManager>();
         if (string.IsNullOrEmpty(GameManager.instance.nowLevelID))
             GameManager.instance.nowLevelID = IngameConfig.defaultDebuggingLevelID;
         IngameDataManager.instance.LoadLevelEntire(GameManager.instance.nowLevelID);
@@ -35,6 +37,13 @@ public class IngameSceneManager : MonoBehaviour
     public bool triggerFlow = true;
 
     // Called Every Frame by Update Method
+
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene("ResultScene");
+    }
+
 
     void FlowHandler()
     {
@@ -60,6 +69,76 @@ public class IngameSceneManager : MonoBehaviour
                 previousFlowElapsed = 0;
             }
         }
+        else if (flow.flow[flowIndex[0]].type == "goodchatting")
+        {
+            GameManager.instance.good += 1;
+            if (flow.flow[flowIndex[0]].chats[flowIndex[1]].delay / 1000 < previousFlowElapsed)
+            {
+                // Trigger Next Message
+                if (flow.flow[flowIndex[0]].chats.Count - 1 != flowIndex[1])
+                {
+                    flowIndex[1] += 1;
+                }
+                // Trigger Next Flow
+                else
+                {
+                    flowIndex[0] = flow.flow[flowIndex[0]].branch.index[0];
+                    flowIndex[1] = 0;
+                }
+                // Initialize
+                triggerFlow = true;
+                previousFlowElapsed = 0;
+            }
+        }
+        else if (flow.flow[flowIndex[0]].type == "badchatting")
+        {
+            if (flow.flow[flowIndex[0]].chats[flowIndex[1]].delay / 1000 < previousFlowElapsed)
+            {
+                // Trigger Next Message
+                if (flow.flow[flowIndex[0]].chats.Count - 1 != flowIndex[1])
+                {
+                    flowIndex[1] += 1;
+                }
+                // Trigger Next Flow
+                else
+                {
+                    flowIndex[0] = flow.flow[flowIndex[0]].branch.index[0];
+                    flowIndex[1] = 0;
+                }
+                // Initialize
+                triggerFlow = true;
+                previousFlowElapsed = 0;
+            }
+        }
+        else if (flow.flow[flowIndex[0]].type == "finalchatting")
+        {
+            if(flowIndex[0] == 14)
+            {
+                GameManager.instance.good += 1;
+            }
+            if (flow.flow[flowIndex[0]].chats[flowIndex[1]].delay / 1000 < previousFlowElapsed)
+            {
+                // Trigger Next Message
+                if (flow.flow[flowIndex[0]].chats.Count - 1 != flowIndex[1])
+                {
+                    flowIndex[1] += 1;
+                }
+                // Trigger Next Flow
+                else
+                {
+                    if (GameManager.instance.good >= 3) { flowIndex[0] = 18; }
+
+                    else if (GameManager.instance.good >= 2 && GameManager.instance.good < 3) { flowIndex[0] = 17; }
+  
+                    else if (GameManager.instance.good <= 1) {flowIndex[0] = 16;}
+                 
+                    flowIndex[1] = 0;
+                }
+                // Initialize
+                triggerFlow = true;
+                previousFlowElapsed = 0;
+            }
+        }
         else if (flow.flow[flowIndex[0]].type == "emote")
         {
             if (flow.flow[flowIndex[0]].duration / 1000 < previousFlowElapsed) // Trigger Next Flow
@@ -71,12 +150,12 @@ public class IngameSceneManager : MonoBehaviour
                 Branch branch = flow.flow[flowIndex[0]].branch;
                 for (int i = 0; i < branch.divider.Count; i++)
                 {
-                    if (branch.divider[i] < GameManager.instance.branchIndexingScore)
+                    if (branch.divider[i] > GameManager.instance.branchIndexingScore)
                     {
-                        flowIndex[0] = branch.index[i+1];
+                        flowIndex[0] = branch.index[i];
                         flowIndex[1] = 0;
                         isProcessed = true;
-                        //GameManager.instance.branchIndexingScore = 0;
+                        GameManager.instance.branchIndexingScore = 0;
                         break;
                     }
                 }
@@ -106,6 +185,21 @@ public class IngameSceneManager : MonoBehaviour
                 // Add chatting
                 AddChattingMessage(flow.flow[flowIndex[0]].chats[flowIndex[1]]);
             }
+            else if (flow.flow[flowIndex[0]].type == "goodchatting")
+            {
+                // Add chatting
+                AddChattingMessage(flow.flow[flowIndex[0]].chats[flowIndex[1]]);
+            }
+            else if (flow.flow[flowIndex[0]].type == "badchatting")
+            {
+                // Add chatting
+                AddChattingMessage(flow.flow[flowIndex[0]].chats[flowIndex[1]]);
+            }
+            else if (flow.flow[flowIndex[0]].type == "finalchatting")
+            {
+                // Add chatting
+                AddChattingMessage(flow.flow[flowIndex[0]].chats[flowIndex[1]]);
+            }
             else if (flow.flow[flowIndex[0]].type == "emote")
             {
                 // Start Emoji Spawner Handler
@@ -114,8 +208,26 @@ public class IngameSceneManager : MonoBehaviour
             else if (flow.flow[flowIndex[0]].type == "end")
             {
                 // Trigger Ending
+                string ending = flow.flow[flowIndex[0]].ending;
+                Debug.Log("엔딩은" + ending);
                 GameManager.instance.endingID = flow.flow[flowIndex[0]].ending;
-                SceneManager.LoadScene("ResultScene");
+                if(ending == "GameOver")
+                {
+                    theEffect.Gameover();
+                }
+                else if(ending =="BadEnding")
+                {
+                    theEffect.Badend();
+                }
+                else if(ending == "NormalEnding")
+                {
+                    theEffect.Normalend();
+                }
+                else if(ending == "GoodEnding")
+                {
+                    theEffect.Goodend();
+                }
+                Invoke("SceneChange", 3);
             }
             // Initialize
             triggerFlow = false;
